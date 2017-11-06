@@ -140,7 +140,8 @@ main {
 
 footer {
     position: absolute;
-    top: 100%;
+    bottom: 0;
+    /* top: 100%; */
     width: 100%;
     height: 56px;
     font-size: 14px;
