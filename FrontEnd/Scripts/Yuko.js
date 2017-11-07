@@ -21,7 +21,7 @@
  * 
  */
 
-(function (win) {
+(function(win) {
     'use strict';
 
     var global = win;
@@ -30,23 +30,23 @@
         global.Yuko = global.Yuko = global.yuko = Object();
     }
 
-    Yuko.polyfill = (function () {
+    Yuko.polyfill = (function() {
         // String.prototype.endsWith polyfill
         /*! http://mths.be/endswith v0.2.0 by @mathias */
         if (!String.prototype.endsWith) {
-            (function () {
+            (function() {
                 'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
-                var defineProperty = (function () {
+                var defineProperty = (function() {
                     // IE 8 only supports `Object.defineProperty` on DOM elements
                     try {
                         var object = {};
                         var $defineProperty = Object.defineProperty;
                         var result = $defineProperty(object, object, object) && $defineProperty;
-                    } catch (error) { }
+                    } catch (error) {}
                     return result;
                 }());
                 var toString = {}.toString;
-                var endsWith = function (search) {
+                var endsWith = function(search) {
                     if (this == null) {
                         throw TypeError();
                     }
@@ -95,7 +95,7 @@
 
         // Array.prototype.map polyfill
         if (!Array.prototype.map) {
-            Array.prototype.map = function (callback) {
+            Array.prototype.map = function(callback) {
                 var T, A, k;
                 if (this == null) {
                     throw new TypeError('this is null or not defined');
@@ -125,7 +125,7 @@
         }
     })();
 
-    Yuko.utility = (function () {
+    Yuko.utility = (function() {
         /**
          * Calculation for cubic equation : y = a * x * x * x + b * x * x + c * x + d
          * 
@@ -164,19 +164,19 @@
          */
         function gaussianElimination(arr, b) {
             // Lower Upper Solver
-            var lusolve = function (A, b, update) {
+            var lusolve = function(A, b, update) {
                 var lu = ludcmp(A, update);
                 if (lu === undefined) return; // Singular Matrix!
                 return lubksb(lu, b, update);
             }
 
             // Lower Upper Decomposition
-            var ludcmp = function (A, update) {
+            var ludcmp = function(A, update) {
                 // A is a matrix that we want to decompose into Lower and Upper matrices.
                 var d = true,
                     n = A.length,
                     idx = new Array(n), // Output vector with row permutations from partial pivoting
-                    vv = new Array(n);  // Scaling information
+                    vv = new Array(n); // Scaling information
 
                 for (var i = 0; i < n; i++) {
                     var max = 0;
@@ -200,7 +200,7 @@
                 }
 
                 var tiny = 1e-20 // in case pivot element is zero
-                for (var i = 0; ; i++) {
+                for (var i = 0;; i++) {
                     for (var j = 0; j < i; j++) {
                         var sum = A[j][i];
                         for (var k = 0; k < j; k++) sum -= A[j][k] * A[k][i];
@@ -238,7 +238,7 @@
             }
 
             // Lower Upper Back Substitution
-            var lubksb = function (lu, b, update) {
+            var lubksb = function(lu, b, update) {
                 // solves the set of n linear equations A*x = b.
                 // lu is the object containing A, idx and d as determined by the routine ludcmp.
                 var A = lu.A,
@@ -295,16 +295,16 @@
          * @param {string} bp Cubic bezier adjust point format in 'cubic-bezier(.17,.67,.78,.31)' or 'cubic-bezier(.17,.67,.78,.31,.17,.67,.78,.31)'
          * @param {number} x Progress
          * @property obsolete
-         *///TOFIX: ERROR calculation result is wrong
+         */ //TOFIX: ERROR calculation result is wrong
         function cubicBezierFunction(bp, x) {
-            var calcFp = function (ps, t) {
+            var calcFp = function(ps, t) {
                 return parseFloat((Math.pow(1 - t, 3) * ps[0] + 3 * t * Math.pow(1 - t, 2) * ps[1] + 3 * (1 - t) * Math.pow(t, 2) * ps[2] + Math.pow(t, 3) * ps[3]).toLocaleString());
             }
-            var bpInArray = bp.substring(bp.indexOf('(') + 1, bp.indexOf(')')).split(',').map(function (i) { return parseFloat(i) }),
+            var bpInArray = bp.substring(bp.indexOf('(') + 1, bp.indexOf(')')).split(',').map(function(i) { return parseFloat(i) }),
                 // Cubic Bézier curves points
-                ps = bpInArray.length < 4 ? [0, 0, 0, 0, 1, 1, 1, 1]
-                    : bpInArray.length >= 4 && bpInArray.length < 8 ? [].concat([0, 0], bpInArray.slice(0, 4), [1.0, 1.0])
-                        : bpInArray.length > 8 ? bpInArray.slice(0, 8) : bpInArray,
+                ps = bpInArray.length < 4 ? [0, 0, 0, 0, 1, 1, 1, 1] :
+                bpInArray.length >= 4 && bpInArray.length < 8 ? [].concat([0, 0], bpInArray.slice(0, 4), [1.0, 1.0]) :
+                bpInArray.length > 8 ? bpInArray.slice(0, 8) : bpInArray,
                 // parameters to calculate a, b, c, d
                 ft1 = 0.1,
                 ft2 = 0.8,
@@ -321,7 +321,10 @@
                     [Math.pow(fpx2, 3), Math.pow(fpx2, 2), fpx2, 1],
                     [1, 1, 1, 1]
                 ], [0, fpy1, fpy2, 1]),
-                a = cs[0], b = cs[1], c = cs[2], d = cs[3];
+                a = cs[0],
+                b = cs[1],
+                c = cs[2],
+                d = cs[3];
 
             return parseFloat((a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d).toLocaleString());
         }
@@ -395,12 +398,12 @@
          */
         function getComputedSizeInPx(ele, type) {
             window.getComputedStyle = window.getComputedStyle || (
-                window.getComputedStyle = function (e, t) {
+                window.getComputedStyle = function(e, t) {
                     return this.el = e,
-                        this.getPropertyValue = function (t) {
+                        this.getPropertyValue = function(t) {
                             var n = /(\-([a-z]){1})/g;
                             return t == 'float' && (t = 'styleFloat'),
-                                n.test(t) && (t = t.replace(n, function () {
+                                n.test(t) && (t = t.replace(n, function() {
                                     return arguments[2].toUpperCase()
                                 })),
                                 e.currentStyle[t] ? e.currentStyle[t] : null
@@ -531,7 +534,7 @@
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function (callback) {
+                function(callback) {
                     window.setTimeout(callback, 1000 / 60);
                 }
         }
@@ -570,7 +573,7 @@
          * @param {*} listener The object which receives a notification. This must be an object implementing the EventListener interface, or a JavaScript function
          */
         function addEvent(target, type, listener, useCapture) {
-            if (target == null || typeof (target) == 'undefined') return;
+            if (target == null || typeof(target) == 'undefined') return;
             if (target.addEventListener) {
                 target.addEventListener(type, listener, useCapture || false);
             } else if (target.attachEvent) {
@@ -652,19 +655,73 @@
                 duration = options.duration === 'fast' ? 300 : options.duration === 'normal' ? 900 : options.duration === 'slow' ? 1500 : options.duration || 400,
                 easing = options.easing || 'linear',
                 easings = options.easings || [],
-                start = options.start || function () { },
-                complete = options.complete || function () { },
+                start = options.start || function() {},
+                complete = options.complete || function() {},
                 cycle = options.cycle || false;
 
             start();
 
-            var mainEntry = (function () {
+            var mainEntry = (function() {
                 // Initial parameters
-                var count = 0, progressNum = 0, tsNum = 0, t = 0, timespan = 0, index = 0, time = 0,
-                    zeroGapIndex = [], origin = [], target = [], keyframes = [], x = [], xs = [], y = [], ys = [], animTypes = [], psList = [], propInArray = [],trueTimeframes = [], trueKeyFrames = [], indexs = [],
+                var count = 0,
+                    progressNum = 0,
+                    tsNum = 0,
+                    t = 0,
+                    timespan = 0,
+                    index = 0,
+                    time = 0,
+                    zeroGapIndex = [],
+                    origin = [],
+                    target = [],
+                    keyframes = [],
+                    x = [],
+                    xs = [],
+                    y = [],
+                    ys = [],
+                    animTypes = [],
+                    psList = [],
+                    propInArray = [],
+                    trueTimeframes = [],
+                    trueKeyFrames = [],
+                    indexs = [],
                     animType, style, bpInArray, ps,
                     supportProps = {
-                        backgroundPosition: 'backgroundPosition', borderWidth: 'borderWidth', borderBottomWidth: 'borderBottomWidth', borderLeftWidth: 'borderLeftWidth', borderRightWidth: 'borderRightWidth', borderTopWidth: 'borderTopWidth', borderSpacing: 'borderSpacing', margin: 'margin', marginBottom: 'marginBottom', marginLeft: 'marginLeft', marginRight: 'marginRight', marginTop: 'marginTop', outlineWidth: 'outlineWidth', padding: 'padding', paddingBottom: 'paddingBottom', paddingLeft: 'paddingLeft', paddingRight: 'paddingRight', paddingTop: 'paddingTop', height: 'height', width: 'width', maxHeight: 'maxHeight', maxWidth: 'maxWidth', minHeight: 'minHeight', minWidth: 'minWidth', font: 'font', fontSize: 'fontSize', bottom: 'bottom', left: 'left', right: 'right', top: 'top', letterSpacing: 'letterSpacing', wordSpacing: 'wordSpacing', lineHeight: 'lineHeight', textIndent: 'textIndent', opacity: 'opacity', clip: 'clip'
+                        backgroundPosition: 'backgroundPosition',
+                        borderWidth: 'borderWidth',
+                        borderBottomWidth: 'borderBottomWidth',
+                        borderLeftWidth: 'borderLeftWidth',
+                        borderRightWidth: 'borderRightWidth',
+                        borderTopWidth: 'borderTopWidth',
+                        borderSpacing: 'borderSpacing',
+                        margin: 'margin',
+                        marginBottom: 'marginBottom',
+                        marginLeft: 'marginLeft',
+                        marginRight: 'marginRight',
+                        marginTop: 'marginTop',
+                        outlineWidth: 'outlineWidth',
+                        padding: 'padding',
+                        paddingBottom: 'paddingBottom',
+                        paddingLeft: 'paddingLeft',
+                        paddingRight: 'paddingRight',
+                        paddingTop: 'paddingTop',
+                        height: 'height',
+                        width: 'width',
+                        maxHeight: 'maxHeight',
+                        maxWidth: 'maxWidth',
+                        minHeight: 'minHeight',
+                        minWidth: 'minWidth',
+                        font: 'font',
+                        fontSize: 'fontSize',
+                        bottom: 'bottom',
+                        left: 'left',
+                        right: 'right',
+                        top: 'top',
+                        letterSpacing: 'letterSpacing',
+                        wordSpacing: 'wordSpacing',
+                        lineHeight: 'lineHeight',
+                        textIndent: 'textIndent',
+                        opacity: 'opacity',
+                        clip: 'clip'
                     },
                     anim = {
                         'ease': 'cubic-bezier(.25,.1,.25,1)',
@@ -754,19 +811,19 @@
                 }
 
                 // Calculation of cubic-bezier curve points list.
-                var calcCBPoints = (function () {
+                var calcCBPoints = (function() {
                     tsNum = duration * 60 / 1000;
                     timespan = 1 / tsNum;
                     for (var i = 0; i < animTypes.length; i++) {
-                        bpInArray = animTypes[i].substring(animTypes[i].indexOf('(') + 1, animTypes[i].indexOf(')')).split(',').map(function (i) { return parseFloat(i) });
+                        bpInArray = animTypes[i].substring(animTypes[i].indexOf('(') + 1, animTypes[i].indexOf(')')).split(',').map(function(i) { return parseFloat(i) });
                         // Cubic Bézier curves points
-                        ps = bpInArray.length < 4 ? [0, 0, 0, 0, 1, 1, 1, 1]
-                            : bpInArray.length >= 4 && bpInArray.length < 8 ? [].concat([0, 0], bpInArray.slice(0, 4), [1.0, 1.0]) : bpInArray.length > 8 ? bpInArray.slice(0, 8) : bpInArray;
+                        ps = bpInArray.length < 4 ? [0, 0, 0, 0, 1, 1, 1, 1] :
+                            bpInArray.length >= 4 && bpInArray.length < 8 ? [].concat([0, 0], bpInArray.slice(0, 4), [1.0, 1.0]) : bpInArray.length > 8 ? bpInArray.slice(0, 8) : bpInArray;
                         if (propInArray[i] == 'margin' || propInArray[i] == 'padding' || propInArray[i] == 'clip') {
                             var x = 0;
                             while (x < 4) {
                                 psList.push(ps);
-                            x++;
+                                x++;
                             }
                         } else {
                             psList.push(ps);
@@ -774,7 +831,9 @@
                     }
 
                     for (var k = 0; k < count; k++) {
-                        t = 0; x = []; y = [];
+                        t = 0;
+                        x = [];
+                        y = [];
                         for (var i = 0; i < tsNum; i++) {
                             if (psList[k]) {
                                 x.push(calccubicBezierPoint([psList[k][0], psList[k][2], psList[k][4], psList[k][6]], t));
@@ -792,7 +851,10 @@
 
                 // Calculation of linear time keyframe.
                 for (var i = 0; i < count; i++) {
-                    var tempKeyFrames = [], tempKeyFrame = origin[i], per = 0, gap = target[i] - origin[i];
+                    var tempKeyFrames = [],
+                        tempKeyFrame = origin[i],
+                        per = 0,
+                        gap = target[i] - origin[i];
                     for (var j = 0; j < tsNum; j++) {
                         tempKeyFrames.push(tempKeyFrame);
                         // cubic-bezier curve's x is not in linear state. so the calculation result of tempKeyFrame cannot be used immediately.
@@ -825,14 +887,14 @@
                     window.mozRequestAnimationFrame ||
                     window.oRequestAnimationFrame ||
                     window.msRequestAnimationFrame ||
-                    function (callback) {
+                    function(callback) {
                         window.setTimeout(callback, 1000 / 60);
                     };
 
                 // time mapping : timespan to cubic-bezier time
-                var timeKeyframeCorrection = (function () {
+                var timeKeyframeCorrection = (function() {
                     for (var k = 0; k < xs.length; k++) {
-                        var trueTimeframe = xs[k].map(function (i) {
+                        var trueTimeframe = xs[k].map(function(i) {
                             return i * duration;
                         });
                         trueTimeframes.push(trueTimeframe);
@@ -860,8 +922,9 @@
 
                 })();
 
-                var go = function () {
-                    var pi = 0, ti = 0;
+                var go = function() {
+                    var pi = 0,
+                        ti = 0;
                     for (var prop in props) {
                         ti = indexs[pi][index];
                         if (prop === 'clip') {
@@ -878,7 +941,7 @@
                         requestAnimFrame(go);
                     } else {
                         complete();
-                        setTimeout(function () {
+                        setTimeout(function() {
                             if (cycle) {
                                 for (var p in props) {
                                     ele.style[p] = props[p];
@@ -914,7 +977,7 @@
     })();
 
     // Default style for Yuko's layout
-    Yuko.style = (function () {
+    Yuko.style = (function() {
         // Initial Yuko Fragment Style
         function initFragStyle() {
             // Document element
@@ -965,7 +1028,7 @@
         }
     })();
 
-    Yuko.event = (function () {
+    Yuko.event = (function() {
 
         /**
          * Bind page and drawer list item
@@ -976,8 +1039,8 @@
         function bindDrawerNavItemToPage(drawer, drawerContainer, pageContainer) {
             var drawerList = document.querySelectorAll('#' + drawer.id + ' li');
             for (var i = 0; i < drawerList.length; i++) {
-                drawerList[i].addEventListener('touchend', (function (i) {
-                    return function () {
+                drawerList[i].addEventListener('touchend', (function(i) {
+                    return function() {
                         // Switch main page to show
                         pageContainer.slideTo(i);
                     }
@@ -992,7 +1055,7 @@
     })();
 
     // Yuko's effect
-    Yuko.effect = (function () {
+    Yuko.effect = (function() {
         /**
          * Create a ripple effect
          * @param {Event} event The DOM Event which was triggered
@@ -1024,7 +1087,7 @@
     })();
 
     // Yuko's widget
-    Yuko.widget = (function () {
+    Yuko.widget = (function() {
 
         /**
          * Make the drawer a touch sensitive android like navigation drawer
@@ -1067,12 +1130,12 @@
              * Curried function for position calculation (time as variable)
              * @param {number} progress A timespan
              */
-            var curriedTimeFunction = (function () {
+            var curriedTimeFunction = (function() {
                 switch (options.animationType) {
                     case 'linear':
                         var a = width / timeSpan;
                         var b = -width;
-                        return function (progress) {
+                        return function(progress) {
                             return a * progress + b;
                         };
                         break;
@@ -1080,7 +1143,7 @@
                         var a = -width / (timeSpan * timeSpan);
                         var b = 2 * width / timeSpan;
                         var c = -width;
-                        return function (progress) {
+                        return function(progress) {
                             return Yuko.utility.calcQuadraticEquation(a, b, c, progress);
                         };
                         break;
@@ -1093,17 +1156,17 @@
              * Curried function for time calculation (position as variable)
              * @param {number} left CSS property of left with drawer
              */
-            var curriedPositionFunction = (function () {
+            var curriedPositionFunction = (function() {
                 switch (options.animationType) {
                     case 'linear':
                         var a = timeSpan / width;
                         var b = timeSpan;
-                        return function (left) {
+                        return function(left) {
                             return a * left + b;
                         };
                         break;
                     case 'quadratic':
-                        return function (left) {
+                        return function(left) {
                             return timeSpan * (1 - Math.sqrt(-left / width));
                         };
                         break;
@@ -1152,12 +1215,12 @@
             }
 
             // Initial swipe events
-            var onWindowTouchStart = function (e) {
+            var onWindowTouchStart = function(e) {
                 startPoint = e.changedTouches[0];
                 startTime = new Date().getTime();
             };
 
-            var onWindowTouchMove = function (e) {
+            var onWindowTouchMove = function(e) {
                 currentPoint = e.changedTouches[0];
 
                 if (menuDisplayed) {
@@ -1180,7 +1243,7 @@
                 }
             };
 
-            var onWindowTouchEnd = function (e) {
+            var onWindowTouchEnd = function(e) {
                 endPoint = e.changedTouches[0];
                 endTime = new Date().getTime();
 
@@ -1194,7 +1257,7 @@
                 thereShouldBeAnAnimation = false;
             };
 
-            var onHamburgerTouchEnd = function (e) {
+            var onHamburgerTouchEnd = function(e) {
                 endPoint = e.changedTouches[0];
                 // Show menu and stopImmediatePropagation if hamburger button is clicked
                 if (endPoint.clientX <= hamburgerRight && endPoint.clientX >= hamburgerLeft && endPoint.clientY <= hamburgerBottom && endPoint.clientY >= hamburgerTop) {
@@ -1203,7 +1266,7 @@
                 }
             };
 
-            var attachTouchEvents = function (boolean) {
+            var attachTouchEvents = function(boolean) {
                 if (boolean) {
                     win.addEventListener('touchstart', onWindowTouchStart, true);
                     win.addEventListener('touchmove', onWindowTouchMove, true);
@@ -1224,21 +1287,28 @@
             attachTouchEvents(true);
             // Change style for drawer list and add effect to it
             for (var i = 0; i < drawerList.length; i++) {
-                drawerList[i].addEventListener('touchstart', (function () {
-                    return function () {
+                drawerList[i].addEventListener('touchstart', (function() {
+                    return function() {
                         for (var j = 0; j < drawerList.length; j++) {
                             drawerList[j].className = 'yuko-nav-item';
                         }
                     }
                 })());
-                drawerList[i].addEventListener('touchend', (function (i) {
-                    return function () {
+                drawerList[i].addEventListener('touchend', (function(i) {
+                    return function() {
                         // Change style of nav list item
                         drawerList[i].className = 'yuko-nav-item item-selected'
-                        // Adjust position of footer
+                            // Adjust position of footer
                         footer.style.top = (pageList[i].offsetHeight < document.body.clientHeight - 56 ? document.body.clientHeight - 56 : pageList[i].offsetHeight + 56) + 'px';
                         // Adjust height of main
-                        document.getElementsByTagName('main').item(0).style.height = pageList[i].offsetHeight + 'px';
+                        // document.getElementsByTagName('main').item(0).style.height = pageList[i].offsetHeight + 'px';
+                        if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 112) {
+                            document.getElementsByTagName('main').item(0).style.overflow = 'scroll !important';
+                            console.log(document.getElementsByTagName('main')[0]);
+                        } else {
+                            document.getElementsByTagName('main').item(0).style.overflow = 'hidden !important';                           
+                            console.log(2);
+                        }
                         showMenu(false);
                     }
                 })(i));
@@ -1248,12 +1318,12 @@
              * Show or hide the drawer
              * @param {Boolean} boolean 
              */
-            var showMenu = function (boolean) {
+            var showMenu = function(boolean) {
                 var currentPosition = 0;
                 var startProgress = 0;
                 var start = null;
 
-                var showProcess = function (timestamp) {
+                var showProcess = function(timestamp) {
                     if (!start) {
                         start = timestamp;
                     }
@@ -1273,7 +1343,7 @@
                     }
                 };
 
-                var hideProcess = function (timestamp) {
+                var hideProcess = function(timestamp) {
                     if (!start) {
                         start = timestamp;
                     }
@@ -1306,10 +1376,10 @@
             };
 
             return {
-                show: function () {
+                show: function() {
                     showMenu(true);
                 },
-                close: function () {
+                close: function() {
                     showMenu(false);
                 }
             };
@@ -1356,19 +1426,19 @@
                 page.style.left = page.getAttribute('data-page-id') * width + 'px';
             }
 
-            var curriedTimeFunction = (function () {
+            var curriedTimeFunction = (function() {
                 switch (animationType) {
                     case 'linear':
                         var a = 2 * width / (timeSpan * timeSpan);
                         var b = 2 * width / timeSpan;
-                        return function (progress) {
+                        return function(progress) {
                             return progress < 0.5 * timeSpan ? a * progress * progress : b * progress - a * progress * progress;
                         };
                         break;
                     case 'quadratic':
                         var a = -2 * width / (timeSpan * timeSpan * timeSpan);
                         var b = 3 * width / (timeSpan * timeSpan);
-                        return function (progress) {
+                        return function(progress) {
                             return Yuko.utility.calcCubicEquation(a, b, 0, 0, progress);
                         };
                         break;
@@ -1396,7 +1466,7 @@
             var distance;
 
             // Touch event
-            var onPageContainerTouchStart = function (e) {
+            var onPageContainerTouchStart = function(e) {
                 if (e.changedTouches[0].clientX > 16 && e.changedTouches[0].clientX < width - 16) {
                     touchStartPointValid = true;
                     startPoint = e.changedTouches[0];
@@ -1407,7 +1477,7 @@
                 }
             };
 
-            var onPageContainerTouchMove = function (e) {
+            var onPageContainerTouchMove = function(e) {
                 if (touchStartPointValid) {
                     currentPoint = e.changedTouches[0];
                     distance = currentPoint.clientX - startPoint.clientX;
@@ -1415,12 +1485,11 @@
                         for (var i = 0; i < pageCount; i++) {
                             pageList[i].style.left = lastLeft + width * i + 'px';
                         }
-                    } else {
-                    }
+                    } else {}
                 }
             };
 
-            var onPageContainerTouchEnd = function (e) {
+            var onPageContainerTouchEnd = function(e) {
                 if (touchStartPointValid) {
                     endPoint = e.changedTouches[0];
                     if (distance == 0) {
@@ -1476,7 +1545,7 @@
                 }
             };
 
-            var attachSwipeEvent = function (boolean) {
+            var attachSwipeEvent = function(boolean) {
                 if (boolean) {
                     container.addEventListener('touchstart', onPageContainerTouchStart);
                     container.addEventListener('touchmove', onPageContainerTouchMove);
@@ -1492,7 +1561,7 @@
             }
 
 
-            var slide = function (keyFrames, progressCount, indexChange) {
+            var slide = function(keyFrames, progressCount, indexChange) {
                 if (isAnimating) {
                     return;
                 }
@@ -1506,7 +1575,7 @@
 
                 isAnimating = true;
 
-                var slideProcess = function (timestamp) {
+                var slideProcess = function(timestamp) {
                     if (!start) {
                         start = timestamp;
                     }
@@ -1543,7 +1612,7 @@
              *          'previous': Slide to the previous page (if it exists)
              *          number: Slide to the numberth page (start at 0)
              */
-            var slideTo = function (page) {
+            var slideTo = function(page) {
                 var keyFrames = [];
                 var progressCount = 0;
                 if (page == 'next') {
@@ -1591,7 +1660,7 @@
             onPageContainerReady();
 
             return {
-                currentPage: function () {
+                currentPage: function() {
                     return currentPage;
                 },
                 slideTo: slideTo
@@ -1623,47 +1692,51 @@
 
             if (!carouselList || carouselList.length < 2) return;
 
-            var len = carouselList.length, duration = options.duration || .3;
-            var nextItemList = [], positionValues = [];
+            var len = carouselList.length,
+                duration = options.duration || .3;
+            var nextItemList = [],
+                positionValues = [];
             // Item position span
             var positionProgress = [];
-            var prePositionSpan = null, nextPositionSpan = null, positionProgressCopy = null, tempPositionSpan = null;
+            var prePositionSpan = null,
+                nextPositionSpan = null,
+                positionProgressCopy = null,
+                tempPositionSpan = null;
             for (var i = 0; i < carouselList.length; i++) {
                 positionProgress.push([]);
             }
             // Position data in number
             var position = {
-                evenNumberItem: [
-                    ['100%', '100%', '0', '0'],
-                    ['80%', '80%', '10%', '-12.5%'],
-                    ['60%', '60%', '20%', '20%'],
-                    ['80%', '80%', '10%', '32.5%']
-                ],
-                oddNumberItem: [
-                    ['100%', '100%', '0', '0'],
-                    ['80%', '80%', '10%', '-12.5%'],
-                    ['60%', '60%', '20%', '12.5%'],
-                    ['60%', '60%', '20%', '32.5%'],
-                    ['80%', '80%', '10%', '32.5%']
-                ]
-            }
-            /**
-             * Validation of options
-             * @param {*} options
-             * @returns Return true only if options is a instance of Object
-             *          and options.positions is formatted in [..[]]
-             *          and options.durantion is a number
-             */
-            var optionsValidation = function (options) {
-                if (!(options instanceof Object) || !(options.positions instanceof Array) || !(typeof (options.duration) === 'number')) return false;
+                    evenNumberItem: [
+                        ['100%', '100%', '0', '0'],
+                        ['80%', '80%', '10%', '-12.5%'],
+                        ['60%', '60%', '20%', '20%'],
+                        ['80%', '80%', '10%', '32.5%']
+                    ],
+                    oddNumberItem: [
+                        ['100%', '100%', '0', '0'],
+                        ['80%', '80%', '10%', '-12.5%'],
+                        ['60%', '60%', '20%', '12.5%'],
+                        ['60%', '60%', '20%', '32.5%'],
+                        ['80%', '80%', '10%', '32.5%']
+                    ]
+                }
+                /**
+                 * Validation of options
+                 * @param {*} options
+                 * @returns Return true only if options is a instance of Object
+                 *          and options.positions is formatted in [..[]]
+                 *          and options.durantion is a number
+                 */
+            var optionsValidation = function(options) {
+                if (!(options instanceof Object) || !(options.positions instanceof Array) || !(typeof(options.duration) === 'number')) return false;
                 if (options.positions && options.positions instanceof Array) {
                     for (var i = 0; i < options.positions.length; i++)
                         if (!(options.positions[i] instanceof Array)) return false;
                 }
                 if (carousel.length % 2 === 0) {
                     if (options.positions.length !== 4) return false;
-                }
-                else {
+                } else {
                     if (options.positions.length !== 5) return false;
                 }
                 return true;
@@ -1678,13 +1751,13 @@
                 console.log('Invalid parameter {options}');
             }
 
-            window.requestAnimFrame = (function () {
+            window.requestAnimFrame = (function() {
                 return window.requestAnimationFrame ||
                     window.webkitRequestAnimationFrame ||
                     window.mozRequestAnimationFrame ||
                     window.oRequestAnimationFrame ||
                     window.msRequestAnimationFrame ||
-                    function (callback) {
+                    function(callback) {
                         window.setTimeout(callback, 1000 / 60);
                     };
             })();
@@ -1694,25 +1767,28 @@
                 for (var attr in position) {
                     for (var i = 0; i < position[attr].length; i++) {
                         for (var j = 0; j < position[attr][i].length; j++) {
-                            (parseInt(position[attr][i][j]) == 0 || position[attr][i][j] == '0%') ? position[attr][i][j] = 0 : position[attr][i][j] = parseFloat(position[attr][i][j].substring(0, position[attr][i][j].length - 1));
+                            (parseInt(position[attr][i][j]) == 0 || position[attr][i][j] == '0%') ? position[attr][i][j] = 0: position[attr][i][j] = parseFloat(position[attr][i][j].substring(0, position[attr][i][j].length - 1));
                         }
                     }
                 }
             }
 
-            var cssTransitionPolyfill = function (carouselList, option, duration, event) {
+            var cssTransitionPolyfill = function(carouselList, option, duration, event) {
                 // console.log(position);
                 // Make a copy for position data
                 var positionCopy = Yuko.utility.cloneObject(position);
 
                 var refreshTime = duration * 60;
-                var pos = null, posCopy = null, posCopyTemp = null, dataZero = null;
+                var pos = null,
+                    posCopy = null,
+                    posCopyTemp = null,
+                    dataZero = null;
                 var next = 0;
                 /**
                  * Load data for every progress
                  * @param {number} count position object's length
                  */
-                var fillPositionData = function (count) {
+                var fillPositionData = function(count) {
                     for (var j = 0; j < count; j++) {
                         j < count - 1 ? next = j + 1 : next = 0;
 
@@ -1828,12 +1904,12 @@
 
             // Attach click event to button
             var sortedPositionValues = null;
-            Yuko.utility.addEvent(nextButton, 'click', function (event) {
+            Yuko.utility.addEvent(nextButton, 'click', function(event) {
                 if (sortedPositionValues === null || sortedPositionValues[sortedPositionValues.length - 1] !== 1)
                     sortedPositionValues = cssTransitionPolyfill(carouselList, {}, duration, event);
                 changeCoordinate(event, duration);
             });
-            Yuko.utility.addEvent(preButton, 'click', function (event) {
+            Yuko.utility.addEvent(preButton, 'click', function(event) {
                 if (sortedPositionValues === null || sortedPositionValues[sortedPositionValues.length - 1] !== -1)
                     sortedPositionValues = cssTransitionPolyfill(carouselList, {}, duration, event);
                 changeCoordinate(event, duration);
@@ -1843,7 +1919,7 @@
              * Change Coordination of carousel list item
              * @param {Event} event The DOM Event which was triggered
              */
-            var changeCoordinate = function (event, duration) {
+            var changeCoordinate = function(event, duration) {
 
                 var visualPageIndex = window.parseInt(document.querySelector('#yuko-carousel-list > ul').getAttribute('data-page-index'));
                 // Reset visualPageIndex where it is overflow(more than carouselList.length or less than 0)
@@ -1937,12 +2013,11 @@
                     if (Yuko.utility.isBrowserSupportProp('transition')) {
                         // console.log(positionValues[i]);
                         Yuko.utility.setBoundingRectangle(nextItemList[i], positionValues[i]);
-                    }
-                    else {
+                    } else {
                         //CSS transition is not support
-                        (function (i) {
+                        (function(i) {
                             var flag = 0;
-                            var animate = function () {
+                            var animate = function() {
                                 if (flag < refreshTime) {
                                     flag++;
                                     // console.log(flag);
@@ -1975,7 +2050,7 @@
          *          hasBottomBar=: If there should be a bottom navigation bar.
          *          duration=: Duration to switch carousel item.
          * @return Return null if carouselList is undefined or carouselList's length is less than 2
-         */// TODO: Add isAuto; Using Yuko.util.animate rather than CSS3 transition.
+         */ // TODO: Add isAuto; Using Yuko.util.animate rather than CSS3 transition.
         function carouselV2(carouselList, type, options) {
             if (!carouselList || carouselList.length < 2) return;
             // Public parameter
@@ -1984,8 +2059,10 @@
                 docHeight = document.documentElement.clientHeight,
                 carouselContainer = document.querySelector('.yuko-carousel-v2-container'),
                 carousel = document.querySelector('.yuko-carousel-v2'),
-                width = carouselContainer.offsetWidth, height = carouselContainer.offsetHeight,
-                duration, iconList, preButton, nextButton, isResizable = false, isAuto;
+                width = carouselContainer.offsetWidth,
+                height = carouselContainer.offsetHeight,
+                duration, iconList, preButton, nextButton, isResizable = false,
+                isAuto;
 
             if (options) {
                 if (options.duration) duration = options.duration;
@@ -2017,7 +2094,7 @@
             if (isResizable) {
                 // Resizable
                 // Add resize event
-                yuko.utility.addEvent(window, 'resize', function (event) {
+                yuko.utility.addEvent(window, 'resize', function(event) {
                     var resetWidth = document.documentElement.clientWidth * width / docWidth,
                         resetHeight = resetWidth * height / width;
                     carouselContainer.style.width = resetWidth + 'px';
@@ -2031,8 +2108,8 @@
             }
 
             //Change carousel item by icon in bottom
-            var changeLocation = function (index, marginLeft) {
-                yuko.utility.addEvent(iconList[index], 'mouseover', function () {
+            var changeLocation = function(index, marginLeft) {
+                yuko.utility.addEvent(iconList[index], 'mouseover', function() {
                     carousel.style.marginLeft = marginLeft;
                     for (var i = carouselList.length - 1; i >= 0; i--) {
                         iconList[i].classList.remove('on');
@@ -2042,7 +2119,7 @@
             }
 
             // Listener
-            var buttonClickListener = function (event) {
+            var buttonClickListener = function(event) {
                 var curMargin = parseFloat(carousel.style.marginLeft);
                 var curIndex = Math.abs(curMargin / 100);
                 var nextIndex;
@@ -2062,7 +2139,7 @@
             }
 
             // Carousel type - 'default'
-            var defaultType = function () {
+            var defaultType = function() {
                 // Initial list style
                 carousel.style.marginLeft = '0%';
                 for (var i = carouselList.length - 1; i >= 0; i--) {
@@ -2074,11 +2151,11 @@
                 }
 
                 //Change carousel item auto with 10s deday
-                setInterval(function () {
+                setInterval(function() {
                     var curMargin = parseFloat(carousel.style.marginLeft);
                     var curIndex = Math.abs(curMargin / 100);
 
-                    var ChangeSliderAuto = function () {
+                    var ChangeSliderAuto = function() {
                         carousel.style.marginLeft = (-(curIndex + 1) * 100).toString() + '%';
                         if (iconList) {
                             iconList[curIndex].classList.remove('on');
@@ -2087,8 +2164,7 @@
                     }
                     if (curIndex != carouselList.length - 1) {
                         ChangeSliderAuto();
-                    }
-                    else {
+                    } else {
                         carousel.style.marginLeft = '0%';
                         if (iconList) {
                             iconList[iconList.length - 1].classList.remove('on');
@@ -2103,9 +2179,8 @@
             }
 
             switch (type) {
-                default:
-                    carouselType['default']();
-                    break;
+                default: carouselType['default']();
+                break;
             }
         }
 
@@ -2118,7 +2193,7 @@
 
     })();
 
-    Yuko.init = (function () {
+    Yuko.init = (function() {
         // Fragment style
         Yuko.style.initFragStyle();
         // Carousel style
@@ -2126,7 +2201,7 @@
         // CarouselV2 style
         Yuko.style.initCarouselV2Style();
         // When a resize event happen
-        Yuko.utility.addEvent(win, 'resize', function () {
+        Yuko.utility.addEvent(win, 'resize', function() {
             // Fragment style
             Yuko.style.initFragStyle();
             // Carousel style

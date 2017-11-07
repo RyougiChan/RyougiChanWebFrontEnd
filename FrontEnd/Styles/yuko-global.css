@@ -1,0 +1,22 @@
+/* ScrollBar */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: rgba(0, 0, 0, .5);
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(33, 150, 243);
+}
+
+
+/* Navigation */
+
+.nav-hover_in {
+    width: 240px !important;
+}

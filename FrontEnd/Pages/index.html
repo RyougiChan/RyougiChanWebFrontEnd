@@ -1,84 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../Styles/yuko-reset.css">
-        <link rel="stylesheet" href="../Styles/yuko.css">
-        <link rel="stylesheet" href="../Styles/index.css">
-    </head>
-    <body>
-        <div id="main-container">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../Styles/yuko-reset.css">
+    <link rel="stylesheet" href="../Styles/yuko-global.css">
+    <link rel="stylesheet" href="../Styles/material-icons.css">
+    <link rel="stylesheet" href="../Styles/index.css">
+    <link rel="stylesheet" href="../Styles/index@1200px.css">
+    <link rel="stylesheet" href="../Styles/yuko.css">
+</head>
+
+<body>
+    <div id="main-container">
+        <!-- Header S -->
+        <header id="header">
+            <div>
+                <div id="header-logo"></div>
+                <div id="header-nav">
+                    <ul class="header-nav-level1">
+                        <li>り
+                            <ul class="header-nav-level2">
+                                <li><a>一</a></li>
+                                <li><a>二</a></li>
+                                <li><a>三</a></li>
+                                <li><a>四</a></li>
+                                <li><a>五</a></li>
+                                <li><a>六</a></li>
+                                <li><a>七</a></li>
+                                <li><a>八</a></li>
+                                <li><a>九</a></li>
+                            </ul>
+                        </li>
+                        <li>ょ
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <li>う
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <li>ぎ
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- Header E -->
+        <!-- Main S -->
+        <section id="main">
+            <div>
+
+            </div>
+        </section>
+        <!-- Main E -->
+        <!-- Footer S -->
+        <footer id="footer">
+            <div class="footer-contact">
+                &nbsp; E-mail: <a href="mailto:ryougi.chan.fire@gmail.com">ryougi.chan.fire@gmail.com</a><br> &nbsp; Copyright © <a href="https://github.com/RyougiChan">RyougiChan</a>. All Rights Reserved
+            </div>
+            <div>
+                ShenZhen, P.R.China &nbsp; |<br> Technic: <a href="https://github.com/RyougiChan">RyougiChan </a> <a href="#">Management</a> &nbsp;&nbsp; |
+            </div>
+        </footer>
+        <!-- Footer E -->
+    </div>
+    <div id="main-container_m">
+        <div id="yuko-main-container">
             <!-- Header S -->
             <header id="yuko-header">
-                <div>
-                    <div id="header-logo"></div>
-                    <div id="header-nav">
-                        <ul class="header-nav-level1">
-                            <li>り
-                                <ul class="header-nav-level2">
-                                    <li><a>一</a></li>
-                                    <li><a>二</a></li>
-                                    <li><a>三</a></li>
-                                    <li><a>四</a></li>
-                                    <li><a>五</a></li>
-                                    <li><a>六</a></li>
-                                    <li><a>七</a></li>
-                                    <li><a>八</a></li>
-                                    <li><a>九</a></li>
-                                </ul>
-                            </li>
-                            <li>ょ
-                                <ul class="header-nav-level2">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </li>
-                            <li>う
-                                <ul class="header-nav-level2">
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </li>
-                            <li>ぎ
-                                <ul class="header-nav-level2">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                <div id="yuko-nav-drawer-button">
+                    <i class="material-icons md-36">&#xe5d2;</i>
                 </div>
             </header>
             <!-- Header E -->
             <!-- Main S -->
-            <main id="yuko-main">
-                <div>
-                    
+            <main id="yuko-main-content" data-role="yuko-page-container" data-page-index="0">
+                <div data-role="yuko-page" data-page-id="0" class="yuko-content" style="height: 300px; background: #eee">
+                    Hello! RyougiChan!
+                </div>
+                <div data-role="yuko-page" data-page-id="1" class="yuko-content" style="height: 600px; background: #eee">
+                    Hello! RyougiChan! Again!
+                </div>
+                <div data-role="yuko-page" data-page-id="2" class="yuko-content" style="height: 900px; background:#eee">
+                    Hello! RyougiChan! 3!
+                </div>
+                <div data-role="yuko-page" data-page-id="3" class="yuko-content" style="height: 1200px; background: #eee">
+                    Hello! RyougiChan! 4!
                 </div>
             </main>
             <!-- Main E -->
             <!-- Footer S -->
-            <footer id="yuko-footer">
-                <div class="footer-contact">
-                        &nbsp; E-mail: <a href="mailto:ryougi.chan.fire@gmail.com">ryougi.chan.fire@gmail.com</a><br>
-                        &nbsp; Copyright © <a href="https://github.com/RyougiChan">RyougiChan</a>. All Rights Reserved
-                </div>
-                <div>
-                    ShenZhen, P.R.China &nbsp; |<br>
-                    Technic: <a href="https://github.com/RyougiChan">RyougiChan </a> <a href="#">Management</a> &nbsp;&nbsp; |
-                </div>
+            <footer>
+                <div id="copyright">Copyright © <a href="https://github.com/RyougiChan">RyougiChan</a></div>
+                <div id="license">Released under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a></div>
             </footer>
             <!-- Footer E -->
+            <!-- Navigation Drawer S -->
+            <div id="yuko-nav-drawer-container" class="yuko-nav-backgroung-mask">
+                <div id="yuko-nav-drawer">
+                    <div id="yuko-nav-list">
+                        <span id="yuko-nav-title">Title</span>
+                        <nav>
+                            <ul>
+                                <li class="yuko-nav-item">Link</li>
+                                <li class="yuko-nav-item">Link</li>
+                                <li class="yuko-nav-item">Link</li>
+                                <li class="yuko-nav-item">Link</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Drawer E -->
         </div>
+    </div>
 
-        <script src="../Scripts/Third-party/jquery.min.js"></script>
-    </body>
+    <script src="../Scripts/Third-party/jquery.min.js"></script>
+    <script src="../Scripts/index.js"></script>
+    <script src="../Scripts/Yuko.js"></script>
+    <script>
+        // Bind Drawer
+        var drawer = document.getElementById('yuko-nav-drawer');
+        var button = document.getElementById('yuko-nav-drawer-button');
+        var drawerContainer = Yuko.widget.navigationDrawer(drawer, button, {
+            animationType: "quadratic",
+            mask: true,
+            timeSpan: 384
+        });
+        // Bind page
+        var content = document.getElementById('yuko-main-content');
+        var pageContainer = Yuko.widget.pageContainer(content, {
+            allowSwipe: false,
+            timeSpan: 384,
+            animationType: 'linear',
+            swipeScale: 0.5
+        }, function(a) {}, true);
+        // Bind nav item to pageContainer
+        Yuko.event.bindDrawerNavItemToPage(drawer, drawerContainer, pageContainer);
+        // Load default style
+    </script>
+</body>
+
 </html>
