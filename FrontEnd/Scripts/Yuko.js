@@ -990,7 +990,7 @@
             var firstPageHeight = Yuko.utility.getComputedSizeInPx(firstYukoContent, 'height');
 
             // Default footer style
-            if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
+            // if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
             // Default main style
             if (main) main.style.height = (document.body.clientHeight - 112) + 'px';
         }
@@ -1218,6 +1218,9 @@
             var onWindowTouchStart = function(e) {
                 startPoint = e.changedTouches[0];
                 startTime = new Date().getTime();
+                if (startPoint.clientX < 16) {
+                    drawer.parentNode.style.position = 'fixed';
+                }
             };
 
             var onWindowTouchMove = function(e) {
@@ -1260,6 +1263,7 @@
             var onHamburgerTouchEnd = function(e) {
                 endPoint = e.changedTouches[0];
                 // Show menu and stopImmediatePropagation if hamburger button is clicked
+                drawer.parentNode.style.position = 'fixed';
                 if (endPoint.clientX <= hamburgerRight && endPoint.clientX >= hamburgerLeft && endPoint.clientY <= hamburgerBottom && endPoint.clientY >= hamburgerTop) {
                     showMenu(true);
                     e.stopImmediatePropagation();
@@ -1300,15 +1304,13 @@
                         drawerList[i].className = 'yuko-nav-item item-selected'
                             // Adjust position of footer
                         footer.style.top = (pageList[i].offsetHeight < document.body.clientHeight - 56 ? document.body.clientHeight - 56 : pageList[i].offsetHeight + 56) + 'px';
-                        // Adjust height of main
-                        // document.getElementsByTagName('main').item(0).style.height = pageList[i].offsetHeight + 'px';
+                        // Adjust overflow of main
                         if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 112) {
-                            document.getElementsByTagName('main').item(0).style.overflow = 'scroll !important';
-                            console.log(document.getElementsByTagName('main')[0]);
+                            document.getElementsByTagName('main').item(0).style.overflowY = 'scroll';
                         } else {
-                            document.getElementsByTagName('main').item(0).style.overflow = 'hidden !important';                           
-                            console.log(2);
+                            document.getElementsByTagName('main').item(0).style.overflowY = 'hidden';                           
                         }
+                        document.querySelector('#yuko-main-content').scrollTop = 0;
                         showMenu(false);
                     }
                 })(i));
@@ -1399,7 +1401,7 @@
         function pageContainer(container, option, onPageContainerReady, onAnimationComplete) {
             container.classList.add('yuko-page-container');
             var width = win.document.body.offsetWidth;
-            container.style.width = width + 'px';
+            //container.style.width = width + 'px';
             var allowSwipe = option.allowSwipe ? true : false;
             var timeSpan = option.timeSpan ? option.timeSpan : 300;
             var animationType = option.animationType ? option.animationType : 'linear';

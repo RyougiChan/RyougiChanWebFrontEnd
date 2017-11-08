@@ -16,7 +16,7 @@
 /* Button End */
 /* Card Start */
 .trigger-button { width: 60px; height: 60px; line-height: 60px; text-align: center; color: #4285f4; border: 1px dashed #4285f4; cursor: pointer; }
-.yuko-card_container { width: 450px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; }
+.yuko-card_container { width: 450px; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; margin: 10px;}
 .yuko-card_avatar { position: relative; width: 450px; height: 150px; background: #4285f4; color: #f1f1f1; font-weight: 800; }
 .yuko-card_avatar-icon { text-align: right; padding: .5em; }
 .yuko-card_avatar-icon > i { position: relative; overflow: hidden; display: inline-block; cursor: pointer; }
@@ -26,7 +26,7 @@
 .yuko-card_trigger { height: 60px; line-height: 60px; padding: 0 16px; color:#4285f4; font-weight: 800; text-align: right; }
 .yuko-card_trigger > div { display: inline-block; cursor: pointer; padding: 12px 0; }
 .yuko-card_trigger > div > span{ position: relative; overflow: hidden; display: block; height: 36px; line-height: 36px; 
- padding: 0 12px; border-radius: 1px; }
+ padding: 0 12px; border-radius: 1px; user-select: none;}
 .yuko-card_trigger > div > span:hover { background: rgba(158, 158, 158, 0.2); }
 /* Card End */
 /* Menu Start */

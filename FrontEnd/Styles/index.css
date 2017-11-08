@@ -14,7 +14,6 @@ body {
     -webkit-transition: background 2s ease-in-out;
     -o-transition: background 2s ease-in-out;
     overflow: hidden;
-    display: none
 }
 
 #main-container_m {
@@ -26,15 +25,34 @@ body {
 }
 
 /* Reset Yuko.css */
-.yuko-page-container {
-    /* overflow-y: auto !important; */
+#yuko-header,footer {
+    background: rgba(4, 31, 60, .7) !important;
+} 
+.yuko-content.yuko-page {
+    background: none !important;
 }
-
+#yuko-main-content {
+    background: rgba(238, 238, 238, .7) !important;
+}
+#yuko-nav-title {
+    border-bottom: 1px solid #e2e2e2;
+}
+/* .yuko-card_container {
+    background: rgba(255,255,255, .5) !important;
+}
+.yuko-card_container .yuko-card_content {
+    color: #333333 !important;
+}
+.yuko-card_container .yuko-card_avatar {
+    background: url(../images/Meteor_Shower.jpg) no-repeat;
+} */
 /* Header Css Start*/
 
 #header {
     height: 90px;
-    background: rgba(4, 31, 60, .7)
+    background: rgba(4, 31, 60, .7);
+    position: relative;
+    z-index: 10;
 }
 
 #header>div {
@@ -75,7 +93,8 @@ body {
     font-size: 48px;
     float: left;
     cursor: pointer;
-    transition: width ease .3s
+    transition: width ease .3s;
+    user-select: none;
 }
 
 #header-nav a {
@@ -118,7 +137,31 @@ body {
     margin: 0 auto;
 }
 
-
+#main .main-content {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, .14), -5px 0px 20px 0 rgba(0, 0, 0, .14), 5px 0px 20px -2px rgba(0, 0, 0, .2), 0px 5px 20px 0px rgba(0, 0, 0, .12);
+    margin: 30px; 
+    overflow: hidden;
+    border-radius: 4px;
+}
+#main .main-content.main-content_announce {
+    height: 180px;
+}
+#main .main-to_top {
+    position: fixed;
+    bottom: 110px;
+    right: 50px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background: rgb(33, 150, 243);
+    cursor: pointer;
+    user-select: none;
+}
+#main .main-to_top:hover {
+    background: rgba(33, 150, 243, .8);
+}
 /* Footer Css Start*/
 
 #footer {
@@ -171,7 +214,6 @@ body {
 /* Main Css Start*/
 
 #main {
-    margin-top: 90px;
     height: calc(100% - 150px);
     overflow-y: scroll;
 }
@@ -189,6 +231,7 @@ body {
 #footer {
     background: rgba(4, 31, 60, .7);
     height: 60px;
+    top: auto !important;
 }
 
 #footer>div {

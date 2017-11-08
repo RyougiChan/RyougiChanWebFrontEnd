@@ -1,6 +1,16 @@
 (function() {
     'use strict';
 
+    function styleControll() {
+        if (window.innerWidth <= 1024) {
+            $('#main-container_m').css('display', 'block');
+            $('#main-container').css('display', 'none');
+        } else {
+            $('#main-container_m').css('display', 'none');
+            $('#main-container').css('display', 'block');
+        }
+    }
+
     /**
      * Animation of navigation bar
      * 
@@ -52,5 +62,11 @@
         };
         $(navLevel1Items).hover(hoverIn, hoverOut);
     }
+
+    // window resize control
+    $(window).on('resize', function(){
+        styleControll();    
+    });
+    styleControll();
     navGo('#header');
 })();
