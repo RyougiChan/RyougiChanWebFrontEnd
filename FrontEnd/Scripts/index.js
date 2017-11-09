@@ -1,7 +1,11 @@
 (function() {
     'use strict';
 
-    function styleControll() {
+    /**
+     * PC | Mobile layout switcher control
+     * 
+     */
+    function styleControl() {
         if (window.innerWidth <= 1024) {
             $('#main-container_m').css('display', 'block');
             $('#main-container').css('display', 'none');
@@ -65,8 +69,23 @@
 
     // window resize control
     $(window).on('resize', function(){
-        styleControll();    
+        styleControl();    
     });
-    styleControll();
+    // Main container scroll control
+    $('#main').on('scroll', function(){
+        if(parseInt($('#main').scrollTop()) > 120) {
+            $('#main .main-to_top').fadeIn();
+        }
+        if(parseInt($('#main').scrollTop()) <= 120) {
+            $('#main .main-to_top').fadeOut();
+        }
+    });
+    // Main to_top control
+    $('#main .main-to_top').on('click',function(){
+        $('#main').animate({
+            scrollTop:0
+        },300);
+    });
+    styleControl();
     navGo('#header');
 })();
