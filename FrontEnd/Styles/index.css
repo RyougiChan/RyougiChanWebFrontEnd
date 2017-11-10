@@ -138,12 +138,13 @@ body {
 }
 
 #main .main-content {
+    position: relative;
     background: rgba(255, 255, 255, 0.5);
     /* box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, .14), -5px 0px 20px 0 rgba(0, 0, 0, .14), 5px 0px 20px -2px rgba(0, 0, 0, .2), 0px 5px 20px 0px rgba(0, 0, 0, .12); */
     box-shadow: 0 0 15px 5px rgba(0,0,0,.2);
-    margin: 20px 30px;     
+    margin: 30px;     
     padding: 20px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 4px;
 }
 #main .main-content.main-content_announce {
@@ -159,6 +160,26 @@ body {
 }
 #main .main-content.main-content_announce > p > a {
     text-decoration: underline;
+}
+.main-content_date {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 50px;
+    height: 50px;
+    color: #f1f1f1;
+    font-size: 16px;
+    border-radius: 50%;
+    background: rgb(33, 150, 243);
+    text-align: center;
+    padding: 10px;
+    line-height: 25px;
+    font-weight: bold;
+    user-select: none;
+}
+.main-content_date span.year {
+    display: block;
+    border-bottom: 1px solid #f1f1f1;
 }
 #main .main-to_top {
     position: fixed;
