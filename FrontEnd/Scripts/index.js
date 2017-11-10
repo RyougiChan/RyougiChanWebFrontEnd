@@ -86,17 +86,24 @@
         styleControl();
     });
     // Main container scroll control
+    var sign = 10;
     $('#main').on('scroll', function () {
-        if (parseInt($('#main').scrollTop()) > 120) {
+        var scrollTop = $('#main').scrollTop();
+        if (scrollTop > 120) {
             $('#main .main-to_top').fadeIn();
         }
-        if (parseInt($('#main').scrollTop()) <= 120) {
+        if (scrollTop <= 120) {
             $('#main .main-to_top').fadeOut();
         }
         for (var i = 0; i < $('.main-content').length; i++) {
-            var temp = $('#main').scrollTop() - $('.main-content')[i].offsetTop + window.outerHeight - 120;
-            if (temp >= 0 && temp <= 20) {
-                $($('.main-content')[i]).animateRotate('rotateX', 90, 0, 400, 'swing');
+            var temp = scrollTop - $('.main-content')[i].offsetTop + window.outerHeight;
+            if (temp >= 0 && temp <= 200 && scrollTop > sign) {
+                $($('.main-content')[i]).animateRotate('rotateX', -100, 0, 400, 'swing');
+                sign = scrollTop;
+            }
+            if (temp >= 0 && temp <= 50 && scrollTop < sign) {
+                $($('.main-content')[i]).animateRotate('rotateX', 0, -100, 400, 'swing');
+                sign = scrollTop;
             }
         }
     });
