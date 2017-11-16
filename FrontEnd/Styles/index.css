@@ -32,7 +32,7 @@ body {
     background: none !important;
 }
 #yuko-main-content {
-    background: rgba(238, 238, 238, .7) !important;
+    background: rgba(238, 238, 238, .2) !important;
 }
 #yuko-nav-title {
     border-bottom: 1px solid #e2e2e2;
@@ -200,6 +200,20 @@ body {
 }
 #main .main-to_top:active {
     opacity: .5;
+}
+/* Mobile */
+.yuko-content .main-content .main-content_date {
+    right: auto;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 0;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+    padding: 5px;
+}
+.yuko-content .main-content .main-content_date span.year {
+    display: inline;
+    border: none;
 }
 /* Footer Css Start*/
 

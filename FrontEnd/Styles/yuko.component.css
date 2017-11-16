@@ -16,8 +16,8 @@
 /* Button End */
 /* Card Start */
 .trigger-button { width: 60px; height: 60px; line-height: 60px; text-align: center; color: #4285f4; border: 1px dashed #4285f4; cursor: pointer; }
-.yuko-card_container { width: 450px; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; margin: 10px;}
-.yuko-card_avatar { position: relative; width: 450px; height: 150px; background: #4285f4; color: #f1f1f1; font-weight: 800; }
+.yuko-card_container { max-width: 450px; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; margin: 10px;}
+.yuko-card_avatar { position: relative; max-width: 450px; height: 150px; background: #4285f4; color: #f1f1f1; font-weight: 800; }
 .yuko-card_avatar-icon { text-align: right; padding: .5em; }
 .yuko-card_avatar-icon > i { position: relative; overflow: hidden; display: inline-block; cursor: pointer; }
 .yuko-card_avatar-icon > i:hover { background: rgba(255, 255, 255, 0.1); }
@@ -25,12 +25,19 @@
 .yuko-card_content { min-height: 120px; border-bottom: 1px solid #cccccc; padding: 16px; line-height: 22px; overflow: hidden; color: #878787; }
 .yuko-card_trigger { height: 60px; line-height: 60px; padding: 0 16px; color:#4285f4; font-weight: 800; text-align: right; }
 .yuko-card_trigger > div { display: inline-block; cursor: pointer; padding: 12px 0; }
-.yuko-card_trigger > div > span{ position: relative; overflow: hidden; display: block; height: 36px; line-height: 36px; 
- padding: 0 12px; border-radius: 1px; user-select: none;}
+.yuko-card_trigger > div > span{ position: relative; overflow: hidden; display: block; height: 36px; line-height: 36px; padding: 0 12px; border-radius: 1px; user-select: none;}
 .yuko-card_trigger > div > span:hover { background: rgba(158, 158, 158, 0.2); }
+
+.yuko-content .main-content {position: relative;margin: 30px 0;}
+
+.yuko-content .yuko-card_avatar {height: 120px;}
+.yuko-content .yuko-card_avatar-title {font-size: 24px;}
+.yuko-content .yuko-card_content {font-size: 14px;}
+.yuko-content .yuko-card_trigger {height: 50px; line-height: 50px;}
+.yuko-content .yuko-card_trigger > div {padding: 7px 0;}
 /* Card End */
 /* Menu Start */
-.yuko-menu_container { width: 300px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: lightskyblue; }
+.yuko-menu_container { max-width: 300px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: lightskyblue; }
 .yuko-menu_container>ul { list-style: none; width: 300px; }
 .yuko-menu_container>ul>li { width: 300px; height: 60px; line-height: 60px; text-align: center; color: lightcoral; list-style: none; border-bottom: darkgray dashed 1px }
 .yuko-menu_container>ul>li:last-child { border: none; }
