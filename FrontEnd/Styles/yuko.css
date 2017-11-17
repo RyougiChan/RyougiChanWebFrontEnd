@@ -115,6 +115,9 @@
 .yuko-page-container {
     overflow: hidden;
     position: absolute !important;
+    width: 100%;
+    float: left;
+    margin: 56px auto 0 auto;
     /* z-index: -1; */
 }
 
@@ -124,13 +127,6 @@
     /* overflow-y:scroll; */
     overflow-x:hidden;  
 }
-
-main {
-    width: 100%;
-    float: left;
-    margin: 56px auto 0 auto;
-}
-
 
 /* Main Content css E */
 

@@ -1,3 +1,7 @@
+/* Component Global Start */
+.text_ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
+/* Component Global End */
+
 /* Button Start */
 .yuko-button { width: 86px; height: 36px; line-height: 36px; border-radius: 2px; text-align: center; color: white; cursor: pointer; position: relative; overflow: hidden; -moz-user-select: none; -khtml-user-select: none; user-select: none; }
 .yuko-button>i { line-height: inherit; }
@@ -104,3 +108,19 @@
 .yuko-snackbar_text { padding: 14px 12px; vertical-align: middle; color: #fff; float: left; }
 .yuko-snackbar_action { background: 0 0; border: none; color: #ff4081; float: right; padding: 14px 12px; font-family: "Roboto","Helvetica","Arial",sans-serif; font-size: 14px; font-weight: 500; text-transform: uppercase; line-height: 1; letter-spacing: 0; overflow: hidden; outline: none;  pointer-events: auto; cursor: pointer; text-decoration: none; text-align: center; -webkit-align-self: center; -ms-flex-item-align: center; -ms-grid-row-align: center; align-self: center; }
 /* Snackbar End */
+
+/* List Start */
+.yuko-list {max-width: 450px; background: rgba(255,255,255,0.78);}
+.yuko-list > .yuko-list_item {height: 55px; line-height: 55px; border-bottom: 1px dashed rgba(0,0,0,.8); padding: 10px 0;position: relative; overflow: hidden;}
+.yuko-list > .yuko-list_item:hover {background: rgba(0, 0, 0, 0.05)}
+.yuko-list > .yuko-list_item:active {background: rgba(0, 0, 0, 0.1)}
+.yuko-list > .yuko-list_item > span {display: inline-block;text-align: center;height: 100%;line-height: 55px;}
+.yuko-list > .yuko-list_item > span i {text-align: center; float: left; user-select: none; color: #4285f4}
+.yuko-list > .yuko-list_item > span > span {display: block; height: 100%; padding: 0 5px;}
+.yuko-list > .yuko-list_item > span > span > span {display:block; height: 50%;line-height: 27.5px;}
+.yuko-list > .yuko-list_item .yuko-list_item-avatar {width: 45px; height: 45px; line-height: 45px; margin: 5px;}
+.yuko-list > .yuko-list_item .yuko-list_item-content {width: calc(100% - 55px); text-align: left; float: left;}
+.yuko-list > .yuko-list_item .yuko-list_item-action {width: 55px;float: right; color: #4285f4}
+.yuko-list_item-content .title { color: rgba(0,0,0,.87); font-size: 18px;}
+.yuko-list_item-content .abstract { color:rgba(0,0,0,.4); font-size: 14px;}
+/* List End */

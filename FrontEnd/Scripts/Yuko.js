@@ -1258,6 +1258,9 @@
                     showMenu(Yuko.utility.getComputedSizeInPx(drawer, 'left') > ((menuDisplayed ? -0.382 : -0.618) * width));
                 }
                 thereShouldBeAnAnimation = false;
+                if (drawer.offsetLeft === -drawer.offsetWidth) {
+                    drawer.parentNode.style.position = '';
+                }
             };
 
             var onHamburgerTouchEnd = function(e) {
