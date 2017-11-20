@@ -24,28 +24,25 @@ body {
     overflow: hidden;
 }
 
-/* Reset Yuko.css */
+/* Reset Yuko css */
 #yuko-header,footer {
     background: rgba(4, 31, 60, .7) !important;
 } 
 .yuko-content.yuko-page {
     background: none !important;
 }
-#yuko-main-content {
+.yuko-main-content {
     background: rgba(238, 238, 238, .2) !important;
 }
-#yuko-nav-title {
+.yuko-nav-title {
     border-bottom: 1px solid #e2e2e2;
 }
-/* .yuko-card_container {
-    background: rgba(255,255,255, .5) !important;
+.yuko-tab {
+    background: rgba(4, 31, 60, .7);
 }
-.yuko-card_container .yuko-card_content {
-    color: #333333 !important;
+.yuko-tab_container .yuko-page-container {
+    margin: 40px auto 0 auto;
 }
-.yuko-card_container .yuko-card_avatar {
-    background: url(../images/Meteor_Shower.jpg) no-repeat;
-} */
 /* Header Css Start*/
 
 #header {
@@ -215,24 +212,6 @@ body {
     display: inline;
     border: none;
 }
-/* Footer Css Start*/
-
-#footer {
-    background: rgba(4, 31, 60, .7);
-    height: 60px;
-}
-
-#footer>div {
-    width: 50%;
-    height: 100%;
-    text-align: right;
-    color: #f1f1f1;
-}
-
-#footer>.footer-contact {
-    float: right;
-    text-align: left;
-}
 
 .header-nav-level2 {
     width: 240px;
@@ -281,20 +260,44 @@ body {
 
 /* Footer Css Start*/
 
-#footer {
-    background: rgba(4, 31, 60, .7);
-    height: 60px;
+footer {
+    width: calc(100% - 10px);
+    height: 120px;
     top: auto !important;
+    background: none !important;
+    border-top: 1px solid rgba(119,119,119,.5);
 }
 
-#footer>div {
-    width: 50%;
-    height: 100%;
-    text-align: right;
-    color: #f1f1f1;
+footer a {
+    color: #777;
 }
 
-#footer>.footer-contact {
+footer .footer-logo {
+    height: 50%;    
+    background: url(../images/ryougi_logo.png) no-repeat 50% 100%;
+    background-size: 60%;
+}
+
+footer>div {
+    width: 100%;
+    height: 25%;
+    color: #777;
+    font-size: 12px;
+}
+
+footer>.footer-contact {
     float: right;
     text-align: left;
 }
+/* Footer CSS End*/
+
+/* Search CSS Start */
+#yuko-search-container {
+    position: absolute;
+    /* left: 100%; */
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #f1f1f1;
+}
+/* Search CSS End */

@@ -983,7 +983,7 @@
             // Document element
             var header = document.getElementsByTagName('header').item(0);
             var footer = document.getElementsByTagName('footer').item(0);
-            var main = document.getElementsByTagName('main').item(0);
+            var mains = document.getElementsByTagName('main');
             var firstYukoContent = document.querySelectorAll('.yuko-content').item(0);
             // Element property
             var headerHeight = Yuko.utility.getComputedSizeInPx(header, 'height');
@@ -992,7 +992,10 @@
             // Default footer style
             // if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
             // Default main style
-            if (main) main.style.height = (document.body.clientHeight - 112) + 'px';
+            for(var i = 0; i < mains.length; i++) {
+                if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) mains[i].style.height = (document.body.clientHeight - 96) + 'px';            
+                else mains[i].style.height = (document.body.clientHeight - 56) + 'px'; 
+            }
         }
 
         // Initial Carousel Style
@@ -1043,14 +1046,32 @@
                     return function() {
                         // Switch main page to show
                         pageContainer.slideTo(i);
+                        // Set Nav Title
+                        var title = document.querySelector('.yuko-nav-title');
+                        title.innerHTML = this.innerHTML;
                     }
                 })(i));
             }
         }
 
-        return {
-            bindDrawerNavItemToPage: bindDrawerNavItemToPage
+        function bindListItemToPage(list, pageContainer) {
+            var listItems = list.children;
+            for (var i = 0; i < listItems.length; i++) {
+                if(!listItems[i].getAttribute('data-disabled')) {
+                    Yuko.utility.addEvent(listItems[i], 'click', (function (i) {
+                        return function () {
+                            // Switch main page to show
+                            pageContainer.slideTo(i);
+                        };
+                    })(i));
+                }
+            }
         }
+
+        return {
+            bindDrawerNavItemToPage: bindDrawerNavItemToPage,
+            bindListItemToPage: bindListItemToPage
+        };
 
     })();
 
@@ -1308,12 +1329,12 @@
                             // Adjust position of footer
                         footer.style.top = (pageList[i].offsetHeight < document.body.clientHeight - 56 ? document.body.clientHeight - 56 : pageList[i].offsetHeight + 56) + 'px';
                         // Adjust overflow of main
-                        if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 112) {
+                        if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 56) {
                             document.getElementsByTagName('main').item(0).style.overflowY = 'scroll';
                         } else {
                             document.getElementsByTagName('main').item(0).style.overflowY = 'hidden';                           
                         }
-                        document.querySelector('#yuko-main-content').scrollTop = 0;
+                        document.querySelector('#yuko-main-container > .yuko-main-content').scrollTop = 0;
                         showMenu(false);
                     }
                 })(i));
