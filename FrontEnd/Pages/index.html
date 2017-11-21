@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="../Styles/yuko-reset.css">
     <link rel="stylesheet" href="../Styles/yuko-global.css">
     <link rel="stylesheet" href="../Styles/material-icons.css">
+    <link rel="stylesheet" href="../Styles/yuko-material.css">
     <link rel="stylesheet" href="../Styles/yuko.css">
     <link rel="stylesheet" href="../Styles/yuko.component.css">
     <link rel="stylesheet" href="../Styles/index.css">
     <link rel="stylesheet" href="../Styles/index@1200px.css">
 </head>
 
-<body>
+<body class="icons-docs yuko-docs">
     <div id="main-container">
         <!-- Header S -->
         <header id="header">
@@ -95,7 +96,7 @@
                     <div class="yuko-card_container">
                         <div class="yuko-card_avatar">
                             <div class="yuko-card_avatar-icon">
-                                <i class="material-icons md-36">share</i>
+                                <i class="material-icons">share</i>
                             </div>
                             <div class="yuko-card_avatar-title"> Google&Alphabet </div>
                         </div>
@@ -121,7 +122,7 @@
                     <div class="yuko-card_container">
                         <div class="yuko-card_avatar">
                             <div class="yuko-card_avatar-icon">
-                                <i class="material-icons md-36">share</i>
+                                <i class="material-icons">share</i>
                             </div>
                             <div class="yuko-card_avatar-title"> Google&Alphabet </div>
                         </div>
@@ -147,7 +148,7 @@
                     <div class="yuko-card_container">
                         <div class="yuko-card_avatar">
                             <div class="yuko-card_avatar-icon">
-                                <i class="material-icons md-36">share</i>
+                                <i class="material-icons">share</i>
                             </div>
                             <div class="yuko-card_avatar-title"> Google&Alphabet </div>
                         </div>
@@ -173,7 +174,7 @@
                     <div class="yuko-card_container">
                         <div class="yuko-card_avatar">
                             <div class="yuko-card_avatar-icon">
-                                <i class="material-icons md-36">share</i>
+                                <i class="material-icons">share</i>
                             </div>
                             <div class="yuko-card_avatar-title"> Google&Alphabet </div>
                         </div>
@@ -222,12 +223,12 @@
             <!-- Header S -->
             <header id="yuko-header">
                 <div id="yuko-nav-drawer-button">
-                    <i class="material-icons md-36">menu</i>
+                    <i class="material-icons">menu</i>
                 </div>
                 <div class="yuko-nav-title">Index</div>
                 <div class="yuko-search-button yuko-material-button">
                     <div class="yuko-material-icons">
-                        <i class="material-icons md-36">search</i>
+                        <i class="material-icons">search</i>
                     </div>
                 </div>
             </header>
@@ -241,7 +242,7 @@
                             <div class="yuko-card_avatar">
                                 <div class="yuko-card_avatar-icon">
                                     <div class="yuko-material-icons">
-                                        <i class="material-icons md-36">share</i>
+                                        <i class="material-icons">share</i>
                                     </div>
                                 </div>
                                 <div class="yuko-card_avatar-title"> Google&Alphabet </div>
@@ -269,7 +270,7 @@
                             <div class="yuko-card_avatar">
                                 <div class="yuko-card_avatar-icon">
                                     <div class="yuko-material-icons">
-                                        <i class="material-icons md-36">share</i>
+                                        <i class="material-icons">share</i>
                                     </div>
                                 </div>
                                 <div class="yuko-card_avatar-title"> Google&Alphabet </div>
@@ -297,7 +298,7 @@
                             <div class="yuko-card_avatar">
                                 <div class="yuko-card_avatar-icon">
                                     <div class="yuko-material-icons">
-                                        <i class="material-icons md-36">share</i>
+                                        <i class="material-icons">share</i>
                                     </div>
                                 </div>
                                 <div class="yuko-card_avatar-title"> Google&Alphabet </div>
@@ -325,7 +326,7 @@
                             <div class="yuko-card_avatar">
                                 <div class="yuko-card_avatar-icon">
                                     <div class="yuko-material-icons">
-                                        <i class="material-icons md-36">share</i>
+                                        <i class="material-icons">share</i>
                                     </div>
                                 </div>
                                 <div class="yuko-card_avatar-title"> Google&Alphabet </div>
@@ -627,9 +628,38 @@
             <!-- Navigation Drawer E -->
             <!-- Search Start -->
             <div id="yuko-search-container">
-                <div></div>
-                <div class="yuko-material-icons">
-                    <i class="material-icons">search</i>
+                <div class="yuko-search_header">
+                    <div class="yuko-material-icons">
+                        <i class="material-icons md-dark">arrow_back</i>
+                    </div>
+                    <div class="yuko-textfield">
+                        <input class="yuko-textfield_input" type="text" placeholder="検索"/>
+                    </div>
+                    <div class="yuko-material-icons clear">
+                        <i class="material-icons md-dark">search</i>
+                    </div>
+                </div>
+                <div class="yuko-search_history yuko-search_match">
+                    <ul class="list">
+                        <li class="history">
+                            <span class="yuko-material-icons"><i class="material-icons md-dark">history</i></span>
+                            <span class="abstract text_ellipsis">歴史を探索する</span>
+                        </li>
+                        <li class="match">
+                            <span class="yuko-material-icons"><i class="material-icons md-dark">search</i></span>
+                            <span class="abstract text_ellipsis">検索マッチング</span>
+                        </li>
+                    </ul>
+                    <span class="clear">検索記録を削除する</span>
+                </div>
+                <div class="yuko-search_result">
+                    <ul ></ul>
+                    <ul class="yuko-search_result-list">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                    </ul>
                 </div>
             </div>
             <!-- Search End -->

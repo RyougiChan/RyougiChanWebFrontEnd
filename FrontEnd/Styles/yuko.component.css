@@ -3,77 +3,77 @@
 /* Component Global End */
 
 /* Button Start */
-.yuko-button { width: 86px; height: 36px; line-height: 36px; border-radius: 2px; text-align: center; color: white; cursor: pointer; position: relative; overflow: hidden; -moz-user-select: none; -khtml-user-select: none; user-select: none; }
-.yuko-button>i { line-height: inherit; }
-.yuko-button_bordered:active { box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2); }
-.yuko-button_bordered { box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); }
-.yuko-button_fab { width: 56px; height: 56px; line-height: 56px; border-radius: 50%; background: rgba(158, 158, 158, 0.2); }
-.yuko-button_raised { background: rgba(158, 158, 158, 0.2); }
-.yuko-button_fab.yuko-button_colored { background: #ff4081; }
-.yuko-button_raised.yuko-button_colored { background: #3f51b5; }
-.yuko-button_plain { color: #000000; }
-.yuko-button_null { color: #000000; font-weight: 800; }
-.yuko-button_null.yuko-button_colored { color: #3f51b5; }
-.yuko-button_null:hover { background-color: rgba(158, 158, 158, .2); }
-.yuko-button_plain:active,
-.yuko-button_null:active { background: rgba(158, 158, 158, 0.5); }
+.yuko-docs .yuko-button { width: 86px; height: 36px; line-height: 36px; border-radius: 2px; text-align: center; color: white; cursor: pointer; position: relative; overflow: hidden; -moz-user-select: none; -khtml-user-select: none; user-select: none; }
+.yuko-docs .yuko-button>i { line-height: inherit; }
+.yuko-docs .yuko-button_bordered:active { box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2); }
+.yuko-docs .yuko-button_bordered { box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); }
+.yuko-docs .yuko-button_fab { width: 56px; height: 56px; line-height: 56px; border-radius: 50%; background: rgba(158, 158, 158, 0.2); }
+.yuko-docs .yuko-button_raised { background: rgba(158, 158, 158, 0.2); }
+.yuko-docs .yuko-button_fab.yuko-button_colored { background: #ff4081; }
+.yuko-docs .yuko-button_raised.yuko-button_colored { background: #3f51b5; }
+.yuko-docs .yuko-button_plain { color: #000000; }
+.yuko-docs .yuko-button_null { color: #000000; font-weight: 800; }
+.yuko-docs .yuko-button_null.yuko-button_colored { color: #3f51b5; }
+.yuko-docs .yuko-button_null:hover { background-color: rgba(158, 158, 158, .2); }
+.yuko-docs .yuko-button_plain:active,
+.yuko-docs .yuko-button_null:active { background: rgba(158, 158, 158, 0.5); }
 /* Button End */
 /* Card Start */
 .trigger-button { width: 60px; height: 60px; line-height: 60px; text-align: center; color: #4285f4; border: 1px dashed #4285f4; cursor: pointer; }
-.yuko-card_container { max-width: 450px; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; margin: 30px;}
-.yuko-card_avatar { position: relative; max-width: 450px; height: 150px; background: #4285f4; color: #f1f1f1; font-weight: 800; }
-.yuko-card_avatar-icon { text-align: center; padding: .5em; }
-.yuko-card_avatar-icon .yuko-material-icons {float: right;}
-.yuko-card_avatar-icon i { position: relative; overflow: hidden; display: inline-block; cursor: pointer; }
-.yuko-card_avatar-title { position: absolute; bottom: 0; width: 100%; height: 60px; line-height: 60px; text-indent: 16px; font-size: 36px; overflow: hidden; text-overflow: ellipsis; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; }
-.yuko-card_content { min-height: 120px; border-bottom: 1px solid #cccccc; padding: 16px; line-height: 22px; overflow: hidden; color: #878787; }
-.yuko-card_trigger { height: 60px; line-height: 60px; padding: 0 16px; color:#4285f4; font-weight: 800; text-align: right; }
-.yuko-card_trigger > div { display: inline-block; cursor: pointer; padding: 12px 0; }
-.yuko-card_trigger > div > span{ position: relative; overflow: hidden; display: block; height: 36px; line-height: 36px; padding: 0 12px; border-radius: 1px; user-select: none;}
-.yuko-card_trigger > div > span:hover { background: rgba(158, 158, 158, 0.2); }
+.yuko-docs .yuko-card_container { max-width: 450px; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: #ffffff; margin: 30px;}
+.yuko-docs .yuko-card_avatar { position: relative; max-width: 450px; height: 150px; background: #4285f4; color: #f1f1f1; font-weight: 800; }
+.yuko-docs .yuko-card_avatar-icon { text-align: center; padding: .5em; }
+.yuko-docs .yuko-card_avatar-icon .yuko-material-icons {float: right;}
+.yuko-docs .yuko-card_avatar-icon i { position: relative; display: inline-block; cursor: pointer; }
+.yuko-docs .yuko-card_avatar-title { position: absolute; bottom: 0; width: 100%; height: 60px; line-height: 60px; text-indent: 16px; font-size: 36px; overflow: hidden; text-overflow: ellipsis; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; }
+.yuko-docs .yuko-card_content { min-height: 120px; border-bottom: 1px solid #cccccc; padding: 16px; line-height: 22px; overflow: hidden; color: #878787; }
+.yuko-docs .yuko-card_trigger { height: 60px; line-height: 60px; padding: 0 16px; color:#4285f4; font-weight: 800; text-align: right; }
+.yuko-docs .yuko-card_trigger > div { display: inline-block; cursor: pointer; padding: 12px 0; }
+.yuko-docs .yuko-card_trigger > div > span{ position: relative; overflow: hidden; display: block; height: 36px; line-height: 36px; padding: 0 12px; border-radius: 1px; user-select: none;}
+.yuko-docs .yuko-card_trigger > div > span:hover { background: rgba(158, 158, 158, 0.2); }
 
-.yuko-content .main-content {position: relative;margin: 30px 0;}
+.yuko-docs .yuko-content .main-content {position: relative;margin: 30px 0;}
 
-.yuko-content .yuko-card_avatar {height: 120px;}
-.yuko-content .yuko-card_avatar-title {font-size: 24px;}
-.yuko-content .yuko-card_content {font-size: 14px;}
-.yuko-content .yuko-card_trigger {height: 50px; line-height: 50px;}
-.yuko-content .yuko-card_trigger > div {padding: 7px 0;}
+.yuko-docs .yuko-content .yuko-card_avatar {height: 120px;}
+.yuko-docs .yuko-content .yuko-card_avatar-title {font-size: 24px;}
+.yuko-docs .yuko-content .yuko-card_content {font-size: 14px;}
+.yuko-docs .yuko-content .yuko-card_trigger {height: 50px; line-height: 50px;}
+.yuko-docs .yuko-content .yuko-card_trigger > div {padding: 7px 0;}
 /* Card End */
 /* Menu Start */
-.yuko-menu_container { max-width: 300px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: lightskyblue; }
-.yuko-menu_container>ul { list-style: none; width: 300px; }
-.yuko-menu_container>ul>li { width: 300px; height: 60px; line-height: 60px; text-align: center; color: lightcoral; list-style: none; border-bottom: darkgray dashed 1px }
-.yuko-menu_container>ul>li:last-child { border: none; }
+.yuko-docs .yuko-menu_container { max-width: 300px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: lightskyblue; }
+.yuko-docs .yuko-menu_container>ul { list-style: none; width: 300px; }
+.yuko-docs .yuko-menu_container>ul>li { width: 300px; height: 60px; line-height: 60px; text-align: center; color: lightcoral; list-style: none; border-bottom: darkgray dashed 1px }
+.yuko-docs .yuko-menu_container>ul>li:last-child { border: none; }
 /* Menu End */
 /* Textfield Start */
-.yuko-textfields-container { background: #f1f1f1; width: 80%; height: 100%; margin: 0 auto; }
-.yuko-textfield { position: relative; font-size: 16px; display: inline-block; box-sizing: border-box; width: 300px; max-width: 100%; margin: 0; padding: 20px 0; }
-.yuko-textfield { width: 150px; margin: 50px; }
-.yuko-textfield_input { border: none; border-bottom: 1px solid rgba(0, 0, 0, .12); display: block; font-size: 16px; font-family: "Helvetica", "Arial", sans-serif; margin: 0; padding: 4px 0; width: 100%; background: 0 0; text-align: left; color: inherit; }
-.yuko-textfield_label { bottom: 0; color: rgba(0, 0, 0, .26); font-size: 16px; left: 0; right: 0; pointer-events: none; position: absolute; display: block; top: 24px; width: 100%; overflow: hidden; white-space: nowrap; text-align: left; visibility: visible; }
-.yuko-textfield_label::after { background-color: #3f51b5; bottom: 20px; content: ''; height: 2px; left: 45%; position: absolute; transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); visibility: hidden; width: 10px; }
-.yuko-textfield.is-invalid .yuko-textfield_label::after { background-color: #d50000; }
-.yuko-textfield.is-invalid .yuko-textfield_label { color: #d50000; }
-.yuko-textfield.is-focused .yuko-textfield_label::after { left: 0; visibility: visible; width: 100% }
-.yuko-textfield.is-dirty .yuko-textfield_label { visibility: hidden !important; }
-.yuko-textfield.yuko-textfield_floating-label .yuko-textfield_label { transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); }
-.yuko-textfield.yuko-textfield_floating-label.is-dirty .yuko-textfield_label { visibility: visible !important; top: 4px; }
-.yuko-textfield_error { color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility: hidden; display: block; width: 100%; }
-.yuko-textfield.is-invalid .yuko-textfield_error { visibility: visible; }
-.yuko-button_icon { border-radius: 50%; font-size: 24px; height: 32px; margin-left: 0; margin-right: 0; min-width: 32px; width: 32px; padding: 0; overflow: hidden; color: inherit; line-height: normal; }
-.yuko-textfield .yuko-button { position: absolute; bottom: 20px; color: #000000; width: 24px; height: 24px; line-height: 1em }
-.yuko-button .material-icons{ position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-12px, -12px); transform: translate(-12px, -12px); line-height: 24px; width: 24px; }
-.yuko-textfield_expandable .yuko-textfield_input { margin-left: 32px; visibility: hidden; }
-.yuko-textfield_expandable .yuko-textfield_label { left: 32px; visibility: hidden; }
-.yuko-textfield_expandable .yuko-textfield_error { margin-left: 32px; }
-.yuko-textfield.is-focused .yuko-textfield_input { visibility: visible; }
-.yuko-textfield_expandable.is-focused .yuko-textfield_label { visibility: visible; }
+.yuko-docs .yuko-textfields-container { background: #f1f1f1; width: 80%; height: 100%; margin: 0 auto; }
+.yuko-docs .yuko-textfield { position: relative; font-size: 16px; display: inline-block; box-sizing: border-box; width: 300px; max-width: 100%; margin: 0; padding: 20px 0; }
+.yuko-docs .yuko-textfield { width: 150px; margin: 50px; }
+.yuko-docs .yuko-textfield_input { border: none; border-bottom: 1px solid rgba(0, 0, 0, .12); display: block; font-size: 16px; font-family: "Helvetica", "Arial", sans-serif; margin: 0; padding: 4px 0; width: 100%; background: 0 0; text-align: left; color: inherit; }
+.yuko-docs .yuko-textfield_label { bottom: 0; color: rgba(0, 0, 0, .26); font-size: 16px; left: 0; right: 0; pointer-events: none; position: absolute; display: block; top: 24px; width: 100%; overflow: hidden; white-space: nowrap; text-align: left; visibility: visible; }
+.yuko-docs .yuko-textfield_label::after { background-color: #3f51b5; bottom: 20px; content: ''; height: 2px; left: 45%; position: absolute; transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); visibility: hidden; width: 10px; }
+.yuko-docs .yuko-textfield.is-invalid .yuko-textfield_label::after { background-color: #d50000; }
+.yuko-docs .yuko-textfield.is-invalid .yuko-textfield_label { color: #d50000; }
+.yuko-docs .yuko-textfield.is-focused .yuko-textfield_label::after { left: 0; visibility: visible; width: 100% }
+.yuko-docs .yuko-textfield.is-dirty .yuko-textfield_label { visibility: hidden !important; }
+.yuko-docs .yuko-textfield.yuko-textfield_floating-label .yuko-textfield_label { transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); }
+.yuko-docs .yuko-textfield.yuko-textfield_floating-label.is-dirty .yuko-textfield_label { visibility: visible !important; top: 4px; }
+.yuko-docs .yuko-textfield_error { color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility: hidden; display: block; width: 100%; }
+.yuko-docs .yuko-textfield.is-invalid .yuko-textfield_error { visibility: visible; }
+.yuko-docs .yuko-button_icon { border-radius: 50%; font-size: 24px; height: 32px; margin-left: 0; margin-right: 0; min-width: 32px; width: 32px; padding: 0; overflow: hidden; color: inherit; line-height: normal; }
+.yuko-docs .yuko-textfield .yuko-button { position: absolute; bottom: 20px; color: #000000; width: 24px; height: 24px; line-height: 1em }
+.yuko-docs .yuko-button .material-icons{ position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-12px, -12px); transform: translate(-12px, -12px); line-height: 24px; width: 24px; }
+.yuko-docs .yuko-textfield_expandable .yuko-textfield_input { margin-left: 32px; visibility: hidden; }
+.yuko-docs .yuko-textfield_expandable .yuko-textfield_label { left: 32px; visibility: hidden; }
+.yuko-docs .yuko-textfield_expandable .yuko-textfield_error { margin-left: 32px; }
+.yuko-docs .yuko-textfield.is-focused .yuko-textfield_input { visibility: visible; }
+.yuko-docs .yuko-textfield_expandable.is-focused .yuko-textfield_label { visibility: visible; }
 /* Textfield End */
 /* Tooltip Start */
-.yuko-tooltip_container { background: #f1f1f1; width: 80%; height: 100%; margin: 0 auto; }
-.yuko-tooltip { -webkit-transform: scale(0); transform: scale(0); -webkit-transform-origin: top center; transform-origin: top center; z-index: 999; background: rgba(97, 97, 97, .9); border-radius: 2px; color: #fff; display: inline-block; font-size: 10px; font-weight: 500; line-height: 14px; max-width: 170px; position: fixed; padding: 8px; text-align: center; }
-.yuko-tooltip.is-active { -webkit-animation: pulse 200ms cubic-bezier(0, 0, .2, 1)forwards; animation: pulse 200ms cubic-bezier(0, 0, .2, 1)forwards; }
+.yuko-docs .yuko-tooltip_container { background: #f1f1f1; width: 80%; height: 100%; margin: 0 auto; }
+.yuko-docs .yuko-tooltip { -webkit-transform: scale(0); transform: scale(0); -webkit-transform-origin: top center; transform-origin: top center; z-index: 999; background: rgba(97, 97, 97, .9); border-radius: 2px; color: #fff; display: inline-block; font-size: 10px; font-weight: 500; line-height: 14px; max-width: 170px; position: fixed; padding: 8px; text-align: center; }
+.yuko-docs .yuko-tooltip.is-active { -webkit-animation: pulse 200ms cubic-bezier(0, 0, .2, 1)forwards; animation: pulse 200ms cubic-bezier(0, 0, .2, 1)forwards; }
 @-webkit-keyframes pulse { 
  0% { -webkit-transform: scale(0); transform: scale(0); opacity: 0 }
  50% { -webkit-transform: scale(.99); transform: scale(.99) }
@@ -86,14 +86,14 @@
 }
 /* Tooltip End */
 /* Loading Start */
-.yuko-loading_container { width: 80%; height: 100%; margin: 0 auto; }
-.yuko-loading_progressbar { width: 50vw; height: 4px; max-width: 260px; position: relative; overflow: hidden; margin: 100px auto; }
-.yuko-loading_progressbar>.bar { position: absolute; height: 4px; left: 0; top: 0; }
-.yuko-loading_progressbar>.progressbar { width: 50%; background: #3f51b5; z-index: 1; }
-.yuko-loading_progressbar>.bufferbar { width: 100%; background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #3f51b5, #3f51b5); z-index: 0; }
-.yuko-loading_progressbar.yuko-loading_progressbar-indeterminate>.progressbar { width: 0; } 
-.yuko-loading_spinner { position: relative; background: none; width: 34px; height: 34px; margin: 0 auto; }
-.yuko-loading_spinner { -webkit-animation: spinner-rotate 1500ms linear infinite; animation: spinner-rotate 1500ms linear infinite; }
+.yuko-docs .yuko-loading_container { width: 80%; height: 100%; margin: 0 auto; }
+.yuko-docs .yuko-loading_progressbar { width: 50vw; height: 4px; max-width: 260px; position: relative; overflow: hidden; margin: 100px auto; }
+.yuko-docs .yuko-loading_progressbar>.bar { position: absolute; height: 4px; left: 0; top: 0; }
+.yuko-docs .yuko-loading_progressbar>.progressbar { width: 50%; background: #3f51b5; z-index: 1; }
+.yuko-docs .yuko-loading_progressbar>.bufferbar { width: 100%; background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #3f51b5, #3f51b5); z-index: 0; }
+.yuko-docs .yuko-loading_progressbar.yuko-loading_progressbar-indeterminate>.progressbar { width: 0; } 
+.yuko-docs .yuko-loading_spinner { position: relative; background: none; width: 34px; height: 34px; margin: 0 auto; }
+.yuko-docs .yuko-loading_spinner { -webkit-animation: spinner-rotate 1500ms linear infinite; animation: spinner-rotate 1500ms linear infinite; }
 .spinner { position: absolute; top: 0; left: 0; background: none; border: 3px solid #42a5f5; border-left-color: rgba(0,0,0,0); border-radius: 100%; width: 28px; height: 28px; }
 @-webkit-keyframes spinner-rotate { 
  to { -webkit-transform: rotate(360deg); transform: rotate(360deg) }
@@ -103,34 +103,34 @@
 }
 /* Loading End */
 /* Snackbar Start */
-.yuko-snackbar { position: fixed; bottom: 0px; left: 50%; min-width: 288px; max-width: 568px; transform: translate(-50%, 80px); border-radius: 2px; cursor: default; background-color: rgb(50, 50, 50); z-index: 3; display: flex; justify-content: space-between; font-family: Roboto, Helvetica, Arial, sans-serif; will-change: transform; transform: translate(0px, 80px); transform: translate(-50%, 80px); pointer-events: none; transition: transform 0.25s cubic-bezier(0.4, 0, 1, 1), -webkit-transform 0.25s cubic-bezier(0.4, 0, 1, 1); }
-.yuko-snackbar.is-active { transform: translate(-50%, 0px); pointer-events: auto; transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1); }
-.yuko-snackbar_text { padding: 14px 12px; vertical-align: middle; color: #fff; float: left; }
-.yuko-snackbar_action { background: 0 0; border: none; color: #ff4081; float: right; padding: 14px 12px; font-family: "Roboto","Helvetica","Arial",sans-serif; font-size: 14px; font-weight: 500; text-transform: uppercase; line-height: 1; letter-spacing: 0; overflow: hidden; outline: none;  pointer-events: auto; cursor: pointer; text-decoration: none; text-align: center; -webkit-align-self: center; -ms-flex-item-align: center; -ms-grid-row-align: center; align-self: center; }
+.yuko-docs .yuko-snackbar { position: fixed; bottom: 0px; left: 50%; min-width: 288px; max-width: 568px; transform: translate(-50%, 80px); border-radius: 2px; cursor: default; background-color: rgb(50, 50, 50); z-index: 3; display: flex; justify-content: space-between; font-family: Roboto, Helvetica, Arial, sans-serif; will-change: transform; transform: translate(0px, 80px); transform: translate(-50%, 80px); pointer-events: none; transition: transform 0.25s cubic-bezier(0.4, 0, 1, 1), -webkit-transform 0.25s cubic-bezier(0.4, 0, 1, 1); }
+.yuko-docs .yuko-snackbar.is-active { transform: translate(-50%, 0px); pointer-events: auto; transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1); }
+.yuko-docs .yuko-snackbar_text { padding: 14px 12px; vertical-align: middle; color: #fff; float: left; }
+.yuko-docs .yuko-snackbar_action { background: 0 0; border: none; color: #ff4081; float: right; padding: 14px 12px; font-family: "Roboto","Helvetica","Arial",sans-serif; font-size: 14px; font-weight: 500; text-transform: uppercase; line-height: 1; letter-spacing: 0; overflow: hidden; outline: none;  pointer-events: auto; cursor: pointer; text-decoration: none; text-align: center; -webkit-align-self: center; -ms-flex-item-align: center; -ms-grid-row-align: center; align-self: center; }
 /* Snackbar End */
 
 /* List Start */
-.yuko-list {max-width: 450px;}
-.yuko-list > .yuko-list_item {height: 55px; line-height: 55px; margin: 10px 0; padding: 10px 0;position: relative; overflow: hidden;background: rgba(255,255,255,0.78);}
-.yuko-list > .yuko-list_item:active {background: rgba(255,255,255,0.68);}
-.yuko-list > .yuko-list_item:first-child {margin-top: 0}
-.yuko-list > .yuko-list_item:last-child {margin-bottom: 0}
-.yuko-list > .yuko-list_item > span {display: inline-block;text-align: center;height: 100%;line-height: 55px;}
-.yuko-list > .yuko-list_item > span i {text-align: center; float: left; user-select: none; color: #4285f4}
-.yuko-list > .yuko-list_item > span > span {display: block; height: 100%; padding: 0 5px;}
-.yuko-list > .yuko-list_item > span > span > span {display:block; height: 50%;line-height: 27.5px;}
-.yuko-list > .yuko-list_item .yuko-list_item-avatar {width: 45px; height: 45px; line-height: 45px; margin: 5px;}
-.yuko-list > .yuko-list_item .yuko-list_item-content {width: calc(100% - 55px); text-align: left; float: left;}
-.yuko-list > .yuko-list_item .yuko-list_item-action {width: 55px;float: right; color: #4285f4}
-.yuko-list_item-content .title { color: rgba(0,0,0,.87); font-size: 18px;}
-.yuko-list_item-content .abstract { color:rgba(0,0,0,.4); font-size: 14px;}
+.yuko-docs .yuko-list {max-width: 450px;}
+.yuko-docs .yuko-list > .yuko-list_item {height: 55px; line-height: 55px; margin: 10px 0; padding: 10px 0;position: relative; overflow: hidden;background: rgba(255,255,255,0.78);}
+.yuko-docs .yuko-list > .yuko-list_item:active {background: rgba(255,255,255,0.68);}
+.yuko-docs .yuko-list > .yuko-list_item:first-child {margin-top: 0}
+.yuko-docs .yuko-list > .yuko-list_item:last-child {margin-bottom: 0}
+.yuko-docs .yuko-list > .yuko-list_item > span {display: inline-block;text-align: center;height: 100%;line-height: 55px;}
+.yuko-docs .yuko-list > .yuko-list_item > span i {text-align: center; float: left; user-select: none; color: #4285f4}
+.yuko-docs .yuko-list > .yuko-list_item > span > span {display: block; height: 100%; padding: 0 5px;}
+.yuko-docs .yuko-list > .yuko-list_item > span > span > span {display:block; height: 50%;line-height: 27.5px;}
+.yuko-docs .yuko-list > .yuko-list_item .yuko-list_item-avatar {width: 45px; height: 45px; line-height: 45px; margin: 5px;}
+.yuko-docs .yuko-list > .yuko-list_item .yuko-list_item-content {width: calc(100% - 55px); text-align: left; float: left;}
+.yuko-docs .yuko-list > .yuko-list_item .yuko-list_item-action {width: 55px;float: right; color: #4285f4}
+.yuko-docs .yuko-list_item-content .title { color: rgba(0,0,0,.87); font-size: 18px;}
+.yuko-docs .yuko-list_item-content .abstract { color:rgba(0,0,0,.4); font-size: 14px;}
 /* List End */
 
 /* Tab Start */
 .text_ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
-.yuko-tab {position: relative; width: 100%; height: 40px; background: #4285f4;float: left}
-.yuko-tab > .yuko-tab_item {position: relative; float: left; display: block; height: 100%; width: 25%; line-height: 40px; text-align: center; color: #f0f8ff; overflow: hidden;}
-.yuko-tab > .yuko-tab_item-bar {position: absolute; left: 0; bottom: 0; width: 25%; height: 2px; background: rgb(255, 255, 255)}
-.yuko-tab > .yuko-tab_item:hover {background: rgba(255,255,255, 0.05) }
-.yuko-tab > .yuko-tab_item:active {background: rgba(255,255,255, 0.1)}
+.yuko-docs .yuko-tab {position: relative; width: 100%; height: 40px; background: #4285f4;float: left}
+.yuko-docs .yuko-tab > .yuko-tab_item {position: relative; float: left; display: block; height: 100%; width: 25%; line-height: 40px; text-align: center; color: #f0f8ff; overflow: hidden;}
+.yuko-docs .yuko-tab > .yuko-tab_item-bar {position: absolute; left: 0; bottom: 0; width: 25%; height: 2px; background: rgb(255, 255, 255)}
+.yuko-docs .yuko-tab > .yuko-tab_item:hover {background: rgba(255,255,255, 0.05) }
+.yuko-docs .yuko-tab > .yuko-tab_item:active {background: rgba(255,255,255, 0.1)}
 /* Tab End */

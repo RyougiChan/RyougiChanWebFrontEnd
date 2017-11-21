@@ -25,22 +25,22 @@ body {
 }
 
 /* Reset Yuko css */
-#yuko-header,footer {
+body.yuko-docs #yuko-header,footer {
     background: rgba(4, 31, 60, .7) !important;
 } 
-.yuko-content.yuko-page {
+body.yuko-docs .yuko-content.yuko-page {
     background: none !important;
 }
-.yuko-main-content {
+body.yuko-docs .yuko-main-content {
     background: rgba(238, 238, 238, .2) !important;
 }
-.yuko-nav-title {
+body.yuko-docs .yuko-nav-title {
     border-bottom: 1px solid #e2e2e2;
 }
-.yuko-tab {
+body.yuko-docs .yuko-tab {
     background: rgba(4, 31, 60, .7);
 }
-.yuko-tab_container .yuko-page-container {
+body.yuko-docs .yuko-tab_container .yuko-page-container {
     margin: 40px auto 0 auto;
 }
 /* Header Css Start*/
@@ -260,39 +260,40 @@ body {
 
 /* Footer Css Start*/
 
-footer {
+body.yuko-docs footer {
+    display: block;
     width: calc(100% - 10px);
-    height: 120px;
+    height: 120px !important;
     top: auto !important;
     background: none !important;
     border-top: 1px solid rgba(119,119,119,.5);
 }
 
-footer a {
+body.yuko-docs footer a {
     color: #777;
 }
 
-footer .footer-logo {
+body.yuko-docs footer .footer-logo {
     height: 50%;    
     background: url(../images/ryougi_logo.png) no-repeat 50% 100%;
     background-size: 60%;
 }
 
-footer>div {
+body.yuko-docs footer>div {
     width: 100%;
     height: 25%;
     color: #777;
     font-size: 12px;
 }
 
-footer>.footer-contact {
+body.yuko-docs footer>.footer-contact {
     float: right;
     text-align: left;
 }
 /* Footer CSS End*/
 
 /* Search CSS Start */
-#yuko-search-container {
+body.yuko-docs #yuko-search-container {
     position: absolute;
     /* left: 100%; */
     top: 0;
@@ -300,4 +301,83 @@ footer>.footer-contact {
     height: 100%;
     background: #f1f1f1;
 }
+
+body.yuko-docs #yuko-search-container > div {
+    margin: 0 10px;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_header {
+    height: 44px;
+    line-height: 44px;
+    background: #ffffff;
+    border-radius: 2px;
+    margin-top:10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+body.yuko-docs .yuko-search_header > div {
+    float: left;
+    height: 100%;
+    line-height: 44px;
+
+    margin: 0;
+    padding: 0;
+}
+
+body.yuko-docs .yuko-search_header .yuko-material-icons {
+    width: 44px;
+}
+
+body.yuko-docs .yuko-search_header .yuko-textfield {
+    width: calc(100% - 88px);
+}
+
+body.yuko-docs .yuko-search_header .yuko-textfield .yuko-textfield_input {
+    padding: 13px 5px;
+    border: none;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match {
+    background: #ffffff;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list {
+    
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list li {
+    height: 44px;
+    width: 100%;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list span {
+    display: block;
+    float: left;
+    height: 44px;
+    line-height: 44px;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list .yuko-material-icons {
+    width: 44px;
+    text-align: center;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list .abstract {
+    width: calc(100% - 62px);
+    padding: 0 10px 0 4px;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .clear {
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    color: rgba(0,0,0,0.54);
+    text-align: center;
+}
+
+body.yuko-docs #yuko-search-container .yuko-search_result {
+    background: #ffffff;
+
+}
+
 /* Search CSS End */

@@ -1,20 +1,24 @@
 /* Global */
-.yuko-material-icons {
+.yuko-docs .yuko-material-icons {
     width: 32px;
-    height: 24px;
-    padding: 4px 0;
+    height: 32px;
+    line-height: 32px;
     border-radius: 50%;
+    text-align: center;
 }
-.yuko-material-icons:active {
+.yuko-docs .yuko-material-icons .material-icons {
+    line-height: inherit;
+}
+.yuko-docs .yuko-material-icons:active {
     background: rgba(255,255,255,0.2);
 }
-.yuko-material-icons:focus {
+.yuko-docs .yuko-material-icons:focus {
     background: rgba(255,255,255,0.2);
 }
 
 /* Main Container css S */
 
-#yuko-main-container {
+.yuko-docs #yuko-main-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -26,7 +30,7 @@
 
 /* Header css S */
 
-#yuko-header {
+.yuko-docs #yuko-header {
     display: flex;
     float: left;
     width: 100%;
@@ -39,23 +43,23 @@
     z-index: 0;
 }
 
-#yuko-header .yuko-nav-title {
+.yuko-docs #yuko-header .yuko-nav-title {
     border: none;
     color: #ffffff;
     padding: 0 12px;
 }
 
-#yuko-header .yuko-search {
+.yuko-docs #yuko-header .yuko-search {
     color: #fff;
 }
 
-.yuko-material-button {
+.yuko-docs .yuko-material-button {
     width: 56px;
     color: white;
     text-align: center;
 }
 
-#yuko-header .yuko-material-icons {
+.yuko-docs #yuko-header .yuko-material-icons {
     margin: 12px 0;
 }
 
@@ -64,21 +68,21 @@
 
 /* Drawer css S */
 
-#yuko-nav-drawer-button {
+.yuko-docs #yuko-nav-drawer-button {
     width: 56px;
     color: white;
     text-align: center;
     padding: 16px 0;
 }
 
-#yuko-nav-drawer-container {
+.yuko-docs #yuko-nav-drawer-container {
     width: 100%;
     height: 100%;
     z-index: 2;
     background: rgba(0, 0, 0, 0);
 }
 
-#yuko-nav-drawer {
+.yuko-docs #yuko-nav-drawer {
     position: fixed;
     width: 80%;
     height: 100%;
@@ -87,21 +91,21 @@
     z-index: 2
 }
 
-#yuko-nav-list {
+.yuko-docs #yuko-nav-list {
     width: calc(100% - 10px);
     height: 100%;
     text-indent: 16px;
     background: #f1f1f1;
 }
 
-#yuko-nav-white {
+.yuko-docs #yuko-nav-white {
     float: right;
     width: 10px;
     height: 100%;
     background: none;
 }
 
-.yuko-nav-title {
+.yuko-docs .yuko-nav-title {
     font-size: 20px;
     line-height: 56px;
     display: block;
@@ -109,7 +113,7 @@
     height: 56px;
 }
 
-.yuko-nav-item {
+.yuko-docs .yuko-nav-item {
     position: relative;
     line-height: 56px;
     display: block;
@@ -120,11 +124,11 @@
     color: #777;
 }
 
-.yuko-nav-item:hover {
+.yuko-docs .yuko-nav-item:hover {
     background-color: #e0e0e0;
 }
 
-.yuko-nav-item.item-selected {
+.yuko-docs .yuko-nav-item.item-selected {
     background-color: #e0e0e0;
 }
 
@@ -136,7 +140,7 @@
 
 /* Main Content css S */
 
-.yuko-content {
+.yuko-docs .yuko-content {
     /* min-height: 100%;  */
     width: 100%;
     height: 100%;
@@ -145,7 +149,7 @@
     /* text-align: center */
 }
 
-.yuko-page-container {
+.yuko-docs .yuko-page-container {
     overflow: hidden;
     position: absolute !important;
     width: 100%;
@@ -154,7 +158,7 @@
     /* z-index: -1; */
 }
 
-.yuko-page {
+.yuko-docs .yuko-page {
     position: absolute !important;
     display: block;
     /* overflow-y:scroll; */
@@ -169,7 +173,7 @@
 
 /* Footer css S */
 
-footer {
+.yuko-docs footer {
     position: absolute;
     bottom: 0;
     /* top: 100%; */
@@ -182,13 +186,13 @@ footer {
     overflow: hidden;
 }
 
-footer > div {
+.yuko-docs footer > div {
     height: 28px;
     line-height: 28px;
     width: 100%;
 }
 
-footer a {
+.yuko-docs footer a {
     color: #FFFFFF;
     font-style: italic
 }
@@ -199,40 +203,40 @@ footer a {
 
 /* Carousel css  S */
 
-#yuko-carousel-container {
+.yuko-docs #yuko-carousel-container {
     width: 100%;
     height: 100%;
     background: lightblue url('../images/saekano.png') no-repeat 50% 50% fixed;
     background-size: 60%;
 }
 
-#yuko-carousel {
+.yuko-docs #yuko-carousel {
     width: 100%;
     height: calc(100% - 56px);
 }
 
-#yuko-carousel-title {
+.yuko-docs #yuko-carousel-title {
     width: 100%;
     height: 56px;
     line-height: 56px;
     color: #ffffff;
 }
 
-#yuko-carousel-list {
+.yuko-docs #yuko-carousel-list {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden
 }
 
-#yuko-carousel-list > ul {
+.yuko-docs #yuko-carousel-list > ul {
     position: relative;
     width: 80%;
     height: 100%;
     margin: 0 auto;
 }
 
-#yuko-carousel-list > span {
+.yuko-docs #yuko-carousel-list > span {
     position: absolute;
     z-index: 20;
     display: block;
@@ -244,17 +248,17 @@ footer a {
     cursor: pointer;
 }
 
-#yuko-carousel-pre {
+.yuko-docs #yuko-carousel-pre {
     left: 24px;
     background: url('../images/pre.png') no-repeat 50% 50%;
 }
 
-#yuko-carousel-next {
+.yuko-docs #yuko-carousel-next {
     right: 24px;
     background: url('../images/next.png') no-repeat 50% 50%;
 }
 
-.yuko-carousel-item {
+.yuko-docs .yuko-carousel-item {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -262,11 +266,11 @@ footer a {
     transition: .5s cubic-bezier(.17, .67, .83, .67);
 }
 
-.carousel-item-focus {
+.yuko-docs .carousel-item-focus {
     z-index: 19;
 }
 
-.yuko-carousel-item:nth-child(1) {
+.yuko-docs .yuko-carousel-item:nth-child(1) {
     z-index: 19;
     background: pink url('../images/chara_eriri_vsl.png') no-repeat 50% 50%;
     width: 100%;
@@ -275,7 +279,7 @@ footer a {
     left: 0;
 }
 
-.yuko-carousel-item:nth-child(2) {
+.yuko-docs .yuko-carousel-item:nth-child(2) {
     background: lightblue url('../images/chara_megumi_vsl.png') no-repeat 50% 50%;
     z-index: 18;
     width: 80%;
@@ -284,7 +288,7 @@ footer a {
     left: -12.5%;
 }
 
-.yuko-carousel-item:nth-child(3) {
+.yuko-docs .yuko-carousel-item:nth-child(3) {
     background: lightcoral url('../images/chara_utaha_vsl.png') no-repeat 50% 50%;
     z-index: 17;
     width: 60%;
@@ -293,7 +297,7 @@ footer a {
     left: 12.5%;
 }
 
-.yuko-carousel-item:nth-child(4) {
+.yuko-docs .yuko-carousel-item:nth-child(4) {
     background: lightgrey url('../images/chara_michiru_vsl.png') no-repeat 50% 50%;
     z-index: 15;
     width: 60%;
@@ -302,7 +306,7 @@ footer a {
     left: 27.5%
 }
 
-.yuko-carousel-item:nth-child(5) {
+.yuko-docs .yuko-carousel-item:nth-child(5) {
     background: lightgreen url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 80%;
@@ -311,7 +315,7 @@ footer a {
     left: 32.5%;
 }
 
-.yuko-carousel-item:nth-child(6) {
+.yuko-docs .yuko-carousel-item:nth-child(6) {
     background: lightseagreen url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 40%;
@@ -320,7 +324,7 @@ footer a {
     left: 30%;
 }
 
-.yuko-carousel-item:nth-child(7) {
+.yuko-docs .yuko-carousel-item:nth-child(7) {
     background: lightyellow url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 40%;
@@ -329,7 +333,7 @@ footer a {
     left: 30%;
 }
 
-.yuko-carousel-item:nth-child(8) {
+.yuko-docs .yuko-carousel-item:nth-child(8) {
     background: lightsalmon url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 40%;
@@ -338,7 +342,7 @@ footer a {
     left: 30%;
 }
 
-.yuko-carousel-item:nth-child(9) {
+.yuko-docs .yuko-carousel-item:nth-child(9) {
     background: lightskyblue url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 40%;
@@ -347,7 +351,7 @@ footer a {
     left: 30%;
 }
 
-.yuko-carousel-item:nth-child(10) {
+.yuko-docs .yuko-carousel-item:nth-child(10) {
     background: lightslategray url('../images/chara_izumi_vsl.png') no-repeat 50% 50%;
     z-index: 16;
     width: 40%;
@@ -362,13 +366,13 @@ footer a {
 
 /* Carousel_v2 css  S */
 
-.yuko-carousel-v2-container {
+.yuko-docs .yuko-carousel-v2-container {
     width: 100%;
     overflow: hidden;
     position: relative;
 }
 
-.yuko-carousel-v2 {
+.yuko-docs .yuko-carousel-v2 {
     width: 700%;
     margin-left: 0%;
     transition: margin-left .5s;
@@ -377,7 +381,7 @@ footer a {
     -o-transition: margin-left .5s;
 }
 
-.yuko-carousel-v2-pre, .yuko-carousel-v2-next {
+.yuko-docs .yuko-carousel-v2-pre, .yuko-docs .yuko-carousel-v2-next {
     position: absolute;
     width: 15%;
     height: 100%;
@@ -388,65 +392,65 @@ footer a {
     display: none;
 }
 
-.yuko-carousel-v2-pre {
+.yuko-docs .yuko-carousel-v2-pre {
     left: 0;
 }
 
-.yuko-carousel-v2-next {
+.yuko-docs .yuko-carousel-v2-next {
     right: 0;
 }
 
-.yuko-carousel-v2 > li {
+.yuko-docs .yuko-carousel-v2 > li {
     width: calc(100% / 7);
     float: left;
 }
 
-.yuko-carousel-v2-pre:hover {
+.yuko-docs .yuko-docs .yuko-carousel-v2-pre:hover {
     background: url(../../Carousel_v2.0/images/ic_navigate_before_white_48dp.png) no-repeat center;
     background-size: 80%;
 }
 
-.yuko-carousel-v2-next:hover {
+.yuko-docs .yuko-docs .yuko-carousel-v2-next:hover {
     background: url(../../Carousel_v2.0/images/ic_navigate_next_white_48dp.png) no-repeat center;
     background-size: 80%;
 }
 
-.yuko-carousel-v2-item_a {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_a {
     background: url(../../Carousel_v2.0/images/Kara.no.Kyoukai.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_b {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_b {
     background: url(../../Carousel_v2.0/images/yukong.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_c {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_c {
     background: url(../../Carousel_v2.0/images/fate.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_d {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_d {
     background: url(../../Carousel_v2.0/images/AngelBeats.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_e {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_e {
     background: url(../../Carousel_v2.0/images/yande.re.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_f {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_f {
     background: url(../../Carousel_v2.0/images/san.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-item_g {
+.yuko-docs .yuko-docs .yuko-carousel-v2-item_g {
     background: url(../../Carousel_v2.0/images/youkuri.jpg) no-repeat;
     background-size: 100%;
 }
 
-.yuko-carousel-v2-bar {
+.yuko-docs .yuko-docs .yuko-carousel-v2-bar {
     display: none;
     position: absolute;
     bottom: 0;
@@ -455,7 +459,7 @@ footer a {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.yuko-carousel-v2-bar > li {
+.yuko-docs .yuko-docs .yuko-carousel-v2-bar > li {
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
@@ -464,7 +468,7 @@ footer a {
     margin: 0 2px;
 }
 
-.yuko-carousel-v2-bar > li > a {
+.yuko-docs .yuko-docs .yuko-carousel-v2-bar > li > a {
     display: block;
     width: 10px;
     height: 6px;
@@ -473,7 +477,7 @@ footer a {
     transition: 0.2s;
 }
 
-.yuko-carousel-v2-bar > li.on a, .yuko-carousel-v2-bar > li.on:hover a {
+.yuko-docs .yuko-docs .yuko-carousel-v2-bar > li.on a, .yuko-docs .yuko-docs .yuko-carousel-v2-bar > li.on:hover a {
     width: 30px;
     background-color: #2196F3;
 }
