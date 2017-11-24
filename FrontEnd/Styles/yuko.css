@@ -485,6 +485,18 @@
 
 /* Carousel_v2 css  E */
 
+/* Scalable Container S */
+
+.yuko-scalable-open, .yuko-scalable-page, .yuko-scalable-container {
+    position: absolute;
+}
+
+.yuko-scalable-container {
+    border-radius: 100%;
+    overflow: hidden;
+    opacity: 0;
+}
+/* Scalable Container E */
 
 /* Effect S */
 

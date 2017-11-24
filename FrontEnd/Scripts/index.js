@@ -119,6 +119,111 @@
             top: -100
         }, 250);
     });
+    // Hide header control
+    $(
+        function t() {
+            var mainResetHeight,
+                tabMainResetHeight,
+                scrollTop = 0,
+                isForward = true,
+                animInPprogress = false,
+                $header = $('#main-container_m #yuko-header'),
+                $main = $('#main-container_m > #yuko-main-container > .yuko-main-content.yuko-page-container'),
+                $tabMain = $('.yuko-tab_container > .yuko-main-content.yuko-page-container');
+            $('#main-container_m .yuko-content.yuko-page').on('scroll', function () {
+                isForward = $(this).scrollTop() > scrollTop ? true : false;
+                if ($(this).scrollTop() > 56 && isForward && !animInPprogress) {
+                    if (!mainResetHeight) mainResetHeight = (this.offsetHeight + 56);
+                    if ($header.css('top') === '0px') {
+                        console.log('A');
+                        animInPprogress = true;
+                        $header.animate({
+                            top: '-56px'
+                        }, function () {
+                            animInPprogress = false;
+                        });
+                    }
+                    if (($main.css('margin-top') === '56px' || $main.css('height') === (mainResetHeight - 56) + 'px')) {
+                        if (this.parentNode.parentNode.className.indexOf('yuko-tab_container') > -1) {
+                            if (!tabMainResetHeight) tabMainResetHeight = (this.offsetHeight);
+                            console.log('B1 >> ' + tabMainResetHeight);
+                        animInPprogress = true;
+                        $main.animate({
+                                marginTop: '0',
+                                height: (mainResetHeight + 40) + 'px'
+                            }, function () {
+                                animInPprogress = false;
+                            });
+                            console.log($tabMain.css('height'));
+                            if (($tabMain.css('height') === (tabMainResetHeight) + 'px')) {
+                                console.log('B2 >> ' + tabMainResetHeight);
+                                // $tabMain.css('height', (tabMainResetHeight + 56) + 'px');
+                        animInPprogress = true;
+                        $tabMain.animate({
+                                    height: (tabMainResetHeight + 56) + 'px'
+                                }, function () {
+                                    animInPprogress = false;
+                                });
+                            }
+                        } else {
+                            console.log('B3');
+                            animInPprogress = true;
+                            $main.animate({
+                                marginTop: '0',
+                                height: mainResetHeight + 'px'
+                            }, function () {
+                                animInPprogress = false;
+                            });
+                        }
+                    }
+                }
+                if (!isForward && !animInPprogress) {
+                    if ($header.css('top') === '-56px') {
+                        console.log('C');
+                        animInPprogress = true;
+                        $header.animate({
+                            top: '0'
+                        }, function () {
+                            animInPprogress = false;
+                        });
+                    }
+                    if (($main.css('margin-top') === '0px' || $main.css('height') === (mainResetHeight) + 'px')) {
+                        if (this.parentNode.parentNode.className.indexOf('yuko-tab_container') > -1) {
+                            console.log('D1');
+                        animInPprogress = true;
+                        $main.animate({
+                                marginTop: '56px',
+                                height: (mainResetHeight) + 'px'
+                            }, function () {
+                                animInPprogress = false;
+                            });
+                            if (($tabMain.css('height') === (tabMainResetHeight + 56) + 'px')) {
+                                console.log('D2');
+                                // $tabMain.parent().parent().css('height', tabMainResetHeight);
+                        animInPprogress = true;
+                        $tabMain.animate({
+                                    height: (tabMainResetHeight) + 'px'
+                                }, function () {
+                                    animInPprogress = false;
+                                });
+                            }
+                        } else {
+                            console.log('D3');
+                            animInPprogress = true;
+                            $main.animate({
+                                marginTop: '56px',
+                                height: (mainResetHeight - 56) + 'px'
+                            }, function () {
+                                animInPprogress = false;
+                            });
+                        }
+                    }
+                }
+                scrollTop = $(this).scrollTop();
+            });
+        }
+    );
+
     styleControl();
     navGo('#header');
 })();

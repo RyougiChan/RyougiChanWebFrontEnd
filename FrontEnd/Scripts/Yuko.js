@@ -656,6 +656,7 @@
                 easing = options.easing || 'linear',
                 easings = options.easings || [],
                 start = options.start || function() {},
+                process = options.process || function() {},
                 complete = options.complete || function() {},
                 cycle = options.cycle || false;
 
@@ -936,7 +937,7 @@
                         pi++;
                     }
                     index++;
-
+                    process();
                     if (index !== indexs[pi - 1].length) {
                         requestAnimFrame(go);
                     } else {
@@ -1329,11 +1330,11 @@
                             // Adjust position of footer
                         footer.style.top = (pageList[i].offsetHeight < document.body.clientHeight - 56 ? document.body.clientHeight - 56 : pageList[i].offsetHeight + 56) + 'px';
                         // Adjust overflow of main
-                        if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 56) {
-                            document.getElementsByTagName('main').item(0).style.overflowY = 'scroll';
-                        } else {
-                            document.getElementsByTagName('main').item(0).style.overflowY = 'hidden';                           
-                        }
+                        // if (Yuko.utility.getComputedSizeInPx(document.querySelectorAll('main > div').item(i), 'height') > document.body.clientHeight - 56) {
+                        //     document.getElementsByTagName('main').item(0).style.overflowY = 'scroll';
+                        // } else {
+                        //     document.getElementsByTagName('main').item(0).style.overflowY = 'hidden';                           
+                        // }
                         document.querySelector('#yuko-main-container > .yuko-main-content').scrollTop = 0;
                         showMenu(false);
                     }
@@ -2210,11 +2211,79 @@
             }
         }
 
+        /**
+         * Make an Element to be a scalable element.
+         * 
+         * @param {string} openBtn Selector of element to trigger scale spread.
+         * @param {string} closeBtn Selector of element to trigger scale shrink.
+         * @param {string} scaleContainer Selector of element to be made as a scalabe element.
+         * @param {string} page Selector of the only element in scaleContainer(
+         *  its width is document's width, and height is document's height.
+         *  In other words, in most cases, it will be a full screen element
+         *  that always be set to visable in screen).
+         * @param {{radius?:(number|string), pageSize?:({width?:(string|number), height?:(string|number)}), duration:(number)}=} props 
+         * Parameters to initialize elements and effect.
+         * radius=: Radius of scaleContainer. Default: document.documentElement.offsetHeight.
+         * pageSize=: An object to define page 's size, including width and height. 
+         *            default: {width:document.documentElement.offsetWidth, height:document.documentElement.offsetHeight}.
+         * duration=: Time for scale effect.
+         * @example Yuko.widget.scaleContainer('.open', '.close', '.scale', '.page', {duration:200});
+         */
+        function scaleContainer(openBtn, closeBtn, scaleContainer, page, props) {
+            var close = document.querySelector(closeBtn),
+                open = document.querySelector(openBtn),
+                scale = document.querySelector(scaleContainer),
+                page = document.querySelector(page),
+                size = props.pageSize || { width: document.documentElement.offsetWidth, height: document.documentElement.offsetHeight },
+                duration = props.duration || 400,
+                radius = parseFloat(props.radius) || document.documentElement.offsetHeight;
+
+            page.style.width = (size.width ? size.width : document.documentElement.offsetWidth) + 'px';
+            page.style.height = (size.height ? size.height : document.documentElement.offsetHeight) + 'px';
+            scale.style.radius = '100%';
+            var onOpenClick = function (event) {
+                Yuko.utility.animate(scale, {
+                    properties: {
+                        width: radius * 4 + 'px',
+                        height: radius * 4 + 'px',
+                        opacity: 1
+                    },
+                    process: function () {
+                        scale.style.top = event.clientY + document.body.scrollTop - scale.offsetHeight / 2 + 'px';
+                        scale.style.left = event.clientX + document.body.scrollLeft - scale.offsetHeight / 2 + 'px';
+                        page.style.top = -scale.offsetTop + 'px';
+                        page.style.left = page.offsetTop * scale.offsetLeft / scale.offsetTop + 'px';
+                    },
+                    duration: duration
+                });
+            },
+                onCloseClick = function (event) {
+                    Yuko.utility.animate(scale, {
+                        properties: {
+                            width: 0,
+                            height: 0,
+                            opacity: 0
+                        },
+                        process: function () {
+                            scale.style.top = event.clientY + document.body.scrollTop - scale.offsetHeight / 2 + 'px';
+                            scale.style.left = event.clientX + document.body.scrollLeft - scale.offsetHeight / 2 + 'px';
+                            page.style.top = -scale.offsetTop + 'px';
+                            page.style.left = page.offsetTop * scale.offsetLeft / scale.offsetTop + 'px';
+                        },
+                        duration: duration
+                    });
+                };
+
+            Yuko.utility.addEvent(open, 'click', onOpenClick);
+            Yuko.utility.addEvent(close, 'click', onCloseClick);
+        }
+
         return {
             navigationDrawer: navigationDrawer,
             pageContainer: pageContainer,
             carousel: carousel,
-            carouselV2: carouselV2
+            carouselV2: carouselV2,
+            scaleContainer: scaleContainer
         };
 
     })();
