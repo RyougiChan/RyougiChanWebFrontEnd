@@ -173,7 +173,8 @@
 
 /* Footer css S */
 
-.yuko-docs footer {
+.yuko-docs #main-container footer {
+    display: block;
     position: absolute;
     bottom: 0;
     /* top: 100%; */
