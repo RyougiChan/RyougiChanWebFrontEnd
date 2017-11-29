@@ -85,7 +85,7 @@
     $(window).on('resize', function () {
         styleControl();
     });
-    // Main container scroll control
+    //Main container scroll control
     var sign = 10;
     $('#main').on('scroll', function () {
         var scrollTop = $('#main').scrollTop();

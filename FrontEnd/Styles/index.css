@@ -125,7 +125,7 @@ body.yuko-docs .yuko-tab_container .yuko-page-container {
 
 #main {
     /* margin-top: 90px; */
-    height: calc(100% - 150px)
+    height: calc(100% - 146px)
 }
 
 #main>div {
@@ -198,6 +198,21 @@ body.yuko-docs .yuko-tab_container .yuko-page-container {
 #main .main-to_top:active {
     opacity: .5;
 }
+
+/* Footer CSS */
+#main-container #footer {
+
+}
+
+#main-container #footer > div {
+    height: 100%;
+    width: 50%;
+    text-align: right;
+}
+#main-container #footer > .footer-contact {
+    float: right;
+    text-align: left;
+}
 /* Mobile */
 .yuko-content .main-content .main-content_date {
     right: auto;
@@ -244,9 +259,8 @@ body.yuko-docs .yuko-tab_container .yuko-page-container {
 
 
 /* Main Css Start*/
-
 #main {
-    height: calc(100% - 150px);
+    height: calc(100% - 146px);
     overflow-y: scroll;
 }
 
