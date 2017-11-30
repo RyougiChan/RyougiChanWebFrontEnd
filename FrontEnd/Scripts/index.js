@@ -86,26 +86,35 @@
         styleControl();
     });
     //Main container scroll control
-    var sign = 10;
+    var sign = 10,
+        anim = function(scrollNode){
+            var scrollTop = $('#main').scrollTop();
+            if (scrollTop > 120) {
+                $('#main .main-to_top').fadeIn();
+            }
+            if (scrollTop <= 120) {
+                $('#main .main-to_top').fadeOut();
+            }
+            for (var i = 0; i < $('#main .main-content').length; i++) {
+                var $scrollNode = scrollNode,
+                    $item = $($('.main-content')[i]),
+                    width = $scrollNode.width(),
+                    height = $scrollNode.height(),
+                    itemTop = $item.offset().top,
+                    offset = '100%';
+                if (offset.indexOf('%') > -1) {
+                    offset = parseInt(offset) / 100 * height;
+                }
+                if(itemTop < offset) {
+                    $item.css('opacity','1').css('transform', '');
+                }else {              
+                    $item.css('opacity','0').css('transform', 'translateZ(-500px) rotateX(180deg)');                
+                }
+            }
+        };
+        anim($('#main'));
     $('#main').on('scroll', function () {
-        var scrollTop = $('#main').scrollTop();
-        if (scrollTop > 120) {
-            $('#main .main-to_top').fadeIn();
-        }
-        if (scrollTop <= 120) {
-            $('#main .main-to_top').fadeOut();
-        }
-        for (var i = 0; i < $('.main-content').length; i++) {
-            var temp = scrollTop - $('.main-content')[i].offsetTop + window.outerHeight;
-            if (temp >= 0 && temp <= 200 && scrollTop > sign) {
-                $($('.main-content')[i]).animateRotate('rotateX', -100, 0, 400, 'swing');
-                sign = scrollTop;
-            }
-            if (temp >= 0 && temp <= 50 && scrollTop < sign) {
-                $($('.main-content')[i]).animateRotate('rotateX', 0, -100, 400, 'swing');
-                sign = scrollTop;
-            }
-        }
+        anim($(this));
     });
     // Main to_top control
     $('#main .main-to_top').on('click', function () {
@@ -147,8 +156,8 @@
                         if (this.parentNode.parentNode.className.indexOf('yuko-tab_container') > -1) {
                             if (!tabMainResetHeight) tabMainResetHeight = (this.offsetHeight);
                             console.log('B1 >> ' + tabMainResetHeight);
-                        animInPprogress = true;
-                        $main.animate({
+                            animInPprogress = true;
+                            $main.animate({
                                 marginTop: '0',
                                 height: (mainResetHeight + 40) + 'px'
                             }, function () {
@@ -158,8 +167,8 @@
                             if (($tabMain.css('height') === (tabMainResetHeight) + 'px')) {
                                 console.log('B2 >> ' + tabMainResetHeight);
                                 // $tabMain.css('height', (tabMainResetHeight + 56) + 'px');
-                        animInPprogress = true;
-                        $tabMain.animate({
+                                animInPprogress = true;
+                                $tabMain.animate({
                                     height: (tabMainResetHeight + 56) + 'px'
                                 }, function () {
                                     animInPprogress = false;
@@ -190,8 +199,8 @@
                     if (($main.css('margin-top') === '0px' || $main.css('height') === (mainResetHeight) + 'px')) {
                         if (this.parentNode.parentNode.className.indexOf('yuko-tab_container') > -1) {
                             console.log('D1');
-                        animInPprogress = true;
-                        $main.animate({
+                            animInPprogress = true;
+                            $main.animate({
                                 marginTop: '56px',
                                 height: (mainResetHeight) + 'px'
                             }, function () {
@@ -200,8 +209,8 @@
                             if (($tabMain.css('height') === (tabMainResetHeight + 56) + 'px')) {
                                 console.log('D2');
                                 // $tabMain.parent().parent().css('height', tabMainResetHeight);
-                        animInPprogress = true;
-                        $tabMain.animate({
+                                animInPprogress = true;
+                                $tabMain.animate({
                                     height: (tabMainResetHeight) + 'px'
                                 }, function () {
                                     animInPprogress = false;

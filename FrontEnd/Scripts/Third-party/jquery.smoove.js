@@ -50,6 +50,7 @@
       }
 
       if (itemtop < offset) {
+        console.log('trigger');
         if (params.opacity !== false) {
           $item.css({
             opacity: params.opacity

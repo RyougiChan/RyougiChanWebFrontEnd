@@ -143,6 +143,9 @@ body.yuko-docs .yuko-tab_container .yuko-page-container {
     padding: 20px;
     /* overflow: hidden; */
     border-radius: 4px;
+    opacity: 0; 
+    transition: all .5s ease, opacity .5s ease; 
+    /*transform: translateY(200px) translateZ(-500px) rotateX(180deg); */
 }
 #main .main-content.main-content_announce {
     height: 120px;
@@ -260,17 +263,21 @@ body.yuko-docs .yuko-tab_container .yuko-page-container {
 
 /* Main Css Start*/
 #main {
+    position: relative;
     height: calc(100% - 146px);
     overflow-y: scroll;
 }
 
-#main>div {
+#main > div {
     width: 1200px;
     min-height: 100%;
     margin: 0 auto;
     overflow: hidden
 }
 
+#main > .main-middle > div {
+    perspective: 5000px;
+}
 
 /* Footer Css Start*/
 
