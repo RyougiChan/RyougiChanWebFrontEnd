@@ -39,7 +39,8 @@ body.icons-docs {
     body.icons-docs h1, body.icons-docs a {
       color: #03a9f4; }
     body.icons-docs h1 {
-      font-size: 30px; }
+      font-size: 30px;
+      line-height: 1.2em; }
       @media screen and (max-width: 360px) {
         body.icons-docs h1 {
           font-size: 24px; } }

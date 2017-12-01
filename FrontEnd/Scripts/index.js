@@ -106,9 +106,9 @@
                     offset = parseInt(offset) / 100 * height;
                 }
                 if(itemTop < offset) {
-                    $item.css('opacity','1').css('transform', '');
-                }else {              
-                    $item.css('opacity','0').css('transform', 'translateZ(-500px) rotateX(180deg)');                
+                    $item.css('opacity','1').css('transform', 'perspective(2500px) rotateX(0)');
+                }else {
+                    $item.css('opacity','0').css('transform', 'perspective(2500px) rotateX(-100deg)');                
                 }
             }
         };
