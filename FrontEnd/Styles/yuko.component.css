@@ -40,6 +40,19 @@
 .yuko-docs .yuko-content .yuko-card_trigger {height: 50px; line-height: 50px;}
 .yuko-docs .yuko-content .yuko-card_trigger > div {padding: 7px 0;}
 /* Card End */
+/* ImageCard Start */
+body.yuko-docs .yuko-imgcard {padding: 20px;background: rgba(255,255,255,.5);box-shadow: rgba(0, 0, 0, .3) 0px 0px 20px 2px;}
+body.yuko-docs .yuko-imgcard_title {text-align: center;}
+body.yuko-docs .yuko-imgcard_info {text-align: center; margin-top: 12px;}
+body.yuko-docs .yuko-imgcard_content {position: relative;margin-top: 12px;overflow: hidden}
+body.yuko-docs .yuko-imgcard_content:hover { box-shadow: rgba(0, 0, 0, .5) 0px 0px 20px 2px; cursor: pointer;}
+body.yuko-docs .yuko-imgcard_content:hover .yuko-imgcard_content-text{transform: scale(1);opacity: 1;}
+body.yuko-docs .yuko-imgcard_content:hover .yuko-imgcard_content-img {transform: scale(1.2)}
+body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-img {transition: all .4s ease-in}
+body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-img > img {width: 100%;}
+body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-text {position: absolute;top: 0;left: 0;width: 100%;height: 100%;padding: 0;background: rgba(0, 0, 0, .5);opacity: 0;transition: all .4s ease-in;transform: scale(2);font-size: 18px;}
+body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-text > p { color: #ffffff;padding: 10px; margin-bottom: 10px; line-height: 1.5em; max-height: calc(100% - 30px); overflow: hidden;}
+/* ImageCard End */
 /* Menu Start */
 .yuko-docs .yuko-menu_container { max-width: 300px; overflow: hidden; position: absolute; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); background: lightskyblue; }
 .yuko-docs .yuko-menu_container>ul { list-style: none; width: 300px; }
@@ -134,3 +147,52 @@
 .yuko-docs .yuko-tab > .yuko-tab_item:hover {background: rgba(255,255,255, 0.05) }
 .yuko-docs .yuko-tab > .yuko-tab_item:active {background: rgba(255,255,255, 0.1)}
 /* Tab End */
+
+/* Article Start */
+body.yuko-docs .text-sup,
+body.yuko-docs .text-sub {font-size: 10px;}
+body.yuko-docs .text-sup {vertical-align: super;}
+body.yuko-docs .text-sub {vertical-align: sub;}
+body.yuko-docs .image-left,
+body.yuko-docs .image-center,
+body.yuko-docs .image-right,
+body.yuko-docs .image-left_textwrapping img,
+body.yuko-docs .image-right_textwrapping img {margin: 20px;}
+body.yuko-docs .image-left {text-align: left;}
+body.yuko-docs .image-center {text-align: center;}
+body.yuko-docs .image-right {text-align: right;}
+body.yuko-docs .image-left_textwrapping img {float: left; display: block; }
+body.yuko-docs .image-right_textwrapping img {float: right; display: block; }
+
+body.yuko-docs .yuko-article_container {margin: 0 auto; max-width: 1200px; background: #e4d4ff}
+body.yuko-docs .yuko-article {color: rgba(0, 0, 0, 0.66); padding: 1em; overflow: hidden; line-height: 1.5em}
+body.yuko-docs .yuko-article h1 {text-align: left;}
+body.yuko-docs .yuko-article h2 {text-align: left;font-size: 20px;font-style: italic; font-weight: 500;}
+body.yuko-docs .yuko-article p {text-indent: 2em; margin-bottom: 1em;}
+body.yuko-docs .yuko-article a {color: rgba(33, 150, 243, 1); text-decoration: underline}
+body.yuko-docs .yuko-article code {display: inline-block; margin: 0 4px; padding: 4px 10px; border-radius: 5px; color: #f1f1f1; background: rgba(33, 150, 243, 0.8); text-align: left; text-indent: 0}
+body.yuko-docs .yuko-article sub,
+body.yuko-docs .yuko-article sup,
+body.yuko-docs .yuko-article super {font-size: 10px;}
+body.yuko-docs .yuko-article > div { padding: 10px; margin: 0 10px; overflow: hidden; }
+body.yuko-docs .yuko-article .yuko-article_abstract p {font-style: italic; font-size: 90%; line-height: 1.5em;}
+body.yuko-docs .yuko-article .yuko-article_keywords {font-weight: 800;}
+body.yuko-docs .yuko-article .yuko-article_title {font-size: 36px;}
+body.yuko-docs .yuko-article .yuko-article_subtitle {font-size: 20px;}
+body.yuko-docs .yuko-article .yuko-article_title-1st {font-size: 24px;}
+body.yuko-docs .yuko-article .yuko-article_title-2nd {font-size: 18px;}
+body.yuko-docs .yuko-article .yuko-article_title-3rd {font-size: 16px;}
+body.yuko-docs .yuko-article .yuko-article_title-4th {font-size: 14px;}
+
+body.yuko-docs .yuko-article .yuko-article_ref {font-size: 16px;}
+body.yuko-docs .yuko-article .yuko-article_ref .yuko-article_ref-list {font-size: 14px; font-style: italic; margin: 4px 0 0 18px; text-decoration: none; list-style: circle;}
+body.yuko-docs .yuko-article .yuko-article_ref .yuko-article_ref-list li {line-height: 1.5em; font-size: 90%;}
+body.yuko-docs .yuko-article .yuko-article_highlight,
+body.yuko-docs .yuko-article .yuko-article_mark,
+body.yuko-docs .yuko-article .yuko-article_warning,
+body.yuko-docs .yuko-article .yuko-article_error {margin: 10px 0; padding: 10px; color:#f1f1f1; font-size: 14px;}
+body.yuko-docs .yuko-article .yuko-article_highlight {background: rgba(255, 255, 255, 0.6); color: rgba(60, 60, 128, 1); border-left: 5px solid rgba(60, 60, 128, 1);}
+body.yuko-docs .yuko-article .yuko-article_mark {background: rgba(128, 255, 128, 0.6); color: rgba(60, 128, 60, 1); border-left: 5px solid rgba(60, 128, 60, 1);}
+body.yuko-docs .yuko-article .yuko-article_warning {background: rgba(255, 209, 128, 0.6); color: rgba(128, 104, 60, 1); border-left: 5px solid rgba(128, 104, 60, 1);}
+body.yuko-docs .yuko-article .yuko-article_error {background: rgba(255, 128, 128, 0.6); color:rgba(128, 60, 60, 1); border-left: 5px solid rgba(128, 60, 60, 1);}
+/* Article End */
