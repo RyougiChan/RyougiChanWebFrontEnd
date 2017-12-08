@@ -32,7 +32,7 @@ table {
 html {
     width: 100%;
     height: 100%;
-    font-family: Roboto,sans-serif;
+    font-family: Roboto,sans-serif
 }
 
 body {
@@ -57,45 +57,49 @@ a {
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: 800;
-    line-height: 1.5em;
+    line-height: 1.5em
 }
 
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: 800;
     line-height: 1.5em;
-    margin-top: 0.5em;
+    margin-top: 0.5em
 }
 
 h1 {
     font-size: 36px;
-    text-align: center;
+    text-align: center
 }
 h2 {
     font-size: 28px;
-    text-align: center;
+    text-align: center
 }
 h3 {
-    font-size: 24px;
+    font-size: 24px
 }
 h4 {
-    font-size: 18px;
+    font-size: 18px
 }
 h5 {
-    font-size: 16px;
+    font-size: 16px
 }
 h6 {
-    font-size: 14px;
+    font-size: 14px
 }
 
 sub, sup {
-    font-size: smaller;
+    font-size: smaller
 }
 
 sub {
-    vertical-align: sub;
+    vertical-align: sub
 }
 
 sup {
-    vertical-align: super;
+    vertical-align: super
+}
+
+pre::-webkit-scrollbar {
+    display: none;
 }

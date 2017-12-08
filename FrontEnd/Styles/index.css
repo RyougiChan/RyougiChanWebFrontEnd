@@ -1,404 +1,98 @@
-/* Temp */
+/* Temp Start TODO: DETETE */
+body { background: #f1f1f1; }
+#main-container { width: 100%; height: 100%; background: url(../images/Meteor_Shower.jpg) no-repeat; background-size: cover; transition: background 2s ease-in-out; -moz-transition: background 2s ease-in-out; -webkit-transition: background 2s ease-in-out; -o-transition: background 2s ease-in-out; overflow: hidden; }
+#main-container_m { width: 100%; height: 100%; background: url(../images/Meteor_Shower.jpg) no-repeat; background-size: cover; /* overflow: hidden; */ }
+/* Temp End */
 
-body {
-    background: #f1f1f1
-}
+/* Reset Yuko css Start */
+body.yuko-docs #yuko-header,footer { background: rgba(4, 31, 60, .7) !important; } 
+body.yuko-docs .yuko-content.yuko-page { background: none !important; }
+body.yuko-docs .yuko-main-content { background: rgba(238, 238, 238, .2) !important; }
+body.yuko-docs .yuko-nav-title { border-bottom: 1px solid #e2e2e2; }
+body.yuko-docs .yuko-tab { background: rgba(4, 31, 60, .7); }
+body.yuko-docs .yuko-tab_container .yuko-page-container { margin: 40px auto 0 auto; }
+body.yuko-docs .yuko-tab_container .yuko-page-container.fullscreen { height: calc(100% - 40px); }
+/* Reset Yuko css End */
 
-#main-container {
-    width: 100%;
-    height: 100%;
-    background: url(../images/Meteor_Shower.jpg) no-repeat;
-    background-size: cover;
-    transition: background 2s ease-in-out;
-    -moz-transition: background 2s ease-in-out;
-    -webkit-transition: background 2s ease-in-out;
-    -o-transition: background 2s ease-in-out;
-    overflow: hidden;
-}
+/* Background Css Start */
+#background {}
+#background ul {position:fixed;top:0;left:0;width:100%;height:100%;}
+#background ul li {background:url(../images/Meteor_Shower.jpg) 50% 50% no-repeat/cover;height:100%;}
+/* Background Css End */
 
-#main-container_m {
-    width: 100%;
-    height: 100%;
-    background: url(../images/Meteor_Shower.jpg) no-repeat;
-    background-size: cover;
-    overflow: hidden;
-}
-
-/* Reset Yuko css */
-body.yuko-docs #yuko-header,footer {
-    background: rgba(4, 31, 60, .7) !important;
-} 
-body.yuko-docs .yuko-content.yuko-page {
-    background: none !important;
-}
-body.yuko-docs .yuko-main-content {
-    background: rgba(238, 238, 238, .2) !important;
-}
-body.yuko-docs .yuko-nav-title {
-    border-bottom: 1px solid #e2e2e2;
-}
-body.yuko-docs .yuko-tab {
-    background: rgba(4, 31, 60, .7);
-}
-body.yuko-docs .yuko-tab_container .yuko-page-container {
-    margin: 40px auto 0 auto;
-}
 /* Header Css Start*/
-
-#header {
-    height: 90px;
-    background: rgba(4, 31, 60, .7);
-    position: relative;
-    z-index: 10;
-}
-
-#header>div {
-    width: 1200px;
-    margin: 0 auto
-}
-
-#header-logo {
-    width: 300px;
-    height: 90px;
-    background: url(../images/ryougi_logo.png) no-repeat 0 60%;
-    background-size: 80%;
-    float: left;
-}
-
-#header-logo>a {
-    display: block;
-    width: 100%;
-    height: 90px;
-}
-
+#header { width: 100%; height: 90px; background: rgba(4, 31, 60, .7); position: fixed; top: 0; z-index: 10; transition: all .3s ease-in}
+#header>div { width: 1200px; margin: 0 auto; }
+#header-logo { width: 300px; height: 90px; background: url(../images/ryougi_logo.png) no-repeat 0 60%; background-size: 80%; float: left; }
+#header-logo>a { display: block; width: 100%; height: 90px; }
 #header-nav,
-#header-nav>ul {
-    height: 100%;
-}
-
+#header-nav>ul { height: 100%; }
 #header-nav li,
-#header-nav a {
-    text-align: center;
-    color: #f1f1f1;
-}
+#header-nav a { text-align: center; color: #f1f1f1; }
+#header-nav>ul>li { width: 120px; height: 100%; position: relative; line-height: 90px; font-size: 32px; float: left; cursor: pointer; transition: width ease .3s; user-select: none; }
+#header-nav a { width: 100%; }
+#header-nav>ul>li:hover { background: rgba(255, 255, 255, 0.1); width: 240px; }
+#header-nav>ul>li:hover>body.icons-docs .header-nav-level2 { display: block; transition: opacity .3s; transition-delay: .1s; -moz-transition: opacity .3s; -moz-transition-delay: .1s; -webkit-transition: opacity .3s; -webkit-transition-delay: .1s; -o-transition: opacity .3s; -o-transition-delay: .1s; opacity: 1.0; }
+body.icons-docs .header-nav-level2>li>a:hover { color: rgb(33, 150, 243); }
+/* Header Css End */
 
-#header-nav>ul>li {
-    width: 120px;
-    height: 100%;
-    position: relative;
-    line-height: 90px;
-    font-size: 48px;
-    float: left;
-    cursor: pointer;
-    transition: width ease .3s;
-    user-select: none;
-}
+/* Main Css Start */
+#main { position: relative; width: 100%; overflow-y: scroll; height: 100%; }
+#main > div { width: 1200px; min-height: calc(100% - 146px); margin: 90px auto 56px; overflow: hidden; }
+#main .main-middle_left { width: 70%; }
+#main .main-middle_right { width: 30%; float: right; }
+#main .main-content { position: relative; width: 87%; background: rgba(255, 255, 255, 0.5); /* box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, .14), -5px 0px 20px 0 rgba(0, 0, 0, .14), 5px 0px 20px -2px rgba(0, 0, 0, .2), 0px 5px 20px 0px rgba(0, 0, 0, .12); */ box-shadow: 0 0 15px 5px rgba(0,0,0,.2); margin: 40px auto; padding: 20px; /* overflow: hidden; */ border-radius: 4px; opacity: 0; transition: all .8s cubic-bezier(0.2, 0.9, 0.9, 1.4), opacity .8s cubic-bezier(.17,.67,.33,1); }
+/* #main .main-content h3 { font-size: 32px; line-height: 1.5em; margin: 0 0 10px; padding: 0; } */
+#main .main-content.main-content_announce { height: 120px; }
+#main .main-content.main-content_announce > p { margin-bottom: 10px; }
+#main .main-content.main-content_announce > p > a { text-decoration: underline; }
+.main-content_date { position: absolute; right: -20px; top: -20px; width: 50px; height: 50px; color: #f1f1f1; font-size: 16px; border-radius: 50%; background: rgb(33, 150, 243); text-align: center; padding: 10px; line-height: 25px; font-weight: bold; user-select: none; }
+.main-content_date span.year { display: block; border-bottom: 1px solid #f1f1f1; }
+#main .main-to_top { position: fixed; bottom: 110px; right: 50px; display: block; width: 50px; height: 50px; border-radius: 4px; background: rgb(33, 150, 243); cursor: pointer; user-select: none; /* opacity: 0; */ display: none; }
+#main .main-to_top:hover { opacity: .8; }
+#main .main-to_top:active { opacity: .5; }
+/* Main Css End */
 
-#header-nav a {
-    width: 100%;
-}
+/* Footer CSS Start */
+#main-container #footer { position: fixed; bottom: -56px; width: 100%; transition: all .3s ease-in}
+#main-container #footer > div { height: 100%; width: 50%; text-align: right; }
+#main-container #footer > .footer-contact { float: right; text-align: left; }
+/* Footer CSS End */
 
-#header-nav>ul>li:hover {
-    background: rgba(255, 255, 255, 0.1);
-    width: 240px;
-}
-
-#header-nav>ul>li:hover>body.icons-docs .header-nav-level2 {
-    display: block;
-    transition: opacity .3s;
-    transition-delay: .1s;
-    -moz-transition: opacity .3s;
-    -moz-transition-delay: .1s;
-    -webkit-transition: opacity .3s;
-    -webkit-transition-delay: .1s;
-    -o-transition: opacity .3s;
-    -o-transition-delay: .1s;
-    opacity: 1.0;
-}
-
-body.icons-docs .header-nav-level2>li>a:hover {
-    color: rgb(33, 150, 243)
-}
-
-
-/* Main Css Start*/
-#main {
-    position: relative;
-    height: calc(100% - 146px);
-    overflow-y: scroll;
-}
-
-#main > div {
-    width: 1200px;
-    min-height: 100%;
-    margin: 0 auto;
-    overflow: hidden
-}
-
-#main .main-middle_left {
-    width: 70%;
-}
-
-#main .main-middle_right {
-    width: 30%;
-    float: right;
-}
-
-#main .main-content {
-    position: relative;
-    width: 87%;
-    background: rgba(255, 255, 255, 0.5);
-    /* box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, .14), -5px 0px 20px 0 rgba(0, 0, 0, .14), 5px 0px 20px -2px rgba(0, 0, 0, .2), 0px 5px 20px 0px rgba(0, 0, 0, .12); */
-    box-shadow: 0 0 15px 5px rgba(0,0,0,.2);
-    margin: 40px auto;     
-    padding: 20px;
-    /* overflow: hidden; */
-    border-radius: 4px;
-    opacity: 0; 
-    transition: all .8s cubic-bezier(0.2, 0.9, 0.9, 1.4), opacity .8s cubic-bezier(.17,.67,.33,1); 
-}
-#main .main-content.main-content_announce {
-    height: 120px;
-}
-#main .main-content.main-content_announce > h1 {
-    font-size: 36px;
-    line-height: 1.5em;
-    margin-bottom: 10px;
-}
-#main .main-content.main-content_announce > p {
-    margin-bottom: 10px;
-}
-#main .main-content.main-content_announce > p > a {
-    text-decoration: underline;
-}
-.main-content_date {
-    position: absolute;
-    right: -20px;
-    top: -20px;
-    width: 50px;
-    height: 50px;
-    color: #f1f1f1;
-    font-size: 16px;
-    border-radius: 50%;
-    background: rgb(33, 150, 243);
-    text-align: center;
-    padding: 10px;
-    line-height: 25px;
-    font-weight: bold;
-    user-select: none;
-}
-.main-content_date span.year {
-    display: block;
-    border-bottom: 1px solid #f1f1f1;
-}
-#main .main-to_top {
-    position: fixed;
-    bottom: 110px;
-    right: 50px;
-    display: block;
-    width: 50px;
-    height: 50px;
-    border-radius: 4px;
-    background: rgb(33, 150, 243);
-    cursor: pointer;
-    user-select: none;
-    /* opacity: 0; */
-    display: none;
-}
-#main .main-to_top:hover {
-    opacity: .8;
-}
-#main .main-to_top:active {
-    opacity: .5;
-}
-
-/* Footer CSS */
-#main-container #footer {
-
-}
-
-#main-container #footer > div {
-    height: 100%;
-    width: 50%;
-    text-align: right;
-}
-#main-container #footer > .footer-contact {
-    float: right;
-    text-align: left;
-}
 /* Mobile */
-.yuko-content .main-content .main-content_date {
-    right: auto;
-    width: 120px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 0;
-    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
-    padding: 5px;
-    margin-left: -30px;
-}
-.yuko-content .main-content .main-content_date span.year {
-    display: inline;
-    border: none;
-}
-
-body.icons-docs .header-nav-level2 {
-    width: 240px;
-    position: absolute;
-    left: 0;
-    top: 120px;
-    background: rgba(4, 31, 60, .7);
-    overflow: hidden;
-    display: none;
-    transition: top ease .3s;
-    transition: opacity ease .3s;
-}
-
-body.icons-docs .header-nav-level2>li {
-    width: 50%;
-    height: 48px;
-    line-height: 48px;
-    /* font-size: 28px; */
-    float: left;
-}
-
-body.icons-docs .header-nav-level2>li:hover {
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-}
-
-body.icons-docs .header-nav-level2>li>a:hover {
-    color: rgb(33, 150, 243)
-}
-
+.yuko-content .main-content .main-content_date { right: auto; width: 120px; height: 30px; line-height: 30px; border-radius: 0; box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2); padding: 5px; margin-left: -30px; }
+.yuko-content .main-content .main-content_date span.year { display: inline; border: none; }
+body.icons-docs .header-nav-level2 { width: 240px; position: absolute; left: 0; top: 120px; background: rgba(4, 31, 60, .7); overflow: hidden; display: none; transition: top ease .3s; transition: opacity ease .3s; }
+body.icons-docs .header-nav-level2>li { width: 50%; height: 48px; line-height: 48px; /* font-size: 28px; */ float: left; }
+body.icons-docs .header-nav-level2>li:hover { background: rgba(255, 255, 255, 0.1); cursor: pointer; }
+body.icons-docs .header-nav-level2>li>a:hover { color: rgb(33, 150, 243); }
 
 /* Main Css Start*/
-body.yuko-docs #main-container_m .main-content {
-    max-width: 670px;
-    margin: 30px auto;
-    padding: 0 30px;
-}
+body.yuko-docs #main-container_m .main-content { max-width: 670px; margin: 30px auto; padding: 0 30px; }
+/* Main Css End*/
 
 /* Footer Css Start*/
-
-body.yuko-docs #main-container_m footer {
-    display: block;
-    width: calc(100% - 10px);
-    height: 120px !important;
-    top: auto !important;
-    background: none !important;
-    border-top: 1px solid rgba(119,119,119,.5);
-}
-
-body.yuko-docs #main-container_m footer a {
-    color: #777;
-}
-
-body.yuko-docs #main-container_m footer .footer-logo {
-    height: 50%;    
-    background: url(../images/ryougi_logo.png) no-repeat 50% 100%;
-    background-size: 60%;
-}
-
-body.yuko-docs #main-container_m footer>div {
-    width: 100%;
-    height: 25%;
-    color: #777;
-    font-size: 12px;
-}
-
-body.yuko-docs #main-container_m footer>.footer-contact {
-    float: right;
-    text-align: left;
-}
+body.yuko-docs #main-container_m footer { display: block; width: calc(100% - 10px); height: 120px !important; top: auto !important; background: none !important; border-top: 1px solid rgba(119,119,119,.5); position: absolute; bottom: 0; text-align: center}
+body.yuko-docs #main-container_m footer a { color: #777; }
+body.yuko-docs #main-container_m footer .footer-logo { height: 50%; background: url(../images/ryougi_logo.png) no-repeat 50% 100%; background-size: 60%; }
+body.yuko-docs #main-container_m footer>div { width: 100%; height: 25%; color: #777; font-size: 12px; }
+body.yuko-docs #main-container_m footer>.footer-contact { float: right; text-align: left; }
 /* Footer CSS End*/
 
 /* Search CSS Start */
-body.yuko-docs #main-container_m #yuko-search-container {
-    position: absolute;
-    /* left: 100%; */
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #f1f1f1;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container > div {
-    margin: 0 10px;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_header {
-    height: 44px;
-    line-height: 44px;
-    background: #ffffff;
-    border-radius: 2px;
-    margin-top:10px;
-    border-bottom: 1px solid #f1f1f1;
-}
-
-body.yuko-docs #main-container_m .yuko-search_header > div {
-    float: left;
-    height: 100%;
-    line-height: 44px;
-
-    margin: 0;
-    padding: 0;
-}
-
-body.yuko-docs #main-container_m .yuko-search_header .yuko-material-icons {
-    width: 44px;
-}
-
-body.yuko-docs #main-container_m .yuko-search_header .yuko-textfield {
-    width: calc(100% - 88px);
-}
-
-body.yuko-docs #main-container_m .yuko-search_header .yuko-textfield .yuko-textfield_input {
-    padding: 13px 5px;
-    border: none;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match {
-    background: #ffffff;
-}
-
-body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list {
-    
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list li {
-    height: 44px;
-    width: 100%;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list span {
-    display: block;
-    float: left;
-    height: 44px;
-    line-height: 44px;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list .yuko-material-icons {
-    width: 44px;
-    text-align: center;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list .abstract {
-    width: calc(100% - 62px);
-    padding: 0 10px 0 4px;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .clear {
-    display: block;
-    height: 44px;
-    line-height: 44px;
-    color: rgba(0,0,0,0.54);
-    text-align: center;
-}
-
-body.yuko-docs #main-container_m #yuko-search-container .yuko-search_result {
-    background: #ffffff;
-
-}
-
+body.yuko-docs #main-container_m #yuko-search-container { position: absolute; z-index: 3;/* left: 100%; */ top: 0; width: 100%; height: 100%; background: #f1f1f1; }
+body.yuko-docs #main-container_m #yuko-search-container > div { margin: 0 10px; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_header { height: 44px; line-height: 44px; background: #ffffff; border-radius: 2px; margin-top:10px; border-bottom: 1px solid #f1f1f1; }
+body.yuko-docs #main-container_m .yuko-search_header > div { float: left; height: 100%; line-height: 44px; margin: 0; padding: 0; }
+body.yuko-docs #main-container_m .yuko-search_header .yuko-material-icons { width: 44px; }
+body.yuko-docs #main-container_m .yuko-search_header .yuko-textfield { width: calc(100% - 88px); }
+body.yuko-docs #main-container_m .yuko-search_header .yuko-textfield .yuko-textfield_input { padding: 13px 5px; border: none; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match { background: #ffffff; }
+body.yuko-docs #yuko-search-container .yuko-search_history.yuko-search_match .list { }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list li { height: 44px; width: 100%; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list span { display: block; float: left; height: 44px; line-height: 44px; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list .yuko-material-icons { width: 44px; text-align: center; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .list .abstract { width: calc(100% - 62px); padding: 0 10px 0 4px; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_history.yuko-search_match .clear { display: block; height: 44px; line-height: 44px; color: rgba(0,0,0,0.54); text-align: center; }
+body.yuko-docs #main-container_m #yuko-search-container .yuko-search_result { background: #ffffff; }
 /* Search CSS End */

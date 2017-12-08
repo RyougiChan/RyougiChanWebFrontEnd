@@ -1076,8 +1076,14 @@
                         // Switch main page to show
                         pageContainer.slideTo(i);
                         // Set Nav Title
-                        var title = document.querySelector('.yuko-nav-title');
+                        var title = document.querySelector('.yuko-nav-title'),
+                            main = document.querySelector('#main-container_m > #yuko-main-container > .yuko-main-content.yuko-page-container'),
+                            tabMain = document.querySelectorAll('.yuko-tab_container > .yuko-main-content.yuko-page-container');
                         title.innerHTML = this.innerHTML;
+                        main.classList.remove('fullscreen');
+                        for(var k = 0; k < tabMain.length; k++) {
+                            tabMain[k].classList.remove('fullscreen');
+                        }
                     }
                 })(i));
             }

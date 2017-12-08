@@ -27,6 +27,10 @@
             $('#main-container_m').css('display', 'none');
             $('#main-container').css('display', 'block');
         }
+        
+        if($('#main-container #main .main-middle').height() <= $('#main-container #main').height()) {
+            $('#main-container #footer').css('bottom', '0');
+        }
     }
 
     /**
@@ -81,14 +85,14 @@
         $(navLevel1Items).hover(hoverIn, hoverOut);
     }
 
-    // window resize control
+    // [PC] window resize control
     $(window).on('resize', function () {
         styleControl();
     });
-    //Main container scroll control
+    // [PC] Main container scroll control
     var sign = 10,
-        anim = function(scrollNode){
-            var scrollTop = $('#main').scrollTop();
+        anim = function (scrollNode) {
+            var scrollTop = scrollNode.scrollTop();
             if (scrollTop > 120) {
                 $('#main .main-to_top').fadeIn();
             }
@@ -105,18 +109,79 @@
                 if (offset.indexOf('%') > -1) {
                     offset = parseInt(offset) / 100 * height;
                 }
-                if(itemTop < offset) {
-                    $item.css('opacity','1').css('transform', 'perspective(2500px) rotateX(0)');
-                }else {
-                    $item.css('opacity','0').css('transform', 'perspective(2500px) rotateX(-100deg)');                
+                if (itemTop < offset) {
+                    $item.css('opacity', '1').css('transform', 'perspective(2500px) rotateX(0)');
+                } else {
+                    $item.css('opacity', '0').css('transform', 'perspective(2500px) rotateX(-100deg)');
                 }
             }
         };
-        anim($('#main'));
+    anim($('#main'));
+    var mainScrollTop = 0, isAnimating;
     $('#main').on('scroll', function () {
         anim($(this));
+        var isForword = $(this).scrollTop() > mainScrollTop ? true : false;
+        
+        var jsMethod = function(){
+            if (isForword) {
+                if (!isAnimating) {
+                    if (parseInt($('header').css('top')) !== -90) {
+                        isAnimating = true;
+                        $('#header').animate({
+                            top: -90
+                        }, function () {
+                            isAnimating = false;
+                        });
+                    }
+                    var totalHeight = $(this).children().get(0).offsetHeight,
+                        scrollTop = $(this).scrollTop();
+                    if ((scrollTop + this.offsetHeight) / totalHeight > 0.8) {
+                        console.log('Hey');
+                        if (parseInt($('footer').css('bottom')) !== 0) {
+                            isAnimating = true;
+                            $('#footer').animate({
+                                bottom: 0
+                            }, function () {
+                                isAnimating = false;
+                            });
+                        }
+                    }
+                }
+            } else {
+                if (!isAnimating) {
+                    if (parseInt($('header').css('top')) !== 0) {
+                        isAnimating = true;
+                        $('#header').animate({
+                            top: 0
+                        }, function () {
+                            isAnimating = false;
+                        });
+                    }
+                    if (parseInt($('footer').css('bottom')) !== -56) {
+                        isAnimating = true;
+                        $('#footer').animate({
+                            bottom: -56
+                        }, function () {
+                            isAnimating = false;
+                        });
+                    }
+                }
+            }
+        };
+        if(isForword) {
+            $('#header').css('top', '-90px');
+            var totalHeight = $(this).children().get(0).offsetHeight,
+                scrollTop = $(this).scrollTop();
+            if((scrollTop + this.offsetHeight)/totalHeight > 0.8) {
+                $('#footer').css('bottom', '0');
+            }
+        } else {
+            $('#header').css('top', '0');
+            $('#footer').css('bottom', '-56px');
+        }
+        mainScrollTop = $(this).scrollTop();
     });
-    // Main to_top control
+    // [PC] Main to_top control
     $('#main .main-to_top').on('click', function () {
         $('#main').animate({
             scrollTop: 0
@@ -128,7 +193,8 @@
             top: -100
         }, 250);
     });
-    // Hide header control
+    // [Mobile] Hide header control
+    /*
     $(
         function t() {
             var mainResetHeight,
@@ -226,6 +292,41 @@
                                 animInPprogress = false;
                             });
                         }
+                    }
+                }
+                scrollTop = $(this).scrollTop();
+            });
+        }
+    );
+    */
+    $(
+        function t() {
+            var mainResetHeight,
+                tabMainResetHeight,
+                scrollTop = 0,
+                isForward = true,
+                animInPprogress = false,
+                $header = $('#main-container_m #yuko-header'),
+                $main = $('#main-container_m > #yuko-main-container > .yuko-main-content.yuko-page-container'),
+                $tabMain = $('.yuko-tab_container > .yuko-main-content.yuko-page-container');
+            $('#main-container_m .yuko-content.yuko-page').on('scroll', function () {
+                isForward = $(this).scrollTop() > scrollTop ? true : false;
+                console.log(isForward);
+                if (isForward) {
+                    if($header.css('top') !== '-56px') {
+                        $header.css('transition','top .3s ease-in').css('top','-56px');
+                    }
+                    if(!$main[0].classList.contains('fullscreen')) {
+                        $main.css('transition','top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
+                        $tabMain.css('transition','top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
+                    }
+                } else {
+                    if($header.css('top') !== '0') {
+                        $header.css('transition','top .3s ease-in').css('top','0');
+                    }
+                    if($main[0].classList.contains('fullscreen')) {
+                        $main.css('transition','top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
+                        $tabMain.css('transition','top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
                     }
                 }
                 scrollTop = $(this).scrollTop();
