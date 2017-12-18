@@ -16,25 +16,27 @@
     };
 
     /**
-     * PC | Mobile layout switcher control
+     * PC | Mobile layout switcher controllor
      * 
      */
-    function styleControl() {
-        if (window.innerWidth <= 1024) {
-            $('#main-container_m').css('display', 'block');
-            $('#main-container').css('display', 'none');
-        } else {
-            $('#main-container_m').css('display', 'none');
-            $('#main-container').css('display', 'block');
+    $(
+        function styleControl() {
+            if (window.innerWidth <= 1024) {
+                $('#main-container_m').css('display', 'block');
+                $('#main-container').css('display', 'none');
+            } else {
+                $('#main-container_m').css('display', 'none');
+                $('#main-container').css('display', 'block');
+            }
+            
+            if($('#main-container #main .main-middle').height() <= $('#main-container #main').height()) {
+                $('#main-container #footer').css('bottom', '0');
+            }
         }
-        
-        if($('#main-container #main .main-middle').height() <= $('#main-container #main').height()) {
-            $('#main-container #footer').css('bottom', '0');
-        }
-    }
+    );
 
     /**
-     * Animation of navigation bar
+     * Animation of navigation bar controllor
      * 
      * @param {string} navSelector Selector of navigation bar
      */
@@ -85,11 +87,11 @@
         $(navLevel1Items).hover(hoverIn, hoverOut);
     }
 
-    // [PC] window resize control
+    // [PC] window resize controllor
     $(window).on('resize', function () {
         styleControl();
     });
-    // [PC] Main container scroll control
+    // [PC] Main container scroll controllor
     var sign = 10,
         anim = function (scrollNode) {
             var scrollTop = scrollNode.scrollTop();
@@ -181,7 +183,7 @@
         }
         mainScrollTop = $(this).scrollTop();
     });
-    // [PC] Main to_top control
+    // [PC] Main to_top controllor
     $('#main .main-to_top').on('click', function () {
         $('#main').animate({
             scrollTop: 0
@@ -193,7 +195,7 @@
             top: -100
         }, 250);
     });
-    // [Mobile] Hide header control
+    // [Mobile] Hide header controllor
     /*
     $(
         function t() {
@@ -299,6 +301,7 @@
         }
     );
     */
+    // [Mobile] Hide header controllor v2
     $(
         function t() {
             var mainResetHeight,
@@ -311,7 +314,6 @@
                 $tabMain = $('.yuko-tab_container > .yuko-main-content.yuko-page-container');
             $('#main-container_m .yuko-content.yuko-page').on('scroll', function () {
                 isForward = $(this).scrollTop() > scrollTop ? true : false;
-                console.log(isForward);
                 if (isForward) {
                     if($header.css('top') !== '-56px') {
                         $header.css('transition','top .3s ease-in').css('top','-56px');
@@ -334,6 +336,5 @@
         }
     );
 
-    styleControl();
     navGo('#header');
 })();

@@ -219,6 +219,8 @@
 }
 
 .yuko-docs #yuko-carousel {
+    position: relative;
+    z-index: 0;
     width: 100%;
     height: calc(100% - 56px);
 }
@@ -248,22 +250,23 @@
     position: absolute;
     z-index: 20;
     display: block;
-    width: 102px;
-    height: 102px;
-    top: 50%;
-    margin-top: -51px;
-    background-size: 100%;
+    width: 10%;
+    height: 100%;
+    opacity: .8;
+    /* top: 50%;
+    margin-top: -51px; */
+    /* background-size: 100%; */
     cursor: pointer;
 }
 
 .yuko-docs #yuko-carousel-pre {
     left: 24px;
-    background: url('../images/pre.png') no-repeat 50% 50%;
+    /* background: url('../images/pre.png') no-repeat 50% 50%; */
 }
 
 .yuko-docs #yuko-carousel-next {
     right: 24px;
-    background: url('../images/next.png') no-repeat 50% 50%;
+    /* background: url('../images/next.png') no-repeat 50% 50%; */
 }
 
 .yuko-docs .yuko-carousel-item {

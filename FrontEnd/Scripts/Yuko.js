@@ -1068,7 +1068,7 @@
          * @param {Function} drawerContainer Yuko.widget.navigationDrawer(drawer, hamburger, options) function
          * @param {Function} pageContainer Yuko.widget.pageContainer(container, option, onPageContainerReady, onAnimationComplete) function
          */
-        function bindDrawerNavItemToPage(drawer, drawerContainer, pageContainer) {
+        function bindDrawerNavItemToPage(drawer, page, drawerContainer, pageContainer) {
             var drawerList = document.querySelectorAll('#' + drawer.id + ' li');
             for (var i = 0; i < drawerList.length; i++) {
                 drawerList[i].addEventListener('touchend', (function (i) {
@@ -1084,12 +1084,15 @@
                         for(var k = 0; k < tabMain.length; k++) {
                             tabMain[k].classList.remove('fullscreen');
                         }
+                        for(var h = 0; h < page.children.length; h++) {
+                            page.children[h].scroll(0,0);
+                        }
                     }
                 })(i));
             }
         }
 
-        function bindListItemToPage(list, pageContainer) {
+        function bindListItemToPage(list, content, pageContainer) {
             var listItems = list.children;
             for (var i = 0; i < listItems.length; i++) {
                 if (!listItems[i].getAttribute('data-disabled')) {
@@ -1097,6 +1100,9 @@
                         return function () {
                             // Switch main page to show
                             pageContainer.slideTo(i);
+                            for(var k = 0; k < content.children.length; k++) {
+                                content.children[k].scroll(0,0);
+                            }
                         };
                     })(i));
                 }
@@ -1733,7 +1739,7 @@
          * @param {NodeList|HTMLCollection} carouselList Carousel items' collection
          * @param {Element} preButton A button to switch to Carousel's previous display order
          * @param {Element} nextButton A button to switch to Carousel's next display order
-         * @param {{positions : ([number]|undefined), duration : number}=} options Parameters to initial Carousel
+         * @param {{positions : ([number]|undefined), duration : number|string, autoplay : boolean, autoplayDuration : number|string}=} options Parameters to initial Carousel
          *          positions=: The position list of carousel items.
          *                      If the number of carousel items are a even number, there should be four Array items in positions,
          *                          for example --- [['100%', '100%', '0', '0'], 
@@ -1746,7 +1752,9 @@
          *                                          ['60%', '60%', '20%', '12.5%'],
          *                                          ['60%', '60%', '20%', '32.5%'], 
          *                                          ['80%', '80%', '10%', '32.5%']] --- 
-         *          duration=: Animation excution time in second.
+         *          duration=: Animation excution time in second. Default: .3s.
+         *          autoplay=: Is Animation autoplay. Default: false.
+         *          autoplayDuration=: Duration for autoplay in milisecond. Default: 3000.
          * @return Return null if carouselList is undefined or carouselList's length is less than 2
          */
         function carousel(carouselList, preButton, nextButton, options) {
@@ -1754,15 +1762,25 @@
             if (!carouselList || carouselList.length < 2) return;
 
             var len = carouselList.length,
-                duration = options.duration || .3;
-            var nextItemList = [],
-                positionValues = [];
+                duration = .3,
+                autoplay = false,
+                autoplayDuration = 3000,
+                nextItemList = [],
+                positionValues = [],
             // Item position span
-            var positionProgress = [];
-            var prePositionSpan = null,
+                positionProgress = [],
+                prePositionSpan = null,
                 nextPositionSpan = null,
                 positionProgressCopy = null,
                 tempPositionSpan = null;
+            
+                // Initialze options
+            if(options) {
+                if(options.duration) duration = parseInt(options.duration);
+                if(options.autoplay) autoplay = options.autoplay;
+                if(options.autoplayDuration) autoplayDuration = parseInt(options.autoplayDuration);
+            }
+                
             for (var i = 0; i < carouselList.length; i++) {
                 positionProgress.push([]);
             }
@@ -2096,7 +2114,14 @@
                 document.querySelector('#yuko-carousel-list > ul').setAttribute('data-page-index', visualPageIndex + '');
             }
 
-            // cssTransitionPolyfill(position.oddNumberItem, {}, .1);
+            if(autoplay) {
+                console.log('a1');
+                setInterval(function(){
+                console.log('a2');
+                nextButton.click();
+                }
+                , autoplayDuration);
+            }
         }
 
         /**

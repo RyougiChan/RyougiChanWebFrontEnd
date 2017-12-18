@@ -12,6 +12,13 @@ body.yuko-docs .yuko-nav-title { border-bottom: 1px solid #e2e2e2; }
 body.yuko-docs .yuko-tab { background: rgba(4, 31, 60, .7); }
 body.yuko-docs .yuko-tab_container .yuko-page-container { margin: 40px auto 0 auto; }
 body.yuko-docs .yuko-tab_container .yuko-page-container.fullscreen { height: calc(100% - 40px); }
+
+body.yuko-docs #main-container_m #yuko-carousel-list > span { width: 32px; height: 32px; margin: 44px 0 }
+
+/* body.yuko-docs #yuko-carousel-list > span { background: none; text-align: center; color: #ffffff; line-height: 120px; font-size: 24px }
+body.yuko-docs #yuko-carousel-list > span#yuko-carousel-pre { left: 0 }
+body.yuko-docs #yuko-carousel-list > span#yuko-carousel-next { right: 0 }
+body.yuko-docs #yuko-carousel-list > span .material-icons { font-size: 36px; height: 0 } */
 /* Reset Yuko css End */
 
 /* Background Css Start */
@@ -69,6 +76,7 @@ body.icons-docs .header-nav-level2>li>a:hover { color: rgb(33, 150, 243); }
 
 /* Main Css Start*/
 body.yuko-docs #main-container_m .main-content { max-width: 670px; margin: 30px auto; padding: 0 30px; }
+body.yuko-docs #main-container_m .yuko-content.yuko-page::-webkit-scrollbar {display: none;}
 /* Main Css End*/
 
 /* Footer Css Start*/
