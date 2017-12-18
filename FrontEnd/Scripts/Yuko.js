@@ -2115,9 +2115,7 @@
             }
 
             if(autoplay) {
-                console.log('a1');
                 setInterval(function(){
-                console.log('a2');
                 nextButton.click();
                 }
                 , autoplayDuration);
