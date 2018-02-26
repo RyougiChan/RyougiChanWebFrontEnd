@@ -28,19 +28,15 @@
                 $('#main-container_m').css('display', 'none');
                 $('#main-container').css('display', 'block');
             }
-            
-            if($('#main-container #main .main-middle').height() <= $('#main-container #main').height()) {
-                $('#main-container #footer').css('bottom', '0');
-            }
         }
     );
 
     /**
-     * Animation of navigation bar controllor
+     * Animation for navigation bar
      * 
      * @param {string} navSelector Selector of navigation bar
      */
-    function navGo(navSelector) {
+    function navHandler(navSelector) {
         var nav = document.querySelector(navSelector);
         var navLevel1 = nav.querySelector('ul');
         var navLevel1Items = navLevel1.children;
@@ -92,39 +88,40 @@
         styleControl();
     });
     // [PC] Main container scroll controllor
-    var sign = 10,
-        anim = function (scrollNode) {
-            var scrollTop = scrollNode.scrollTop();
-            if (scrollTop > 120) {
-                $('#main .main-to_top').fadeIn();
+    var anim = function (scrollNode) {
+        var scrollTop = scrollNode.scrollTop();
+        if (scrollTop > 120) {
+            $('#main .main-to_top').fadeIn();
+        }
+        if (scrollTop <= 120) {
+            $('#main .main-to_top').fadeOut();
+        }
+        for (var i = 0; i < $('#main .main-content').length; i++) {
+            var $scrollNode = scrollNode,
+                $item = $($('.main-content')[i]),
+                width = $scrollNode.width(),
+                height = $scrollNode.height(),
+                // Length of element's top to the working area's top
+                itemTop = $item.offset().top - document.documentElement.scrollTop,
+                offset = '100%';
+
+            if (offset.indexOf('%') > -1) {
+                offset = parseInt(offset) / 100 * height;
             }
-            if (scrollTop <= 120) {
-                $('#main .main-to_top').fadeOut();
+            if (itemTop < offset) {
+                $item.css('opacity', '1').css('transform', 'perspective(2500px) rotateX(0)');
+            } else {
+                $item.css('opacity', '0').css('transform', 'perspective(2500px) rotateX(-100deg)');
             }
-            for (var i = 0; i < $('#main .main-content').length; i++) {
-                var $scrollNode = scrollNode,
-                    $item = $($('.main-content')[i]),
-                    width = $scrollNode.width(),
-                    height = $scrollNode.height(),
-                    itemTop = $item.offset().top,
-                    offset = '100%';
-                if (offset.indexOf('%') > -1) {
-                    offset = parseInt(offset) / 100 * height;
-                }
-                if (itemTop < offset) {
-                    $item.css('opacity', '1').css('transform', 'perspective(2500px) rotateX(0)');
-                } else {
-                    $item.css('opacity', '0').css('transform', 'perspective(2500px) rotateX(-100deg)');
-                }
-            }
-        };
-    anim($('#main'));
+        }
+    };
+    anim($(window));
+
     var mainScrollTop = 0, isAnimating;
-    $('#main').on('scroll', function () {
+    $(window).on('scroll', function () {
         anim($(this));
         var isForword = $(this).scrollTop() > mainScrollTop ? true : false;
-        
-        var jsMethod = function(){
+        var jsMethod = function () {
             if (isForword) {
                 if (!isAnimating) {
                     if (parseInt($('header').css('top')) !== -90) {
@@ -135,10 +132,9 @@
                             isAnimating = false;
                         });
                     }
-                    var totalHeight = $(this).children().get(0).offsetHeight,
-                        scrollTop = $(this).scrollTop();
-                    if ((scrollTop + this.offsetHeight) / totalHeight > 0.8) {
-                        console.log('Hey');
+                    var totalHeight = document.documentElement.offsetHeight,
+                        scrollTop = document.documentElement.scrollTop;
+                    if (scrollTop / totalHeight > 0.8) {
                         if (parseInt($('footer').css('bottom')) !== 0) {
                             isAnimating = true;
                             $('#footer').animate({
@@ -170,11 +166,12 @@
                 }
             }
         };
-        if(isForword) {
+        if (isForword) {
             $('#header').css('top', '-90px');
-            var totalHeight = $(this).children().get(0).offsetHeight,
-                scrollTop = $(this).scrollTop();
-            if((scrollTop + this.offsetHeight)/totalHeight > 0.8) {
+            var totalHeight = document.documentElement.offsetHeight,
+                scrollTop = document.documentElement.scrollTop;
+            
+            if (scrollTop / totalHeight > 0.8) {
                 $('#footer').css('bottom', '0');
             }
         } else {
@@ -185,7 +182,7 @@
     });
     // [PC] Main to_top controllor
     $('#main .main-to_top').on('click', function () {
-        $('#main').animate({
+        $(document.documentElement).animate({
             scrollTop: 0
         }, 300, function () {
             $('#main .main-to_top').css('display', 'none');
@@ -315,20 +312,20 @@
             $('#main-container_m .yuko-content.yuko-page').on('scroll', function () {
                 isForward = $(this).scrollTop() > scrollTop ? true : false;
                 if (isForward) {
-                    if($header.css('top') !== '-56px') {
-                        $header.css('transition','top .3s ease-in').css('top','-56px');
+                    if ($header.css('top') !== '-56px') {
+                        $header.css('transition', 'top .3s ease-in').css('top', '-56px');
                     }
-                    if(!$main[0].classList.contains('fullscreen')) {
-                        $main.css('transition','top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
-                        $tabMain.css('transition','top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
+                    if (!$main[0].classList.contains('fullscreen')) {
+                        $main.css('transition', 'top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
+                        $tabMain.css('transition', 'top .3s ease-in, margin .3s ease-in').addClass('fullscreen');
                     }
                 } else {
-                    if($header.css('top') !== '0') {
-                        $header.css('transition','top .3s ease-in').css('top','0');
+                    if ($header.css('top') !== '0') {
+                        $header.css('transition', 'top .3s ease-in').css('top', '0');
                     }
-                    if($main[0].classList.contains('fullscreen')) {
-                        $main.css('transition','top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
-                        $tabMain.css('transition','top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
+                    if ($main[0].classList.contains('fullscreen')) {
+                        $main.css('transition', 'top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
+                        $tabMain.css('transition', 'top .3s ease-in, margin .3s ease-in').removeClass('fullscreen');
                     }
                 }
                 scrollTop = $(this).scrollTop();
@@ -336,5 +333,5 @@
         }
     );
 
-    navGo('#header');
+    navHandler('#header');
 })();

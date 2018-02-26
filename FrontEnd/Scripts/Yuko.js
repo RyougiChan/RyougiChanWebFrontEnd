@@ -1022,8 +1022,16 @@
             // if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
             // Default main style
             for (var i = 0; i < mains.length; i++) {
-                if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) mains[i].style.height = (document.body.clientHeight - 96) + 'px';
-                else mains[i].style.height = (document.body.clientHeight - 56) + 'px';
+                if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) {
+                    mains[i].style.height =  mains[i].children[0].offsetHeight + 'px';
+                }
+                else {
+                    window.onload = (function(i){
+                        return function(){
+                            mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
+                        }
+                    })(i);
+                }
             }
         }
 
@@ -1081,12 +1089,16 @@
                             tabMain = document.querySelectorAll('.yuko-tab_container > .yuko-main-content.yuko-page-container');
                         title.innerHTML = this.innerHTML;
                         main.classList.remove('fullscreen');
+                        // Reset main's height
+                        main.style.height = main.children[i].offsetHeight + 'px';
+
                         for(var k = 0; k < tabMain.length; k++) {
                             tabMain[k].classList.remove('fullscreen');
                         }
                         for(var h = 0; h < page.children.length; h++) {
                             page.children[h].scroll(0,0);
                         }
+                        document.documentElement.scroll(0,0);
                     }
                 })(i));
             }
@@ -1102,6 +1114,7 @@
                             pageContainer.slideTo(i);
                             for(var k = 0; k < content.children.length; k++) {
                                 content.children[k].scroll(0,0);
+                                document.documentElement.scroll(0,0);
                             }
                         };
                     })(i));

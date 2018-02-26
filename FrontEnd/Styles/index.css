@@ -9,7 +9,8 @@ body.yuko-docs #yuko-header,footer { background: rgba(4, 31, 60, .7) !important;
 body.yuko-docs .yuko-content.yuko-page { background: none !important; }
 body.yuko-docs .yuko-main-content { background: rgba(238, 238, 238, .2) !important; }
 body.yuko-docs .yuko-nav-title { border-bottom: 1px solid #e2e2e2; }
-body.yuko-docs .yuko-tab { background: rgba(4, 31, 60, .7); }
+body.yuko-docs .yuko-tab { position: fixed; background: rgba(4, 31, 60, .7); }
+body.yuko-docs .yuko-tab_container {position: relative}
 body.yuko-docs .yuko-tab_container .yuko-page-container { margin: 40px auto 0 auto; }
 body.yuko-docs .yuko-tab_container .yuko-page-container.fullscreen { height: calc(100% - 40px); }
 
@@ -44,7 +45,7 @@ body.icons-docs .header-nav-level2>li>a:hover { color: rgb(33, 150, 243); }
 /* Header Css End */
 
 /* Main Css Start */
-#main { position: relative; width: 100%; overflow-y: scroll; height: 100%; }
+#main { width: 100%; overflow-y: scroll; height: 100%; }
 #main > div { width: 1200px; min-height: calc(100% - 146px); margin: 90px auto 56px; overflow: hidden; }
 #main .main-middle_left { width: 70%; }
 #main .main-middle_right { width: 30%; float: right; }

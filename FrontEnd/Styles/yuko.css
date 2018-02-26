@@ -41,7 +41,7 @@
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
     position: fixed;
     top: 0;
-    z-index: 0;
+    z-index: 1;
 }
 
 .yuko-docs #yuko-header .yuko-nav-title {
@@ -142,21 +142,21 @@
 /* Main Content css S */
 
 .yuko-docs .yuko-content {
-    /* min-height: 100%;  */
+    
     width: 100%;
-    height: 100%;
-    /* font-size: 36px; */
+    
+    
     font-weight: 800;
-    /* text-align: center */
+    
 }
 
 .yuko-docs .yuko-page-container {
     overflow: hidden;
-    position: absolute !important;
+    
     width: 100%;
     float: left;
     margin: 56px auto 0 auto;
-    /* z-index: -1; */
+    
 }
 
 .yuko-docs .yuko-page-container.fullscreen {
@@ -168,7 +168,7 @@
 .yuko-docs .yuko-page {
     position: absolute !important;
     display: block;
-    /* overflow-y:scroll; */
+    
     overflow-x:hidden;  
 }
 
@@ -184,7 +184,7 @@
     display: block;
     position: absolute;
     bottom: 0;
-    /* top: 100%; */
+    
     width: 100%;
     height: 56px;
     font-size: 14px;
@@ -253,20 +253,18 @@
     width: 10%;
     height: 100%;
     opacity: .8;
-    /* top: 50%;
-    margin-top: -51px; */
-    /* background-size: 100%; */
+    
     cursor: pointer;
 }
 
 .yuko-docs #yuko-carousel-pre {
     left: 24px;
-    /* background: url('../images/pre.png') no-repeat 50% 50%; */
+    
 }
 
 .yuko-docs #yuko-carousel-next {
     right: 24px;
-    /* background: url('../images/next.png') no-repeat 50% 50%; */
+    
 }
 
 .yuko-docs .yuko-carousel-item {
@@ -503,6 +501,8 @@
 }
 
 .yuko-scalable-container {
+    position: fixed;
+    z-index: 4;
     border-radius: 100%;
     overflow: hidden;
     opacity: 0;
