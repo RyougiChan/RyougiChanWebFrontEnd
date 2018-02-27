@@ -1022,16 +1022,20 @@
             // if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
             // Default main style
             for (var i = 0; i < mains.length; i++) {
-                if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) {
-                    mains[i].style.height =  mains[i].children[0].offsetHeight + 'px';
-                }
-                else {
-                    window.onload = (function(i){
-                        return function(){
-                            mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
-                        }
-                    })(i);
-                }
+                
+                mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
+
+                //if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) {
+                //    mains[i].style.height =  mains[i].children[0].offsetHeight + 'px';
+                //}
+                //else {
+                //    window.onload = (function(i){
+                //        mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
+                //        return function () {
+                //            mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
+                //        }
+                //    })(i);
+                //}
             }
         }
 
