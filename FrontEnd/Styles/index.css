@@ -1,7 +1,7 @@
 /* Temp Start TODO: DETETE */
 body { background: #f1f1f1; }
-#main-container { width: 100%; height: 100%; background: url(../images/Meteor_Shower.jpg) no-repeat; background-size: cover; transition: background 2s ease-in-out; -moz-transition: background 2s ease-in-out; -webkit-transition: background 2s ease-in-out; -o-transition: background 2s ease-in-out; overflow: hidden; }
-#main-container_m { width: 100%; height: 100%; background: url(../images/Meteor_Shower.jpg) no-repeat; background-size: cover; /* overflow: hidden; */ }
+#main-container { width: 100%; height: 100%; /*background: url(../images/Meteor_Shower.jpg) no-repeat;*/ background-size: cover; transition: background 2s ease-in-out; -moz-transition: background 2s ease-in-out; -webkit-transition: background 2s ease-in-out; -o-transition: background 2s ease-in-out; overflow: hidden; }
+#main-container_m { width: 100%; height: 100%; /*background: url(../images/Meteor_Shower.jpg) no-repeat;*/ background-size: cover; /* overflow: hidden; */ }
 /* Temp End */
 
 /* Reset Yuko css Start */
@@ -24,7 +24,7 @@ body.yuko-docs #yuko-carousel-list > span .material-icons { font-size: 36px; hei
 
 /* Background Css Start */
 #background {}
-#background ul {position:fixed;top:0;left:0;width:100%;height:100%;}
+#background ul {position:fixed;z-index: -1;top:0;left:0;width:100%;height:100%;}
 #background ul li {background:url(../images/Meteor_Shower.jpg) 50% 50% no-repeat/cover;height:100%;}
 /* Background Css End */
 
@@ -84,6 +84,7 @@ body.yuko-docs #main-container_m .yuko-content.yuko-page::-webkit-scrollbar {dis
 body.yuko-docs #main-container_m footer { display: block; width: calc(100% - 10px); height: 120px !important; top: auto !important; background: none !important; border-top: 1px solid rgba(119,119,119,.5); position: absolute; bottom: 0; text-align: center}
 body.yuko-docs #main-container_m footer a { color: #777; }
 body.yuko-docs #main-container_m footer .footer-logo { height: 50%; background: url(../images/ryougi_logo.png) no-repeat 50% 100%; background-size: 60%; }
+body.yuko-docs #main-container_m footer .footer-logo a {display: block; width: 100%; height: 100%;}
 body.yuko-docs #main-container_m footer>div { width: 100%; height: 25%; color: #777; font-size: 12px; }
 body.yuko-docs #main-container_m footer>.footer-contact { float: right; text-align: left; }
 /* Footer CSS End*/
