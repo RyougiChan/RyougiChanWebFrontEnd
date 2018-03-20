@@ -90,7 +90,7 @@ body.yuko-docs #main-container_m footer>.footer-contact { float: right; text-ali
 /* Footer CSS End*/
 
 /* Search CSS Start */
-body.yuko-docs #main-container_m #yuko-search-container { position: absolute; z-index: 3;/* left: 100%; */ top: 0; width: 100%; height: 100%; background: #f1f1f1; }
+body.yuko-docs #main-container_m #yuko-search-container { position: absolute; z-index: 3;/* left: 100%; */ top: 0; width: 100%; height: 100% !important; background: #f1f1f1; }
 body.yuko-docs #main-container_m #yuko-search-container > div { margin: 0 10px; }
 body.yuko-docs #main-container_m #yuko-search-container .yuko-search_header { height: 44px; line-height: 44px; background: #ffffff; border-radius: 2px; margin-top:10px; border-bottom: 1px solid #f1f1f1; }
 body.yuko-docs #main-container_m .yuko-search_header > div { float: left; height: 100%; line-height: 44px; margin: 0; padding: 0; }

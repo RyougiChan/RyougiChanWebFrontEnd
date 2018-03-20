@@ -19,18 +19,16 @@
      * PC | Mobile layout switcher controllor
      * 
      */
-    $(
-        function styleControl() {
-            if (window.innerWidth <= 1024) {
-                $('#main-container_m').css('display', 'block');
-                $('#main-container').css('display', 'none');
-            } else {
-                $('#main-container_m').css('display', 'none');
-                $('#main-container').css('display', 'block');
-            }
+    function styleControl() {
+        if (window.innerWidth <= 1024) {
+            $('#main-container_m').css('display', 'block');
+            $('#main-container').css('display', 'none');
+        } else {
+            $('#main-container_m').css('display', 'none');
+            $('#main-container').css('display', 'block');
         }
-    );
-
+    }
+    styleControl();
     /**
      * Animation for navigation bar
      * 
@@ -170,7 +168,7 @@
             $('#header').css('top', '-90px');
             var totalHeight = document.documentElement.offsetHeight,
                 scrollTop = document.documentElement.scrollTop;
-            
+
             if (scrollTop / totalHeight > 0.8) {
                 $('#footer').css('bottom', '0');
             }
