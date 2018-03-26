@@ -10,10 +10,10 @@
 .yuko-docs .yuko-button_fab { width: 56px; height: 56px; line-height: 56px; border-radius: 50%; background: rgba(158, 158, 158, 0.2); }
 .yuko-docs .yuko-button_raised { background: rgba(158, 158, 158, 0.2); }
 .yuko-docs .yuko-button_fab.yuko-button_colored { background: #ff4081; }
-.yuko-docs .yuko-button_raised.yuko-button_colored { background: #3f51b5; }
+.yuko-docs .yuko-button_raised.yuko-button_colored { background: #03a9f4; }
 .yuko-docs .yuko-button_plain { color: #000000; }
 .yuko-docs .yuko-button_null { color: #000000; font-weight: 800; }
-.yuko-docs .yuko-button_null.yuko-button_colored { color: #3f51b5; }
+.yuko-docs .yuko-button_null.yuko-button_colored { color: #03a9f4; }
 .yuko-docs .yuko-button_null:hover { background-color: rgba(158, 158, 158, .2); }
 .yuko-docs .yuko-button_plain:active,
 .yuko-docs .yuko-button_null:active { background: rgba(158, 158, 158, 0.5); }
@@ -64,16 +64,16 @@ body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-text > p { color: #ff
 /* Textfield Start */
 .yuko-docs .yuko-textfields-container { background: #f1f1f1; width: 80%; height: 100%; margin: 0 auto; }
 .yuko-docs .yuko-textfield { position: relative; font-size: 16px; display: inline-block; box-sizing: border-box; width: 300px; max-width: 100%; margin: 0; padding: 20px 0; }
-.yuko-docs .yuko-textfield { width: 150px; margin: 50px; }
+.yuko-docs .yuko-textfield { width: 150px; margin: 0 20px; }
 .yuko-docs .yuko-textfield_input { border: none; border-bottom: 1px solid rgba(0, 0, 0, .12); display: block; font-size: 16px; font-family: "Helvetica", "Arial", sans-serif; margin: 0; padding: 4px 0; width: 100%; background: 0 0; text-align: left; color: inherit; }
 .yuko-docs .yuko-textfield_label { bottom: 0; color: rgba(0, 0, 0, .26); font-size: 16px; left: 0; right: 0; pointer-events: none; position: absolute; display: block; top: 24px; width: 100%; overflow: hidden; white-space: nowrap; text-align: left; visibility: visible; }
-.yuko-docs .yuko-textfield_label::after { background-color: #3f51b5; bottom: 20px; content: ''; height: 2px; left: 45%; position: absolute; transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); visibility: hidden; width: 10px; }
+.yuko-docs .yuko-textfield_label::after { background-color: #03a9f4; bottom: 20px; content: ''; height: 2px; left: 45%; position: absolute; transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); visibility: hidden; width: 10px; }
 .yuko-docs .yuko-textfield.is-invalid .yuko-textfield_label::after { background-color: #d50000; }
 .yuko-docs .yuko-textfield.is-invalid .yuko-textfield_label { color: #d50000; }
 .yuko-docs .yuko-textfield.is-focused .yuko-textfield_label::after { left: 0; visibility: visible; width: 100% }
 .yuko-docs .yuko-textfield.is-dirty .yuko-textfield_label { visibility: hidden !important; }
 .yuko-docs .yuko-textfield.yuko-textfield_floating-label .yuko-textfield_label { transition-duration: .2s; transition-timing-function: cubic-bezier(.4, 0, .2, 1); -webkit-transition-duration: .2s; -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1); }
-.yuko-docs .yuko-textfield.yuko-textfield_floating-label.is-dirty .yuko-textfield_label { visibility: visible !important; top: 4px; }
+.yuko-docs .yuko-textfield.yuko-textfield_floating-label.is-dirty .yuko-textfield_label { visibility: visible !important; top: 0px; }
 .yuko-docs .yuko-textfield_error { color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility: hidden; display: block; width: 100%; }
 .yuko-docs .yuko-textfield.is-invalid .yuko-textfield_error { visibility: visible; }
 .yuko-docs .yuko-button_icon { border-radius: 50%; font-size: 24px; height: 32px; margin-left: 0; margin-right: 0; min-width: 32px; width: 32px; padding: 0; overflow: hidden; color: inherit; line-height: normal; }
@@ -104,8 +104,8 @@ body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-text > p { color: #ff
 .yuko-docs .yuko-loading_container { width: 80%; height: 100%; margin: 0 auto; }
 .yuko-docs .yuko-loading_progressbar { width: 50vw; height: 4px; max-width: 260px; position: relative; overflow: hidden; margin: 100px auto; }
 .yuko-docs .yuko-loading_progressbar>.bar { position: absolute; height: 4px; left: 0; top: 0; }
-.yuko-docs .yuko-loading_progressbar>.progressbar { width: 50%; background: #3f51b5; z-index: 1; }
-.yuko-docs .yuko-loading_progressbar>.bufferbar { width: 100%; background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #3f51b5, #3f51b5); z-index: 0; }
+.yuko-docs .yuko-loading_progressbar>.progressbar { width: 50%; background: #03a9f4; z-index: 1; }
+.yuko-docs .yuko-loading_progressbar>.bufferbar { width: 100%; background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #03a9f4, #03a9f4); z-index: 0; }
 .yuko-docs .yuko-loading_progressbar.yuko-loading_progressbar-indeterminate>.progressbar { width: 0; } 
 .yuko-docs .yuko-loading_spinner { position: relative; background: none; width: 34px; height: 34px; margin: 0 auto; }
 .yuko-docs .yuko-loading_spinner { -webkit-animation: spinner-rotate 1500ms linear infinite; animation: spinner-rotate 1500ms linear infinite; }

@@ -19,21 +19,23 @@
             }
         }
         for (var i = 0; i < textfiled.length; i++) {
-            var pattern = textfiled[i].getAttribute('pattern');
-            if (pattern) {
-                Yuko.utility.addEvent(textfiled[i], 'input', function (i) {
-                    var re = new RegExp(pattern);
-                    if (this.value.trim() != '' && !(re.test(this.value))) {
-                        if (this.parentNode.className.indexOf('is-invalid') == -1) {
-                            this.parentNode.className += ' is-invalid';
-                        }
-                    } else {
-                        if (this.parentNode.className.indexOf('is-invalid') > -1) {
-                            this.parentNode.className = this.parentNode.className.replace(' is-invalid', '');
+            Yuko.utility.addEvent(textfiled[i], 'input', (function (i) {
+                return function () {
+                    var pattern = textfiled[i].getAttribute('pattern'),
+                        re = new RegExp(pattern);
+                    if (pattern) {
+                        if (this.value.trim() != '' && !(re.test(this.value))) {
+                            if (this.parentNode.className.indexOf('is-invalid') == -1) {
+                                this.parentNode.className += ' is-invalid';
+                            }
+                        } else {
+                            if (this.parentNode.className.indexOf('is-invalid') > -1) {
+                                this.parentNode.className = this.parentNode.className.replace(' is-invalid', '');
+                            }
                         }
                     }
-                });
-            }
+                }
+            })(i));
             Yuko.utility.addEvent(textfiled[i], 'focusin', focusinCall);
             Yuko.utility.addEvent(textfiled[i], 'focusout', focusoutCall);
         }
