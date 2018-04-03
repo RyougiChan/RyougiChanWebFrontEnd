@@ -182,6 +182,65 @@ body.yuko-docs .yuko-imglist ul li .yuko-imglist_sort span { float: right; }
 .yuko-checkbox .yuko-checkbox_input { position: absolute; width: 0; height: 0; margin: 0; padding: 0; opacity: 0; -ms-appearance: none; -moz-appearance: none; -webkit-appearance: none; appearance: none; border: none; }
 /* Checkbox End */
 
+/* Radio Start */
+.yuko-docs .yuko-radio { position: relative; font-size: 16px; line-height: 24px; display: inline-block; vertical-align: middle; box-sizing: border-box; height: 24px; margin: 0; padding-left: 0; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+.yuko-docs .yuko-radio_outer-circle { position: absolute; top: 4px; left: 0; display: inline-block; box-sizing: border-box; width: 16px; height: 16px; margin: 0; cursor: pointer; border: 2px solid rgba(0,0,0,.54); border-radius: 50%; z-index: 2; }
+.yuko-docs .yuko-radio.is-checked .yuko-radio_outer-circle { border: 2px solid #3f51b5; }
+.yuko-docs .yuko-radio_inner-circle { position: absolute; z-index: 1; margin: 0; top: 8px; left: 4px; box-sizing: border-box; width: 8px; height: 8px; cursor: pointer; transition-duration: .28s; transition-timing-function: cubic-bezier(.4,0,.2,1); transition-property: transform; transition-property: transform,-webkit-transform; -webkit-transform: scale(0,0); transform: scale(0,0); border-radius: 50%; background: #3f51b5; }
+.yuko-docs .yuko-radio.is-checked .yuko-radio_inner-circle { -webkit-transform: scale(1,1); transform: scale(1,1); }
+.yuko-docs .yuko-radio_ripple { position: absolute; z-index: 2; top: -6px; left: -10px; box-sizing: border-box; width: 36px; height: 36px; cursor: pointer; -webkit-mask-image: -webkit-radial-gradient(center, circle cover, rgb(255, 255, 255), rgb(0, 0, 0)); border-radius: 50%; overflow: hidden; }
+.yuko-docs .yuko-radio_ripple .yuko-ripple { background: rgb(63, 81, 181); }
+.yuko-docs .yuko-ripple.is-animating { transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1), width 0.3s cubic-bezier(0, 0, 0.2, 1), height 0.3s cubic-bezier(0, 0, 0.2, 1), opacity 0.6s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
+.yuko-docs .yuko-ripple.is-animating.is-visible { opacity: .3; }
+.yuko-docs .yuko-ripple { position: absolute; left: 0px; top: 0px; opacity: 0; pointer-events: none; border-radius: 50%; overflow: hidden; width: 104px; height: 104px; transform: translate(-50%, -50%) translate(18px, 18px); }
+.yuko-docs .yuko-radio .yuko-radio_input { position: absolute; width: 0; height: 0; margin: 0; padding: 0; opacity: 0; -ms-appearance: none; -moz-appearance: none; -webkit-appearance: none; appearance: none; border: none; }
+/* Radio End */
+
+/* Pagination Start */
+.yuko-docs .yuko-pagination { overflow: hidden; text-align: center; padding: 1em; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: rgba(0,0,0,0); user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.yuko-docs .yuko-pagination_list { display: inline-block; }
+.yuko-docs .yuko-pagination_func,
+.yuko-docs .yuko-pagination_item { display: inline-block; text-align: center; user-select: none; cursor: pointer; }
+.yuko-docs .yuko-pagination_func.hided { display: none; }
+.yuko-docs .yuko-pagination_func a,
+.yuko-docs .yuko-pagination_item a { display: block; margin: 10px 10px 0 0; width: 28px; height: 28px; line-height: 28px; border: 1px solid #4285f4; border-radius: 5px; color: #4285f4; transition: background .28s cubic-bezier(.4,0,.2,1) }
+.yuko-docs .yuko-pagination.yuko-pagination__round .yuko-pagination_func a,
+.yuko-docs .yuko-pagination.yuko-pagination__round .yuko-pagination_item a { border-radius: 50%; }
+.yuko-docs .yuko-pagination_func a:hover,
+.yuko-docs .yuko-pagination_func.active a,
+.yuko-docs .yuko-pagination_item a:hover,
+.yuko-docs .yuko-pagination_item.active a { background: #4285f4; color: #ffffff; }
+/* Pagination End */
+
+/* SelectBox Start */
+.yuko-docs .yuko-select {position: relative; width:200px; font-family: Arial; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.yuko-docs .yuko-select select {display: none;}
+.yuko-docs .yuko-select .yuko-select_selected {background-color: #3f51b5; }
+.yuko-docs .yuko-select .yuko-select_selected:after {position: absolute; content: ""; top: 14px; right: 10px; width: 0; height: 0; border: 6px solid transparent; border-color: #fff transparent transparent transparent; }
+.yuko-docs .yuko-select_selected.yuko-select_arrow-active:after {border-color: transparent transparent #fff transparent; top: 7px; }
+.yuko-docs .yuko-select_items div,.yuko-select_selected {position: relative; color: #ffffff; padding: 8px 16px; border: 1px solid transparent; border-color: transparent transparent rgba(255, 255, 255, 0.1) transparent; cursor: pointer; overflow: hidden; }
+.yuko-docs .yuko-select_items {position: absolute; background-color: #3f51b5; top: 100%; left: 0; right: 0; z-index: 99; }
+.yuko-docs .yuko-select_hide {display: none; }
+.yuko-docs .yuko-select_items div:hover {background-color: rgba(0, 0, 0, 0.1); }
+/* SelectBox End */
+
+/* Switch Start */
+.yuko-docs .yuko-switch {position: relative; display: inline-block; width: 40px; height: 15px; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+.yuko-docs .yuko-switch input {display: none; }
+.yuko-docs .yuko-switch_slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, .26); -webkit-transition: .4s; transition: .4s; }
+.yuko-docs .yuko-switch_slider:before {position: absolute; content: ""; height: 20px; width: 20px; left: 0px; bottom: -2.5px; background: #3f51b5; -webkit-transition: .4s; transition: .4s; }
+.yuko-docs .yuko-switch input:checked+.yuko-switch_slider {background: rgba(63, 81, 181, .6); }
+.yuko-docs .yuko-switch input:focus+.yuko-switch_slider {box-shadow: 0 0 1px rgba(63, 81, 181, .6); }
+.yuko-docs .yuko-switch input:checked+.yuko-switch_slider:before {-webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px); }
+.yuko-docs .yuko-switch_slider.round {border-radius: 34px; }
+.yuko-docs .yuko-switch_slider.round:before {border-radius: 50%; }
+.yuko-docs .yuko-switch_ripple {position: absolute; z-index: 2; top: -12px; left: 12px; box-sizing: border-box; width: 42px; height: 42px; cursor: pointer; -webkit-mask-image: -webkit-radial-gradient(center, circle cover, rgb(255, 255, 255), rgb(0, 0, 0)); border-radius: 50%; overflow: hidden; }
+.yuko-docs .yuko-switch_ripple .yuko-ripple {background: rgb(63, 81, 181); }
+.yuko-docs .yuko-ripple {position: absolute; left: 0px; top: 0px; opacity: 0; pointer-events: none; border-radius: 50%; overflow: hidden; width: 104px; height: 104px; transform: translate(-50%, -50%) translate(18px, 18px); transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1), width 0.3s cubic-bezier(0, 0, 0.2, 1), height 0.3s cubic-bezier(0, 0, 0.2, 1), opacity 0.6s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
+.yuko-docs .yuko-switch:active .yuko-ripple {opacity: .3; }
+.yuko-docs .yuko-switch.is-checked .yuko-switch_ripple {left: -12px; }
+/* Switch End */
+
 /* Article Start */
 body.yuko-docs .text-sup,
 body.yuko-docs .text-sub {font-size: 10px;}
