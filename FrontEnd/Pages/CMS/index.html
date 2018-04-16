@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="../../Styles/index.css">
     <link rel="stylesheet" href="../../Styles/index@1200px.css">
     <style>
+        body.yuko-cms {
+            min-height: 100%;
+        }
         body.yuko-cms #header {
             top: 0 !important
         }
@@ -41,26 +44,36 @@
             position: fixed;
             overflow-y: scroll;
             overflow-x: hidden;
+            -ms-overflow-style:none;
+            overflow:-moz-scrollbars-none;
         }
 
         body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
             display: none;
+        }
+        
+        body.yuko-cms .yuko-list.yuko-list_compact .yuko-list_item {
+            user-select: none;
         }
         body.yuko-cms .yuko-list > .yuko-list_item .yuko-list_item-content { width: 100% }
         body.yuko-cms #main .main-middle_right {
             width: 70%;
         }
 
-        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(1) {
-            width: 50%;
+        body.yuko-cms .yuko-list.yuko-list_compact .yuko-checkbox {
+            margin: 15px 5px;
         }
+
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(2) {
-            width: 8%;
+            width: 45%;
         }
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(3) {
-            width: 15%;
+            width: 8%;
         }
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(4) {
+            width: 15%;
+        }
+        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(5) {
             width: 15%;
         }
 
@@ -71,7 +84,8 @@
         }
 
         body.yuko-docs .yuko-list.yuko-list_compact>.yuko-list_item>span>span {
-            display: inline-block;
+            /* display: inline-block; */
+            float: left;
         }
     </style>
 </head>
@@ -162,7 +176,12 @@
                         <ul class="yuko-list yuko-list_compact">
                                 <li class="yuko-list_item">
                                     <span class="yuko-list_item-content">
-                                        <input type="checkbox" name="article" value="id" />
+                                        <span class="yuko-checkbox yuko-checkbox-all">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                        </span>
                                         <span>
                                             TITLE
                                         </span>
@@ -179,6 +198,15 @@
                                 </li>
                                 <li class="yuko-list_item">
                                     <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
                                         <span>
                                             TITLE
                                         </span>
@@ -195,6 +223,15 @@
                                 </li>
                                 <li class="yuko-list_item">
                                     <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
                                         <span>
                                             TITLE
                                         </span>
@@ -211,6 +248,15 @@
                                 </li>
                                 <li class="yuko-list_item">
                                     <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
                                         <span>
                                             TITLE
                                         </span>

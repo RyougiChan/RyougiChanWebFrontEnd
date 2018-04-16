@@ -83,8 +83,8 @@ body.yuko-docs #main-container_m .yuko-content.yuko-page::-webkit-scrollbar {dis
 /* Footer Css Start*/
 body.yuko-docs #main-container_m footer { display: block; width: calc(100% - 10px); height: 120px !important; top: auto !important; background: none !important; border-top: 1px solid rgba(119,119,119,.5); position: absolute; bottom: 0; text-align: center}
 body.yuko-docs #main-container_m footer a { color: #777; }
-body.yuko-docs #main-container_m footer .footer-logo { height: 50%; background: url(../images/ryougi_logo.png) no-repeat 50% 100%; background-size: 60%; }
-body.yuko-docs #main-container_m footer>div { width: 100%; height: 25%; color: #777; font-size: 12px; }
+body.yuko-docs #main-container_m footer .footer-logo { height: 50px; margin-top:10px; background: url(../images/ryougi_logo.png) no-repeat 50% 100%; background-size: contain; }
+body.yuko-docs #main-container_m footer>div { width: 100%; height: 30px; color: #777; font-size: 12px; }
 body.yuko-docs #main-container_m footer>.footer-contact { float: right; text-align: left; }
 /* Footer CSS End*/
 

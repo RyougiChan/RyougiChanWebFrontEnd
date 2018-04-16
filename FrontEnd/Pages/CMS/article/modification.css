@@ -1,0 +1,62 @@
+#edit-page {overflow: hidden; background: rgba(255,255,255); padding: 0 10px;}
+#edit-page hr {
+    margin: 0 -30px;
+    border: 0;
+    height: 0;
+    border-top: 1px solid #f1f3f7;
+}
+#edit-page > div { padding: 12px 0; }
+#edit-page .yuko-textfield { width: 100%; margin: 1em 0 0; }
+#edit-page .yuko-textfield label { font-size: 1.2em; }
+#edit-page .yuko-textfield input { border-bottom: none; }
+#edit-page .edit-cover_upload {
+    margin: 0 -40px;
+    background-color: #fafbfd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+}
+#edit-page .edit-cover_upload input {display: none;}
+#edit-page .edit-cover_upload .no-img{
+    text-align: center;
+    color: #99a2aa;
+    padding-top: 68px;
+    height: 100%;
+    position: relative;
+    height: 240px;
+    cursor: pointer;
+}
+#edit-page .edit-cover_upload .img-box{
+    display: none;
+}
+#edit-page .edit-cover_upload .no-img .material-icons {
+    font-size: 48px; 
+}
+
+#edit-page .edit-category .yuko-textfield,
+#edit-page .edit-keywords .yuko-textfield {
+    width: 150px;
+    margin: 0;
+}
+#edit-page .edit-list {
+    height: 28px;
+    padding: 12px 0;
+}
+#edit-page .edit-list li {
+    display: block;
+    float: left;
+    margin-right: 8px;
+    padding: 0 12px;
+    height: unset;
+    line-height: unset;
+    width: unset;
+}
+#edit-page .edit-body .yuko-textfield_input,
+#edit-page .edit-info .yuko-textfield_input,
+#edit-page .edit-abstract .yuko-textfield_input {
+    height: 90px;
+    resize: none;
+    border: none;
+}

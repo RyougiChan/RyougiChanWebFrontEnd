@@ -2558,7 +2558,7 @@
                     // middle_index: Index of middle-item
                     middle_index;
 
-                if (_target == document.firstElementChild || !_target.parentElement) {
+                if (_target == document.documentElement || !_target.parentElement) {
                     // If press on a blank area.
                     return;
                 }

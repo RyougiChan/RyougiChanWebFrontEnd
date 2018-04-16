@@ -33,7 +33,7 @@
                 }
             }
             var focusoutCall = function (e) {
-                if (this.parentNode.classList.contains('is-focused') && this.value == '') {
+                if (this.parentNode.classList.contains('is-focused')) {
                     this.parentNode.classList.remove('is-focused');
                 }
                 if (this.parentNode.classList.contains('is-dirty') && this.value == '') {
@@ -390,6 +390,11 @@
                 var _target = evt.target,
                     snackbar,
                     snackbarBound;
+
+                if (_target == document.documentElement || !_target.parentElement) {
+                    // If press on a blank area.
+                    return;
+                }
 
                 if (_target.classList.contains('yuko-snackbar_trigger')) {
                     snackbar = _target.nextElementSibling;
