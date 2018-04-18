@@ -1023,11 +1023,11 @@
             // Default main style
             for (var i = 0; i < mains.length; i++) {
                 if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) {
-                    mains[i].style.height =  mains[i].children[0].offsetHeight + 'px';
+                    mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
                 }
                 else {
-                    window.onload = (function(i){
-                        return function(){
+                    window.onload = (function (i) {
+                        return function () {
                             mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
                         }
                     })(i);
@@ -1092,13 +1092,13 @@
                         // Reset main's height
                         main.style.height = main.children[i].offsetHeight + 'px';
 
-                        for(var k = 0; k < tabMain.length; k++) {
+                        for (var k = 0; k < tabMain.length; k++) {
                             tabMain[k].classList.remove('fullscreen');
                         }
-                        for(var h = 0; h < page.children.length; h++) {
-                            page.children[h].scroll(0,0);
+                        for (var h = 0; h < page.children.length; h++) {
+                            page.children[h].scroll(0, 0);
                         }
-                        document.documentElement.scroll(0,0);
+                        document.documentElement.scroll(0, 0);
                     }
                 })(i));
             }
@@ -1112,9 +1112,9 @@
                         return function () {
                             // Switch main page to show
                             pageContainer.slideTo(i);
-                            for(var k = 0; k < content.children.length; k++) {
-                                content.children[k].scroll(0,0);
-                                document.documentElement.scroll(0,0);
+                            for (var k = 0; k < content.children.length; k++) {
+                                content.children[k].scroll(0, 0);
+                                document.documentElement.scroll(0, 0);
                             }
                         };
                     })(i));
@@ -1780,20 +1780,20 @@
                 autoplayDuration = 3000,
                 nextItemList = [],
                 positionValues = [],
-            // Item position span
+                // Item position span
                 positionProgress = [],
                 prePositionSpan = null,
                 nextPositionSpan = null,
                 positionProgressCopy = null,
                 tempPositionSpan = null;
-            
-                // Initialze options
-            if(options) {
-                if(options.duration) duration = parseInt(options.duration);
-                if(options.autoplay) autoplay = options.autoplay;
-                if(options.autoplayDuration) autoplayDuration = parseInt(options.autoplayDuration);
+
+            // Initialze options
+            if (options) {
+                if (options.duration) duration = parseInt(options.duration);
+                if (options.autoplay) autoplay = options.autoplay;
+                if (options.autoplayDuration) autoplayDuration = parseInt(options.autoplayDuration);
             }
-                
+
             for (var i = 0; i < carouselList.length; i++) {
                 positionProgress.push([]);
             }
@@ -2127,11 +2127,11 @@
                 document.querySelector('#yuko-carousel-list > ul').setAttribute('data-page-index', visualPageIndex + '');
             }
 
-            if(autoplay) {
-                setInterval(function(){
-                nextButton.click();
+            if (autoplay) {
+                setInterval(function () {
+                    nextButton.click();
                 }
-                , autoplayDuration);
+                    , autoplayDuration);
             }
         }
 

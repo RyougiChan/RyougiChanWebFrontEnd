@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `R_Article` (
   `editor` VARCHAR(100) NOT NULL,
   `authorDesc` VARCHAR(150),
   `license` VARCHAR(100),
-  `createTime` DATETIME NOT NULL,
+  `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updateTime` DATETIME NOT NULL,
   `abstract` VARCHAR(2000),
   `keywords` VARCHAR(200),
@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `R_User` (
   `phone` VARCHAR(100),
   `password` VARCHAR(64) NOT NULL,
   `nickname` VARCHAR(100) NOT NULL,
-  `gender` INT NOT NULL,
+  `gender` INT NOT NULL DEFAULT 0,
   `birthday` DATETIME,
   `region` VARCHAR(100),
   `description` VARCHAR(150),
   `regTime` DATETIME NOT NULL,
-  `latestLoginTime` DATETIME NOT NULL,
+  `latestLoginTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `latestLoginIP` VARCHAR(100) NOT NULL,
-  `status` INT NOT NULL,
+  `status` INT NOT NULL DEFAULT 1,
   PRIMARY KEY `pk_id`(`id`)
 ) ENGINE = InnoDB;
 
@@ -53,7 +53,45 @@ CREATE TABLE IF NOT EXISTS `R_Admin` (
   `nickname` VARCHAR(100) NOT NULL,
   `latestLoginTime` DATETIME NOT NULL,
   `latestLoginIP` VARCHAR(100) NOT NULL,
-  `authority` VARCHAR(100) NOT NULL,
-  `status` INT NOT NULL,
+  `authority` VARCHAR(100),
+  `status` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY `pk_id`(`id`)
+) ENGINE = InnoDB;
+
+/* CREATE TABLE R_NavBar */
+DROP TABLE IF EXISTS `R_NavBar`;
+CREATE TABLE `R_NavBar` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(32) NOT NULL,
+  `level` INT NOT NULL DEFAULT 1,
+  `index` INT NOT NULL DEFAULT 1,
+  `parentID` INT,
+  `status` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY `pk_id`(`id`)
+) ENGINE = InnoDB;
+
+/* CREATE TABLE R_SideBar */
+DROP TABLE IF EXISTS `R_SideBar`;
+CREATE TABLE `R_SideBar` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(32) NOT NULL,
+  `level` INT NOT NULL DEFAULT 1,
+  `index` INT NOT NULL DEFAULT 1,
+  `parentID` INT,
+  `status` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY `pk_id`(`id`)
+) ENGINE = InnoDB;
+
+/* CREATE TABLE R_Comment */
+DROP TABLE IF EXISTS `R_Comment`;
+CREATE TABLE `R_Comment` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `articleID` INT NOT NULL,
+  `userID` INT NOT NULL,
+  `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` VARCHAR(500) NOT NULL,
+  `replyFor` INT,
+  `voteUp` INT NOT NULL DEFAULT 0,
+  `voteDown` INT NOT NULL DEFAULT 0,
   PRIMARY KEY `pk_id`(`id`)
 ) ENGINE = InnoDB;
