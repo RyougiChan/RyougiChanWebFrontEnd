@@ -237,11 +237,11 @@
   
   .docs-options .dropdown-menu > li {
     font-size: .875rem;
-    padding: .125rem 1rem;
+    /* padding: .125rem 1rem; */
   }
   
   .docs-options .dropdown-menu .form-check-label {
-    display: block;
+    /* display: block; */
   }
   
   .docs-cropped .modal-body {

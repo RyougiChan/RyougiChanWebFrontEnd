@@ -94,12 +94,16 @@ body.yuko-cms #main #yuko-image_cropper {
     height: 100%;
     margin: 0 auto;
     background: #f1f1f1;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--area {
     width: 60%;
+    max-height: 50%;
     margin: 30px 5%;
     float: left;
+    overflow: hidden;
 }
 body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--preview {
     width: 25%;
@@ -117,7 +121,48 @@ body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--control > div {
     margin-left: 5%;
 }
 
-body.yuko-cms #main #yuko-image_cropper input {
+body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--download {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -30%;
+    width: 60%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1;
+    display: none;
+}
+
+body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--download .yuko-dialog {
+    width: 50%;
+    margin: 20% auto;
+    background-color: white;
+    z-index: 7020;
+}
+
+.yuko-dialog-content > div {
+    padding: 1em;
+}
+
+.yuko-dialog-content .yuko-dialog-title {
+    display: inline;
+}
+.yuko-dialog-content .yuko-dialog_close {
+    float: right;
+    font-size: 1.5em;
+}
+.yuko-dialog-content .yuko-dialog-body {
+    border-bottom: 0.5px solid rgba(63, 81, 181, 0.5);
+    border-top: 0.5px solid rgba(63, 81, 181, 0.5);
+}
+.yuko-dialog-content .yuko-dialog-body canvas {
+    max-width: 100%;
+}
+.yuko-dialog-content .yuko-dialog-footer {
+    text-align: right;
+}
+
+body.yuko-cms #main #yuko-image_cropper input[type="radio"] {
     position:absolute; top:0; left:0; visibility: hidden; opacity: 0;
 }
 

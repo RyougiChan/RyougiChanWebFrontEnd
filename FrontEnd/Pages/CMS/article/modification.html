@@ -476,19 +476,18 @@
                             </div>
 
                             <!-- Show the cropped image in modal -->
-                            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle"
-                                role="dialog" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
-                                            <span class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="yuko-image_cropper--download">
+                                <div class="yuko-dialog">
+                                    <div class="yuko-dialog-content">
+                                        <div class="yuko-dialog-header">
+                                            <h5 class="yuko-dialog-title">Cropped</h5>
+                                            <span class="yuko-dialog_close yuko-button" data-method="closeDownloadDialog">
                                                 <span aria-hidden="true">&times;</span>
                                             </span>
                                         </div>
-                                        <div class="modal-body"></div>
-                                        <div class="modal-footer">
-                                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-dismiss="modal">Close</span>
+                                        <div class="yuko-dialog-body"></div>
+                                        <div class="yuko-dialog-footer">
+                                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="closeDownloadDialog">Close</span>
                                             <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" id="download" href="javascript:void(0);"
                                                 download="cropped.jpg">Download</a>
                                         </div>
@@ -562,7 +561,10 @@
                                     Scale (-2, -1)
                                 </span>
                             </span>
-                            <textarea type="text" class="form-control" id="putData" rows="1" placeholder="Get data to here or set data with this value"></textarea>
+                            <div class="yuko-textfield yuko-js-textfield" style="width: 100%; display:block">
+                                <textarea class="yuko-textfield_input" type="text" id="putData" rows="1"></textarea>
+                                <label class="yuko-textfield_label" for="putData">Body</label>
+                            </div>
                         </div>
                         <!-- /.docs-buttons -->
 
@@ -629,123 +631,275 @@
                             </div>
 
                             <div class="dropdown dropup docs-options yuko-select">
-                                <span class="yuko-select_selected yuko-select_arrow-active btn-block dropdown-toggle" id="toggleOptions" data-toggle="dropdown"
+                                <div class="yuko-select_selected yuko-select_arrow-active btn-block dropdown-toggle" id="toggleOptions" data-toggle="dropdown"
                                     aria-expanded="true">
                                     Toggle Options
                                     <span class="caret"></span>
-                                </span>
+                                </div>
                                 <ul class="yuko-select_items dropdown-menu" aria-labelledby="toggleOptions" role="menu">
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="responsive" type="checkbox" name="responsive" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="responsive" id="responsive">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="responsive">responsive</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="restore" type="checkbox" name="restore" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="restore" id="restore">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="restore">restore</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="checkCrossOrigin" type="checkbox" name="checkCrossOrigin" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="checkCrossOrigin" id="checkCrossOrigin">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="checkCrossOrigin">checkCrossOrigin</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="checkOrientation" type="checkbox" name="checkOrientation" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="checkOrientation" id="checkOrientation">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="checkOrientation">checkOrientation</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="modal" type="checkbox" name="modal" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="modal" id="modal">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="modal">modal</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="guides" type="checkbox" name="guides" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="guides" id="guides">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="guides">guides</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="center" type="checkbox" name="center" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="center" id="center">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="center">center</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="highlight" type="checkbox" name="highlight" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="highlight" id="highlight">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="highlight">highlight</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="background" type="checkbox" name="background" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="background" id="background">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="background">background</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="autoCrop" type="checkbox" name="autoCrop" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="autoCrop" id="autoCrop">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="autoCrop">autoCrop</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="movable" type="checkbox" name="movable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="movable" id="movable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="movable">movable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="rotatable" type="checkbox" name="rotatable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="rotatable" id="rotatable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="rotatable">rotatable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="scalable" type="checkbox" name="scalable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="scalable" id="scalable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="scalable">scalable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="zoomable" type="checkbox" name="zoomable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="zoomable" id="zoomable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="zoomable">zoomable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="zoomOnTouch" type="checkbox" name="zoomOnTouch" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="zoomOnTouch" id="zoomOnTouch">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="zoomOnTouch">zoomOnTouch</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="zoomOnWheel" type="checkbox" name="zoomOnWheel" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="zoomOnWheel" id="zoomOnWheel">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="zoomOnWheel">zoomOnWheel</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="cropBoxMovable" type="checkbox" name="cropBoxMovable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="cropBoxMovable" id="cropBoxMovable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="cropBoxMovable">cropBoxMovable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="cropBoxResizable" type="checkbox" name="cropBoxResizable" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="cropBoxResizable" id="cropBoxResizable">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="cropBoxResizable">cropBoxResizable</label>
                                         </div>
                                     </li>
                                     <li class="dropdown-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="toggleDragModeOnDblclick" type="checkbox" name="toggleDragModeOnDblclick" checked>
+                                            <span class="yuko-checkbox">
+                                                <input type="checkbox" checked class="yuko-checkbox_input form-check-input" name="toggleDragModeOnDblclick" id="toggleDragModeOnDblclick">
+                                                <span class="yuko-checkbox_box-outline">
+                                                    <span class="yuko-checkbox_tick-outline"></span>
+                                                </span>
+                                                <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                    <span class="yuko-ripple is-animating"></span>
+                                                </span>
+                                            </span>
                                             <label class="form-check-label" for="toggleDragModeOnDblclick">toggleDragModeOnDblclick</label>
                                         </div>
                                     </li>

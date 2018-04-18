@@ -113,7 +113,6 @@ $(function () {
       var cropped;
       var $target;
       var result;
-      console.log(cropper);
   
       if ($this.prop('disabled') || $this.hasClass('disabled')) {
         return;
@@ -172,8 +171,11 @@ $(function () {
   
           case 'getCroppedCanvas':
             if (result) {
-              // Bootstrap's Modal
-              $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+              var $downloadCanvas = $('.yuko-image_cropper--download .yuko-dialog-body');
+              if($downloadCanvas[0]) {
+                $downloadCanvas.html(result);
+                $('.yuko-image_cropper--download').fadeIn();
+              }
   
               if (!$download.hasClass('disabled')) {
                 download.download = uploadedImageName;
@@ -190,6 +192,9 @@ $(function () {
               $image.attr('src', originalImageURL);
             }
   
+            break;
+          case 'closeDownloadDialog':
+          $('.yuko-image_cropper--download').fadeOut();
             break;
         }
   
