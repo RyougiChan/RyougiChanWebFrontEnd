@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../../../Styles/yuko.component.css">
     <link rel="stylesheet" href="../../../Styles/index.css">
     <link rel="stylesheet" href="../../../Styles/index@1200px.css">
+    <link rel="stylesheet" href="../../../Styles/cropper/cropper.min.css">
+    <link rel="stylesheet" href="../../../Styles/cropper/cropper-main.css">
     <style>
         body.yuko-cms {
             min-height: 100%;
@@ -144,7 +146,7 @@
                     <div class="main-content">
                         <div id="edit-page" class="yuko-article">
                             <div class="edit-cover">
-                                <div class="edit-cover_upload">
+                                <div class="yuko-upload edit-cover_upload">
                                     <input type="file" accept="image/jpeg, image/jpg, image/png, image/bmp">
                                     <div class="no-img">
                                         <i class="material-icons">image</i>
@@ -153,12 +155,12 @@
                                         <p class="tips">Or add a image link in the textfield below</p>
                                     </div>
                                     <div class="img-box">
-                                        <img src="" />
+
                                     </div>
                                 </div>
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <input class="yuko-textfield_input" type="text" id="yuko-input_cover">
-                                    <label class="yuko-textfield_label" for="yuko-input_cover">Image Link (Optional) </label>
+                                    <label class="yuko-textfield_label" for="yuko-input_cover">Image Link Here (Optional) </label>
                                 </div>
                             </div>
                             <hr>
@@ -245,6 +247,34 @@
                                 </div>
                             </div>
                             <hr>
+                            <div class="edit-licenses">
+                                <h5>Licenses</h5>
+                                <div class="yuko-select">
+                                    <div class="yuko-select_selected">Allow</div>
+                                    <div class="yuko-select_items yuko-select_hide">
+                                        <div>Allow</div>
+                                        <div>Not Allow</div>
+                                    </div>
+                                </div>
+                                <div class="yuko-textfield yuko-js-textfield">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_licenses">
+                                    <label class="yuko-textfield_label" for="yuko-input_licenses">Additional Terms</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-ctrl">
+                                <ul>
+                                    <li class="yuko-button yuko-button_raised yuko-button_colored yuko-button_bordered yuko-button_ripple">
+                                        <i>Save Article</i>
+                                    </li>
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                                        Preview Article
+                                    </li>
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                                        Save as Draft
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,6 +307,457 @@
                     </div>
                 </div>
             </div>
+            <div id="yuko-image_cropper--container">
+                <div id="yuko-image_cropper">
+                    <!-- Wrap the image or canvas element with a block element (container) -->
+                    <div class="yuko-image_cropper--area">
+                        <img id="yuko-image_cropper--img" src="">
+                    </div>
+                    <!-- <h3>Preview:</h3> -->
+                    <div class="yuko-image_cropper--preview clearfix">
+                        <div class="img-preview preview-lg"></div>
+                        <div class="img-preview preview-md"></div>
+                        <div class="img-preview preview-sm"></div>
+                        <div class="img-preview preview-xs"></div>
+                    </div>
+                    <!-- Control Panel -->
+                    <div class="yuko-image_cropper--control">
+
+                        <div class="docs-buttons">
+                            <!-- <h3>Toolbar:</h3> -->
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="setDragMode" data-option="move"
+                                    title="Move">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+                                        <i class="material-icons">gamepad</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="setDragMode" data-option="crop"
+                                    title="Crop">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+                                        <i class="material-icons">crop</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="zoom" data-option="0.1"
+                                    title="Zoom In">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                        <i class="material-icons">zoom_in</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="zoom" data-option="-0.1"
+                                    title="Zoom Out">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                        <i class="material-icons">zoom_out</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="move" data-option="-10"
+                                    data-second-option="0" title="Move Left">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, -10, 0)">
+                                        <i class="material-icons">keyboard_arrow_left</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="move" data-option="10"
+                                    data-second-option="0" title="Move Right">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 10, 0)">
+                                        <i class="material-icons">keyboard_arrow_right</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="move" data-option="0"
+                                    data-second-option="-10" title="Move Up">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, -10)">
+                                        <i class="material-icons">keyboard_arrow_up</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="move" data-option="0"
+                                    data-second-option="10" title="Move Down">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, 10)">
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="rotate" data-option="-45"
+                                    title="Rotate Left">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                        <i class="material-icons">rotate_left</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="rotate" data-option="45"
+                                    title="Rotate Right">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                        <i class="material-icons">rotate_right</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="scaleX" data-option="-1"
+                                    title="Flip Horizontal">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                        <i class="material-icons">swap_horiz</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="scaleY" data-option="-1"
+                                    title="Flip Vertical">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                        <i class="material-icons">swap_vert</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="crop" title="Crop">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;crop&quot;)">
+                                        <i class="material-icons">check</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="clear" title="Clear">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;clear&quot;)">
+                                        <i class="material-icons">close</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="disable" title="Disable">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;disable&quot;)">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="enable" title="Enable">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;enable&quot;)">
+                                        <i class="material-icons">lock_open</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="reset" title="Reset">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                        <i class="material-icons">autorenew</i>
+                                    </span>
+                                </span>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored btn-upload" for="inputImage" title="Upload image file">
+                                    <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
+                                        <i class="material-icons">file_upload</i>
+                                    </span>
+                                </label>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="destroy" title="Destroy">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;destroy&quot;)">
+                                        <i class="material-icons">delete</i>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="btn-group btn-group-crop">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
+                                        Get Cropped Canvas
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 160, &quot;height&quot;: 90 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 160, height: 90 })">
+                                        160&times;90
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 320, &quot;height&quot;: 180 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 320, height: 180 })">
+                                        320&times;180
+                                    </span>
+                                </span>
+                            </div>
+
+                            <!-- Show the cropped image in modal -->
+                            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle"
+                                role="dialog" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
+                                            <span class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </span>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                        <div class="modal-footer">
+                                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-dismiss="modal">Close</span>
+                                            <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" id="download" href="javascript:void(0);"
+                                                download="cropped.jpg">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal -->
+
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getData" data-option data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getData&quot;)">
+                                    Get Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="setData" data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setData&quot;, data)">
+                                    Set Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getContainerData" data-option
+                                data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getContainerData&quot;)">
+                                    Get Container Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getImageData" data-option
+                                data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getImageData&quot;)">
+                                    Get Image Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getCanvasData" data-option
+                                data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCanvasData&quot;)">
+                                    Get Canvas Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="setCanvasData" data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setCanvasData&quot;, data)">
+                                    Set Canvas Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="getCropBoxData" data-option
+                                data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCropBoxData&quot;)">
+                                    Get Crop Box Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="setCropBoxData" data-target="#putData">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setCropBoxData&quot;, data)">
+                                    Set Crop Box Data
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="moveTo" data-option="0">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="cropper.moveTo(0)">
+                                    Move to [0,0]
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="zoomTo" data-option="1">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="cropper.zoomTo(1)">
+                                    Zoom to 100%
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="rotateTo" data-option="180">
+                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="cropper.rotateTo(180)">
+                                    Rotate 180°
+                                </span>
+                            </span>
+                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored" data-method="scale" data-option="-2"
+                                data-second-option="-1">
+                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scale(-2, -1)">
+                                    Scale (-2, -1)
+                                </span>
+                            </span>
+                            <textarea type="text" class="form-control" id="putData" rows="1" placeholder="Get data to here or set data with this value"></textarea>
+                        </div>
+                        <!-- /.docs-buttons -->
+
+                        <div class="docs-toggles">
+                            <!-- <h3>Toggles:</h3> -->
+                            <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored active">
+                                    <input type="radio" class="sr-only" id="aspectRatio0" name="aspectRatio" value="1.7777777777777777">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 16 / 9">
+                                        16:9
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.3333333333333333">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 4 / 3">
+                                        4:3
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 1 / 1">
+                                        1:1
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="aspectRatio3" name="aspectRatio" value="0.6666666666666666">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 2 / 3">
+                                        2:3
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="aspectRatio4" name="aspectRatio" value="NaN">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: NaN">
+                                        Free
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored active">
+                                    <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 0">
+                                        VM0
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 1">
+                                        VM1
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="viewMode2" name="viewMode" value="2">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 2">
+                                        VM2
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">
+                                    <input type="radio" class="sr-only" id="viewMode3" name="viewMode" value="3">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 3">
+                                        VM3
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="dropdown dropup docs-options yuko-select">
+                                <span class="yuko-select_selected yuko-select_arrow-active btn-block dropdown-toggle" id="toggleOptions" data-toggle="dropdown"
+                                    aria-expanded="true">
+                                    Toggle Options
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="yuko-select_items dropdown-menu" aria-labelledby="toggleOptions" role="menu">
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="responsive" type="checkbox" name="responsive" checked>
+                                            <label class="form-check-label" for="responsive">responsive</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="restore" type="checkbox" name="restore" checked>
+                                            <label class="form-check-label" for="restore">restore</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="checkCrossOrigin" type="checkbox" name="checkCrossOrigin" checked>
+                                            <label class="form-check-label" for="checkCrossOrigin">checkCrossOrigin</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="checkOrientation" type="checkbox" name="checkOrientation" checked>
+                                            <label class="form-check-label" for="checkOrientation">checkOrientation</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="modal" type="checkbox" name="modal" checked>
+                                            <label class="form-check-label" for="modal">modal</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="guides" type="checkbox" name="guides" checked>
+                                            <label class="form-check-label" for="guides">guides</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="center" type="checkbox" name="center" checked>
+                                            <label class="form-check-label" for="center">center</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="highlight" type="checkbox" name="highlight" checked>
+                                            <label class="form-check-label" for="highlight">highlight</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="background" type="checkbox" name="background" checked>
+                                            <label class="form-check-label" for="background">background</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="autoCrop" type="checkbox" name="autoCrop" checked>
+                                            <label class="form-check-label" for="autoCrop">autoCrop</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="movable" type="checkbox" name="movable" checked>
+                                            <label class="form-check-label" for="movable">movable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="rotatable" type="checkbox" name="rotatable" checked>
+                                            <label class="form-check-label" for="rotatable">rotatable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="scalable" type="checkbox" name="scalable" checked>
+                                            <label class="form-check-label" for="scalable">scalable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="zoomable" type="checkbox" name="zoomable" checked>
+                                            <label class="form-check-label" for="zoomable">zoomable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="zoomOnTouch" type="checkbox" name="zoomOnTouch" checked>
+                                            <label class="form-check-label" for="zoomOnTouch">zoomOnTouch</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="zoomOnWheel" type="checkbox" name="zoomOnWheel" checked>
+                                            <label class="form-check-label" for="zoomOnWheel">zoomOnWheel</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="cropBoxMovable" type="checkbox" name="cropBoxMovable" checked>
+                                            <label class="form-check-label" for="cropBoxMovable">cropBoxMovable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="cropBoxResizable" type="checkbox" name="cropBoxResizable" checked>
+                                            <label class="form-check-label" for="cropBoxResizable">cropBoxResizable</label>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="toggleDragModeOnDblclick" type="checkbox" name="toggleDragModeOnDblclick" checked>
+                                            <label class="form-check-label" for="toggleDragModeOnDblclick">toggleDragModeOnDblclick</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.dropdown -->
+
+                        </div>
+                        <!-- /.docs-toggles -->
+                    </div>
+                </div>
+            </div>
             <span class="main-to_top"></span>
         </section>
         <!-- Main E -->
@@ -302,6 +783,39 @@
     <script src="../../../Scripts/Yuko.js"></script>
     <script src="../../../Scripts/Yuko.component.js"></script>
     <script src="../../../Scripts/index.js"></script>
+    <script src="../../../Scripts/cropper/cropper.min.js"></script>
+    <script src="../../../Scripts/cropper/jquery-cropper.min.js"></script>
+    <script src="../../../Scripts/cropper/cropper-main.js"></script>
+    <script>
+
+        var $imageCropper = $('#yuko-image_cropper--container'),
+            $image = $('#yuko-image_cropper--img'),
+            $uploadImg = $('.edit-cover .yuko-upload input'),
+            $uploadImgBox = $('.edit-cover .yuko-upload .img-box');
+
+        $uploadImg.on('change', function (evt) {
+            $image.attr('src', URL.createObjectURL($uploadImg[0].files[0]));
+            $image.cropper({
+                aspectRatio: 16 / 9,
+                preview: '.img-preview',
+                crop: function (event) {
+                    // console.log(event.detail.x);
+                    // console.log(event.detail.y);
+                    // console.log(event.detail.width);
+                    // console.log(event.detail.height);
+                    // console.log(event.detail.rotate);
+                    // console.log(event.detail.scaleX);
+                    // console.log(event.detail.scaleY);
+                }
+            });
+            // Get the Cropper.js instance after initialized
+            var cropper = $image.data('cropper');
+            var test = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
+        });
+
+
+
+    </script>
 </body>
 
 </html>

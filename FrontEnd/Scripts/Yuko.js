@@ -1042,6 +1042,124 @@
             return false;
         }
 
+        /**
+         * Check if element has the specific ancestor
+         * @param {Element} ele this element
+         * @param {{id:string, className:string, nodeName:string}} prop specific properties
+         * 
+         * @returns return the first matched element if exist, else return null.
+         */
+        function hasAncestor(ele, prop) {
+            if (!ele || !prop) return;
+            var id = prop.id,
+                className = prop.className,
+                nodeName = prop.nodeName;
+            if (!(id || className || nodeName)) return;
+
+            var parent,
+                tempTarget;
+
+            if (id) {
+                parent = ele.parentElement;
+                while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                    if (parent.id == id) {
+                        tempTarget = parent;
+                        break;
+                    } else {
+                        parent = parent.parentElement;
+                    }
+                }
+            }
+            if (className) {
+                if (tempTarget) {
+                    if (!tempTarget.classList.contains(className)) {
+                        tempTarget = null;
+                    }
+                } else {
+                    parent = ele.parentElement;
+                    while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                        if (parent.classList.contains(className)) {
+                            tempTarget = parent;
+                            break;
+                        } else {
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+            }
+            if (nodeName) {
+                nodeName = nodeName.toLocaleLowerCase();
+                if (tempTarget) {
+                    if (tempTarget.nodeName.toLocaleLowerCase() != nodeName) {
+                        tempTarget = null;
+                    }
+                } else {
+                    parent = ele.parentElement;
+                    while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                        if (parent.nodeName.toLocaleLowerCase() == nodeName) {
+                            tempTarget = parent;
+                            break;
+                        } else {
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+            }
+            return tempTarget;
+        }
+
+        /**
+         * Check if element has the specific children
+         * @param {Element} ele this element
+         * @param {{id:string, className:string, nodeName:string}} prop specific properties
+         * 
+         * @returns return the matched elements list if exist, else return null.
+         */
+        function hasChildren(ele, prop) {
+            if (!ele || !prop) return;
+            var id = prop.id,
+                className = prop.className,
+                nodeName = prop.nodeName;
+            if (!(id || className || nodeName)) return;
+
+            var children,
+                target;
+            
+            if(id) {
+                children = ele.querySelector('#'+id);
+            }
+            if(className) {
+                if(children) {
+                    if(!children.classList.contains(className)) children = null;
+                } else {
+                    children = ele.querySelectorAll('.'+className);
+                    if(children.length == 0) children = null;
+                }
+            }
+            if(nodeName) {
+                nodeName = nodeName.toLocaleLowerCase();
+                if(children) {
+                    // if children has a length property, it is a NodeList, else a Element
+                    if(children.length) {
+                        target = [];
+                        for (var i = 0; i < children.length; i++) {
+                            if(children[i].nodeName.toLocaleLowerCase() == nodeName) {
+                                target.push(children[i]);
+                            }
+                        }
+                    } else {
+                        if(children.nodeName.toLocaleLowerCase() != nodeName) children = null;
+                    }
+                } else {
+                    children = ele.getElementsByTagName(nodeName);
+                }
+            }
+            if(!children) target = null;
+            else target = children;
+
+            return target;
+        }
+
         return {
             calcCubicEquation: calcCubicEquation,
             calcQuadraticEquation: calcQuadraticEquation,
@@ -1060,7 +1178,9 @@
             getBrowserType: getBrowserType,
             animate: animate,
             crossBrowser: crossBrowser,
-            isMobile: isMobile
+            isMobile: isMobile,
+            hasAncestor: hasAncestor,
+            hasChildren: hasChildren
         }
     })();
 
@@ -2433,30 +2553,30 @@
                 console.log('error-param: Number of visible pagination items required or parameter in invalid format.');
                 return;
             }
-            var hasFirstLast,hasHidedIcon,hasPreNext;
+            var hasFirstLast, hasHidedIcon, hasPreNext;
             hasFirstLast = hasFirstLastIcons === undefined ? true : hasFirstLastIcons;
             hasHidedIcon = hasHidedIcons === undefined ? true : hasHidedIcons;
             hasPreNext = hasPreNextIcons === undefined ? true : hasPreNextIcons;
 
-            if(!hasFirstLast) {
+            if (!hasFirstLast) {
                 var first_icon = pagination.querySelector('.first'),
                     last_icon = pagination.querySelector('.last');
-                if(first_icon) first_icon.style.display = 'none';
-                if(last_icon) last_icon.style.display = 'none';
+                if (first_icon) first_icon.style.display = 'none';
+                if (last_icon) last_icon.style.display = 'none';
             }
-            if(!hasHidedIcon) {
+            if (!hasHidedIcon) {
                 var hide_icons = pagination.querySelectorAll('.hide');
-                if(hide_icons){
+                if (hide_icons) {
                     for (var i = 0; i < hide_icons.length; i++) {
                         hide_icons[i].style.display = 'none';
                     }
                 }
             }
-            if(!hasPreNext) {
+            if (!hasPreNext) {
                 var pre_icon = pagination.querySelector('.forward'),
                     next_icon = pagination.querySelector('.backward');
-                if(pre_icon) pre_icon.style.display = 'none';
-                if(next_icon) next_icon.style.display = 'none';
+                if (pre_icon) pre_icon.style.display = 'none';
+                if (next_icon) next_icon.style.display = 'none';
             }
 
             if (totalCount < visibleCount) {

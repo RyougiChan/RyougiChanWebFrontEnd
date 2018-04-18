@@ -21,6 +21,15 @@
     }
 
     var initYukoComponent = {
+        // Button
+        'initButton': function initSnackbar() {
+            var rippleBtns = document.querySelectorAll('.yuko-button_ripple');
+            if (rippleBtns && rippleBtns.length > 0) {
+                for (var i = 0; i < rippleBtns.length; i++) {
+                    Yuko.utility.addEvent(rippleBtns[i], fingerdown, Yuko.effect.rippleEffect);
+                }
+            }
+        },
         // TextField
         'initTextFields': function initTextField() {
             var textfiled = document.querySelectorAll('.yuko-js-textfield .yuko-textfield_input');
@@ -272,8 +281,8 @@
                 var x,
                     y,
                     i;
-                x = document.querySelectorAll("yuko-select_items");
-                y = document.querySelectorAll("yuko-select_selected");
+                x = document.querySelectorAll(".yuko-select_items");
+                y = document.querySelectorAll(".yuko-select_selected");
                 except = typeof (except) == 'number' ? x[except] : except;
 
                 for (i = 0; i < x.length; i++) {
@@ -342,7 +351,6 @@
                         _this = _selected.parentElement;
                     }
                 }
-
                 if (_this == undefined) {
                     // press down out of yuko-selectbox
                     closeAllSelect();
@@ -416,6 +424,83 @@
 
             }
             Yuko.utility.addEvent(document, fingerdown, snackbarHandler);
+        },
+        // File Upload
+        'initFileUpload': function initFileUpload() {
+            var hasChangeEvent = false,
+                fileUploadChangeHandler = function (e) {
+                    var _input = e.target,
+                        _parent = _input.parentElement,
+                        files = _input.files,
+                        imgs = [],
+                        isClearAllOldImg;
+                    for (var i = 0; i < files.length; i++) {
+                        var type = files[i].type;
+                        if (/^image\/[\w\W]*$/g.test(type)) {
+                            // files[i] is a image
+                            imgs.push(files[i]);
+                        }
+                    }
+                    for (var k = 0; k < imgs.length; k++) {
+                        var img_width = (100 / imgs.length) + '%',
+                            noImg = _parent.querySelector('.no-img'),
+                            imgBox = _parent.querySelector('.img-box');
+                        if (imgBox) {
+                            var newImg = document.createElement('img'),
+                                oldImgs = imgBox.querySelectorAll('.img-item'),
+                                imgCroppr = document.getElementById('yuko-image_cropper--container'),
+                                imgCropprImage = document.getElementById('yuko-image_cropper--img'),
+                                // FileReader compatibility
+                                // Feature	Firefox (Gecko)	Chrome	Edge	Internet Explorer	Opera	    Safari
+                                // Support	3.6 (1.9.2)[1]	7	    (Yes)	10	                12.02[2]	6.0
+                                reader = new FileReader();
+                            reader.onload = function (readerEvent) {
+                                if(!isClearAllOldImg) {
+                                    // Clear old
+                                    for(var o = 0; o < oldImgs.length; o++) {
+                                        imgBox.removeChild(oldImgs[o]);
+                                    }
+                                    isClearAllOldImg = true;
+                                }
+                                if(imgCroppr && imgCropprImage) {
+                                    imgCroppr.style.zIndex = '7020';
+                                    imgCroppr.style.opacity = 1;
+                                    imgCropprImage.src = readerEvent.target.result;
+                                } else {
+                                    imgBox.style.display = 'block';
+                                    if (noImg) noImg.style.display = 'none';
+                                }
+                                // Add new
+                                newImg.classList.add('img-item');
+                                newImg.src = readerEvent.target.result;
+                                imgBox.appendChild(newImg);
+                            };
+                            reader.readAsDataURL(files[k]);
+                        }
+                    }
+                },
+                fileUploadHandler = function (evt) {
+                    // _this : fileUpload Container
+                    var _this,
+                        _input,
+                        _target = evt.target;
+
+                    if (_target == document.documentElement) return;
+                    _this = Yuko.utility.hasAncestor(_target, { className: 'yuko-upload' });
+                    if (!_this) return;
+                    _input = _this.getElementsByTagName('input')[0];
+                    if (!_input) return;
+                    // open file selector
+                    _input.click();
+
+                    // bind `_input` change event
+                    if (!hasChangeEvent) {
+                        Yuko.utility.addEvent(_input, 'change', fileUploadChangeHandler);
+                        hasChangeEvent = true;
+                    }
+                };
+            // In our test, touchstart event can not trigger `_input.click()` on mobile device. 
+            Yuko.utility.addEvent(document, 'click', fileUploadHandler);
         }
     };
 
