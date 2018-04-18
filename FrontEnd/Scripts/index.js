@@ -85,6 +85,11 @@
     $(window).on('resize', function () {
         styleControl();
     });
+    
+    $(window).on('orientationchange', function () {
+        location.reload();
+    });
+    
     // [PC] Main container scroll controllor
     var anim = function (scrollNode) {
         var scrollTop = scrollNode.scrollTop();

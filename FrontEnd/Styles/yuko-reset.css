@@ -96,3 +96,7 @@ sup {
 pre::-webkit-scrollbar {
     display: none;
 }
+pre {
+    -ms-overflow-style:none;
+    overflow:-moz-scrollbars-none;
+}

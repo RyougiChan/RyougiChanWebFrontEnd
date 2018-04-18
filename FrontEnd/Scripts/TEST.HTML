@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-content" style="opacity: 1; transform: perspective(2500px) rotateX(0deg);">
+        <div id="edit-page" class="yuko-article">
+            <div class="edit edit-cover">
+                <div class="yuko-upload edit-cover_upload">
+                    <input type="file" accept="image/jpeg, image/jpg, image/png, image/bmp">
+                    <div class="no-img">
+                        <i class="material-icons">image</i>
+                        <h4>Add article cover there. This is optional.</h4>
+                        <p class="tips">Image less than 3MB and in JPG/JPEG/BMP/PNG format is supported.</p>
+                        <p class="tips">Or add a image link in the textfield below</p>
+                    </div>
+                    <div class="img-box">
+                        <img src="">
+                    </div>
+                </div>
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_cover">
+                    <label class="yuko-textfield_label" for="yuko-input_cover">Image Link Here (Optional) </label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit edit-title">
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_title">
+                    <label class="yuko-textfield_label" for="yuko-input_title">Title (limit: 30 characters.)</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-subtitle">
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_subtitle">
+                    <label class="yuko-textfield_label" for="yuko-input_subtitle">Subtitle (limit: 30 characters.)</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-category">
+                <h5>Select category for this article</h5>
+                <ul class="edit-list">
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                        Music
+                    </li>
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                        Drawing
+                    </li>
+                </ul>
+                <div class="yuko-textfield yuko-js-textfield">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_category">
+                    <label class="yuko-textfield_label" for="yuko-input_category">Category</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-info">
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_info"></textarea>
+                    <label class="yuko-textfield_label" for="yuko-input_info">Article Infomation</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-abstract">
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_abstract"></textarea>
+                    <label class="yuko-textfield_label" for="yuko-input_abstract">Abstract</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-keywords">
+                <h5>Keywords</h5>
+                <ul class="edit-list">
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                        keywords 1
+                    </li>
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                        keywords 2
+                    </li>
+                </ul>
+                <div class="yuko-textfield yuko-js-textfield">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords">
+                    <label class="yuko-textfield_label" for="yuko-input_keywords">Keywords</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-body">
+                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_body"></textarea>
+                    <label class="yuko-textfield_label" for="yuko-input_body">Body</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-ref yuko-article_ref">
+                <h5>Reference</h5>
+                <ul class="edit-ref_list yuko-article_ref-list">
+                    <li class="">
+                        Reference 1
+                    </li>
+                    <li class="">
+                        Reference 2
+                    </li>
+                </ul>
+                <div class="yuko-textfield yuko-js-textfield">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_ref">
+                    <label class="yuko-textfield_label" for="yuko-input_ref">Reference</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-licenses">
+                <h5>Licenses</h5>
+                <div class="yuko-select">
+                    <div class="yuko-select_selected">Allow</div>
+                    <div class="yuko-select_items yuko-select_hide">
+                        <div>Allow</div>
+                        <div>Not Allow</div>
+                    </div>
+                </div>
+                <div class="yuko-textfield yuko-js-textfield">
+                    <input class="yuko-textfield_input" type="text" id="yuko-input_licenses">
+                    <label class="yuko-textfield_label" for="yuko-input_licenses">Additional Terms</label>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-ctrl">
+                <ul>
+                    <li class="yuko-button yuko-button_raised yuko-button_colored yuko-button_bordered yuko-button_ripple">
+                        <i>Save Article</i>
+                    </li>
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                        Preview Article
+                    </li>
+                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                        Save as Draft
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="Yuko.js"></script>
+    <script>
+        var es = Yuko.utility.hasChildren(document.getElementById('edit-page'), {nodeName:'li'});
+        console.log(es);
+    </script>
+</body>
+
+</html>

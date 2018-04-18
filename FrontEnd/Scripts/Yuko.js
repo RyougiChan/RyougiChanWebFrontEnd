@@ -27,8 +27,15 @@
     var global = win;
 
     if (!global.Yuko) {
-        global.Yuko = global.Yuko = global.yuko = Object();
+        global.Yuko = global.YUKO = global.yuko = Object();
     }
+
+    Yuko.fields = (function () {
+        var pagination_visible_arr = [];
+        return {
+            pagination_visible_arr: pagination_visible_arr
+        };
+    })();
 
     Yuko.polyfill = (function () {
         // String.prototype.endsWith polyfill
@@ -122,6 +129,49 @@
                 }
                 return A;
             };
+        }
+
+        // classList Polyfill
+        if (!("classList" in document.documentElement)) {
+            Object.defineProperty(HTMLElement.prototype, 'classList', {
+                get: function () {
+                    var self = this;
+                    function update(fn) {
+                        return function (value) {
+                            var classes = self.className.split(/\s+/g),
+                                index = classes.indexOf(value);
+
+                            fn(classes, index, value);
+                            self.className = classes.join(" ");
+                        }
+                    }
+
+                    return {
+                        add: update(function (classes, index, value) {
+                            if (!~index) classes.push(value);
+                        }),
+
+                        remove: update(function (classes, index) {
+                            if (~index) classes.splice(index, 1);
+                        }),
+
+                        toggle: update(function (classes, index, value) {
+                            if (~index)
+                                classes.splice(index, 1);
+                            else
+                                classes.push(value);
+                        }),
+
+                        contains: function (value) {
+                            return !!~self.className.split(/\s+/g).indexOf(value);
+                        },
+
+                        item: function (i) {
+                            return self.className.split(/\s+/g)[i] || null;
+                        }
+                    };
+                }
+            });
         }
     })();
 
@@ -328,8 +378,6 @@
 
             return parseFloat((a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d).toLocaleString());
         }
-
-
 
         /**
          * Elements must implement biggerThan() or greaterThan(), or otherwise can be compared via 'greater than' sign
@@ -984,6 +1032,134 @@
             return properties;
         }
 
+        /**
+         * Check if current device is a mobile device.
+         */
+        function isMobile() {
+            if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|SymbianOS)/i))) {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * Check if element has the specific ancestor
+         * @param {Element} ele this element
+         * @param {{id:string, className:string, nodeName:string}} prop specific properties
+         * 
+         * @returns return the first matched element if exist, else return null.
+         */
+        function hasAncestor(ele, prop) {
+            if (!ele || !prop) return;
+            var id = prop.id,
+                className = prop.className,
+                nodeName = prop.nodeName;
+            if (!(id || className || nodeName)) return;
+
+            var parent,
+                tempTarget;
+
+            if (id) {
+                parent = ele.parentElement;
+                while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                    if (parent.id == id) {
+                        tempTarget = parent;
+                        break;
+                    } else {
+                        parent = parent.parentElement;
+                    }
+                }
+            }
+            if (className) {
+                if (tempTarget) {
+                    if (!tempTarget.classList.contains(className)) {
+                        tempTarget = null;
+                    }
+                } else {
+                    parent = ele.parentElement;
+                    while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                        if (parent.classList.contains(className)) {
+                            tempTarget = parent;
+                            break;
+                        } else {
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+            }
+            if (nodeName) {
+                nodeName = nodeName.toLocaleLowerCase();
+                if (tempTarget) {
+                    if (tempTarget.nodeName.toLocaleLowerCase() != nodeName) {
+                        tempTarget = null;
+                    }
+                } else {
+                    parent = ele.parentElement;
+                    while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                        if (parent.nodeName.toLocaleLowerCase() == nodeName) {
+                            tempTarget = parent;
+                            break;
+                        } else {
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+            }
+            return tempTarget;
+        }
+
+        /**
+         * Check if element has the specific children
+         * @param {Element} ele this element
+         * @param {{id:string, className:string, nodeName:string}} prop specific properties
+         * 
+         * @returns return the matched elements list if exist, else return null.
+         */
+        function hasChildren(ele, prop) {
+            if (!ele || !prop) return;
+            var id = prop.id,
+                className = prop.className,
+                nodeName = prop.nodeName;
+            if (!(id || className || nodeName)) return;
+
+            var children,
+                target;
+            
+            if(id) {
+                children = ele.querySelector('#'+id);
+            }
+            if(className) {
+                if(children) {
+                    if(!children.classList.contains(className)) children = null;
+                } else {
+                    children = ele.querySelectorAll('.'+className);
+                    if(children.length == 0) children = null;
+                }
+            }
+            if(nodeName) {
+                nodeName = nodeName.toLocaleLowerCase();
+                if(children) {
+                    // if children has a length property, it is a NodeList, else a Element
+                    if(children.length) {
+                        target = [];
+                        for (var i = 0; i < children.length; i++) {
+                            if(children[i].nodeName.toLocaleLowerCase() == nodeName) {
+                                target.push(children[i]);
+                            }
+                        }
+                    } else {
+                        if(children.nodeName.toLocaleLowerCase() != nodeName) children = null;
+                    }
+                } else {
+                    children = ele.getElementsByTagName(nodeName);
+                }
+            }
+            if(!children) target = null;
+            else target = children;
+
+            return target;
+        }
+
         return {
             calcCubicEquation: calcCubicEquation,
             calcQuadraticEquation: calcQuadraticEquation,
@@ -1001,7 +1177,10 @@
             gaussianElimination: gaussianElimination,
             getBrowserType: getBrowserType,
             animate: animate,
-            crossBrowser: crossBrowser
+            crossBrowser: crossBrowser,
+            isMobile: isMobile,
+            hasAncestor: hasAncestor,
+            hasChildren: hasChildren
         }
     })();
 
@@ -2348,12 +2527,432 @@
             Yuko.utility.addEvent(close, 'click', onCloseClick);
         }
 
+        /**
+         * Make an Element to be a pagination element.
+         * 
+         * @param {Element} pagination The pagination itself.
+         * @param {number} totalCount Number of all pagination items.
+         * @param {number} visibleCount Number of visible pagination items.
+         * @param {boolean} hasPreNextIcons Whether there are previous/next icons or not.
+         * @param {boolean} hasFirstLastIcons Whether there are first/last icons or not.
+         * @param {boolean} hasHidedIcons Whether there are hided icons or not.
+         * @example var p = document.querySelector('.yuko-pagination');
+                    Yuko.widget.pagination(p,30,5,true,true,true);
+         */
+        function pagination(pagination, totalCount, visibleCount, hasPreNextIcons, hasFirstLastIcons, hasHidedIcons) {
+
+            if (!pagination) {
+                console.log('error-param: Pagination required or parameter in invalid format.');
+                return;
+            }
+            if (!totalCount || totalCount < 0) {
+                console.log('error-param: Total count of pagination items required or parameter in invalid format.');
+                return;
+            }
+            if (!visibleCount || visibleCount < 0) {
+                console.log('error-param: Number of visible pagination items required or parameter in invalid format.');
+                return;
+            }
+            var hasFirstLast, hasHidedIcon, hasPreNext;
+            hasFirstLast = hasFirstLastIcons === undefined ? true : hasFirstLastIcons;
+            hasHidedIcon = hasHidedIcons === undefined ? true : hasHidedIcons;
+            hasPreNext = hasPreNextIcons === undefined ? true : hasPreNextIcons;
+
+            if (!hasFirstLast) {
+                var first_icon = pagination.querySelector('.first'),
+                    last_icon = pagination.querySelector('.last');
+                if (first_icon) first_icon.style.display = 'none';
+                if (last_icon) last_icon.style.display = 'none';
+            }
+            if (!hasHidedIcon) {
+                var hide_icons = pagination.querySelectorAll('.hide');
+                if (hide_icons) {
+                    for (var i = 0; i < hide_icons.length; i++) {
+                        hide_icons[i].style.display = 'none';
+                    }
+                }
+            }
+            if (!hasPreNext) {
+                var pre_icon = pagination.querySelector('.forward'),
+                    next_icon = pagination.querySelector('.backward');
+                if (pre_icon) pre_icon.style.display = 'none';
+                if (next_icon) next_icon.style.display = 'none';
+            }
+
+            if (totalCount < visibleCount) {
+                visibleCount = totalCount;
+            }
+
+            var paginations = document.querySelectorAll('.yuko-pagination'),
+                pagination_items = pagination.querySelectorAll('.yuko-pagination_item'),
+                visibles = Yuko.fields.pagination_visible_arr,
+                visible = [];
+            // Refresh [all] pagination.
+            var refreshPagination = function (pagination) {
+                if (pagination) {
+                    // refresh pagination
+                    var index,
+                        items = pagination.querySelectorAll('.yuko-pagination_item');
+                    for (var o = 0; o < paginations.length; o++) {
+                        if (paginations[o] == pagination) {
+                            index = o;
+                        }
+                    }
+                    for (var i = 0; i < visibles[index].length; i++) {
+                        // Change content of items
+                        items[i].innerHTML = "<a>" + (visibles[index][i] + 1) + "</a>";
+                    }
+                } else {
+                    // refresh all
+                    for (var i = 0; i < visibles.length; i++) {
+                        var vis = visibles[i],
+                            paging = paginations[i],
+                            items = paging.querySelectorAll('.yuko-pagination_item');
+                        for (var j = 0; j < vis.length; j++) {
+                            // Change content of items
+                            items[j].innerHTML = "<a>" + (vis[j] + 1) + "</a>";
+                        }
+                    }
+                }
+            }
+
+            if (totalCount <= visibleCount) {
+                for (var k = 0; k < totalCount; k++) {
+                    visible.push(k);
+                }
+            } else {
+                for (var k = 0; k < visibleCount; k++) {
+                    visible.push(k);
+                }
+            }
+            // Hide unnecessary items
+            if (pagination_items.length > visibleCount) {
+                for (var i = visibleCount; i < pagination_items.length; i++) {
+                    pagination_items[i].style.display = 'none';
+                }
+            }
+            visibles.push(visible);
+            refreshPagination();
+
+            if (hasHidedIcon) {
+                var _paging = pagination;
+                if (totalCount > visible.length) {
+                    var hided_right = _paging.querySelectorAll('.hided')[1];
+                    if (hided_right)
+                        hided_right.style.display = 'inline-block';
+                }
+            }
+
+            // Pagination Event Handler
+            var fingerdown, fingermove, fingerup;
+            if (Yuko.utility.isMobile()) {
+                fingerdown = 'touchstart';
+                fingermove = 'touchmove';
+                fingerup = 'touchend';
+            } else {
+                fingerdown = 'mousedown';
+                fingermove = 'mousemove';
+                fingerup = 'mouseup';
+            }
+
+            var paginationHandler = function (evt) {
+                var _target = evt.target,
+                    // The active item.
+                    _active,
+                    // Index of active item in yuko-pagination_item list.
+                    a_index,
+                    // _this: yuko-pagination_item.
+                    _this,
+                    // Index of _this in yuko-pagination_item list.
+                    _this_index,
+                    // _paging: yuko-pagination.
+                    _paging,
+                    // visible: current pagination visible items.
+                    visible,
+                    // hided_left: Hided-left icon.
+                    hided_left,
+                    // hided_right: Hided-right icon.
+                    hided_right,
+                    // middel_item: middle yuko-pagination_item.
+                    middle_item,
+                    // middle_index: Index of middle-item
+                    middle_index;
+
+                if (_target == document.documentElement || !_target.parentElement) {
+                    // If press on a blank area.
+                    return;
+                }
+
+                // CASE-1: press on a function btn.
+                if (_target.parentElement.classList.contains('yuko-pagination_func')) {
+                    _this = _target.parentElement;
+                    _paging = _this.parentElement;
+
+                    if (_paging != pagination) return;
+
+                    var paging_list = _paging.querySelectorAll('.yuko-pagination_item');
+                    hided_left = _paging.querySelectorAll('.yuko-pagination_func.hided')[0];
+                    hided_right = _paging.querySelectorAll('.yuko-pagination_func.hided')[1];
+                    middle_index = Math.floor(visibleCount / 2);
+                    p_index; // Index of current pagination in paginations list.
+
+                    // Init p_index.
+                    for (var o = 0; o < paginations.length; o++) {
+                        if (paginations[o] == _paging) {
+                            p_index = o;
+                        }
+                    }
+                    // Init _active, a_index, _this_index.
+                    if (!_active) {
+                        for (var i = 0; i < paging_list.length; i++) {
+                            var item = paging_list[i];
+                            if (item.classList.contains('active')) {
+                                _active = item;
+                                a_index = i;
+                            }
+                            if (item == _this) {
+                                _this_index = i;
+                            }
+                        }
+                    }
+
+                    var vis = visibles[p_index];
+                    // CASE-1.1: press on forward btn.           
+                    if (_this.classList.contains('forward')) {
+                        if (vis[vis.length - 1] != totalCount - 1) {
+                            // This pagination visible list's last value hasn't reached the limited index.
+                            if (a_index < middle_index) {
+                                if (_active.classList.contains('active'))
+                                    _active.classList.remove('active');
+                                a_index++;
+                                _active = paging_list[a_index];
+                                if (!_active.classList.contains('active'))
+                                    _active.classList.add('active');
+                            } else {
+                                // Change visible item.
+                                for (var i = 0; i < vis.length; i++) {
+                                    vis[i]++;
+                                }
+                                // If has no right more, hide hided btn.
+                                if (vis[vis.length - 1] == totalCount - 1) {
+                                    hided_right.style.display = 'none';
+                                }
+                            }
+                            refreshPagination(_paging);
+                        } else {
+                            // This pagination has reached the limited index.
+                            // Just change the active item.
+                            if (a_index != visibleCount - 1) {
+                                if (_active.classList.contains('active'))
+                                    _active.classList.remove('active');
+                                a_index++;
+                                _active = paging_list[a_index];
+                                if (!_active.classList.contains('active'))
+                                    _active.classList.add('active');
+                                refreshPagination(_paging);
+                            }
+                        }
+                    }
+
+                    // CASE-1.2: press on backward btn.
+                    if (_this.classList.contains('backward')) {
+                        if (vis[0] != 0) {
+                            // This pagination visible list's first value hasn't reached the limited origin index.
+                            if (a_index > middle_index) {
+                                if (_active.classList.contains('active'))
+                                    _active.classList.remove('active');
+                                a_index--;
+                                _active = paging_list[a_index];
+                                if (!_active.classList.contains('active'))
+                                    _active.classList.add('active');
+                                refreshPagination(_paging);
+                            } else {
+                                // Change visible item.
+                                for (var i = 0; i < vis.length; i++) {
+                                    vis[i]--;
+                                }
+                                // If has no left more, hide hided btn.
+                                if (vis[0] == 0) {
+                                    hided_left.style.display = 'none';
+                                }
+                                refreshPagination(_paging);
+                            }
+                        } else {
+                            // This pagination has reached the limited index.
+                            // Just change the active item.
+                            if (a_index != 0) {
+                                if (_active.classList.contains('active'))
+                                    _active.classList.remove('active');
+                                a_index--;
+                                _active = paging_list[a_index];
+                                if (!_active.classList.contains('active'))
+                                    _active.classList.add('active');
+                                refreshPagination(_paging);
+                            }
+                        }
+                    }
+
+                    // CASE-1.3: press on to-the-first btn.
+                    if (_this.classList.contains('first')) {
+                        // Change visible item.
+                        for (var i = 0; i < vis.length; i++) {
+                            vis[i] = i;
+                        }
+                        // Change active item.
+                        if (_active.classList.contains('active'))
+                            _active.classList.remove('active');
+                        a_index = 0;
+                        _active = paging_list[a_index];
+                        if (!_active.classList.contains('active'))
+                            _active.classList.add('active');
+                        refreshPagination(_paging);
+                    }
+
+                    // CASE-1.4: press on to-the-last btn.
+                    if (_this.classList.contains('last')) {
+                        // Change visible item.
+                        for (var i = 0; i < vis.length; i++) {
+                            vis[i] = totalCount - visibleCount + i;
+                        }
+                        // Change active item.
+                        if (_active.classList.contains('active'))
+                            _active.classList.remove('active');
+                        a_index = visibleCount - 1;
+                        _active = paging_list[a_index];
+                        if (!_active.classList.contains('active'))
+                            _active.classList.add('active');
+                        refreshPagination(_paging);
+                    }
+
+                    if (vis[0] == 0 && hided_left) {
+                        // hided Hided-left icon.
+                        hided_left.style.display = 'none';
+                        if (totalCount > visibleCount) {
+                            hided_right.style.display = 'inline-block';
+                        }
+                    } else if (vis[visibleCount - 1] == totalCount - 1 && hided_right) {
+                        // hided Hided-right icon.
+                        hided_right.style.display = 'none';
+                        if (totalCount > visibleCount) {
+                            hided_left.style.display = 'inline-block';
+                        }
+                    } else {
+                        // display hided icon.
+                        hided_left.style.display = 'inline-block';
+                        hided_right.style.display = 'inline-block';
+                    }
+
+                }
+
+                // CASE-2: press on a pagination item.
+                if (_target.parentElement.classList.contains('yuko-pagination_item')) {
+                    _this = _target.parentElement;
+                    _paging = _this.parentElement.parentElement;
+
+                    if (_paging != pagination) return;
+
+                    hided_left = _paging.querySelectorAll('.yuko-pagination_func.hided')[0];
+                    hided_right = _paging.querySelectorAll('.yuko-pagination_func.hided')[1];
+                    middle_index = Math.floor(visibleCount / 2);
+                    middle_item = _paging.querySelectorAll('.yuko-pagination_item')[middle_index];
+
+                    // Init _active, a_index, _this_index.
+                    if (!_active) {
+                        for (var i = 0; i < _this.parentElement.children.length; i++) {
+                            var item = _this.parentElement.children[i];
+                            if (item.classList.contains('active')) {
+                                _active = item;
+                                a_index = i;
+                            }
+                            if (item == _this) {
+                                _this_index = i;
+                            }
+                        }
+                    }
+
+                    if (_this != _active) {
+                        // Get visible item list.
+                        var p_index; // Index of current pagination in paginations list.
+                        for (var o = 0; o < paginations.length; o++) {
+                            if (paginations[o] == _paging) {
+                                p_index = o;
+                            }
+                        }
+                        var vis = visibles[p_index],
+                            // step: Length of _this to middle item.
+                            step = Math.floor(_this_index - middle_index),
+                            // overflow: Is reach the limited index or not.
+                            overflow = false;
+                        // Change visible item list.
+                        if (step > 0) {
+                            if (vis[vis.length - 1] + step > totalCount - 1) {
+                                step = totalCount - vis[vis.length - 1] - 1;
+                                overflow = true;
+                            }
+
+                        }
+                        else if (step < 0) {
+                            if (vis[0] + step < 0) {
+                                step = -vis[0];
+                                overflow = true;
+                            }
+                        }
+
+                        // Set active item.
+                        if (_active.classList.contains('active'))
+                            _active.classList.remove('active');
+                        if (step != 0) {
+                            for (var i = 0; i < vis.length; i++) {
+                                vis[i] += step;
+                            }
+                            refreshPagination(_paging);
+                            // Set active item.
+                            if (overflow) {
+                                a_index = middle_index + step;
+                                _active = _paging.querySelectorAll('.yuko-pagination_item')[a_index];
+                            } else {
+                                a_index = middle_index;
+                                _active = middle_item;
+                            }
+                        } else {
+                            a_index = _this_index;
+                            _active = _this;
+                        }
+                        if (!_active.classList.contains('active'))
+                            _active.classList.add('active');
+
+                        // Set style of hided icon if exist.
+                        if (vis[0] == 0 && hided_left) {
+                            // hided Hided-left icon.
+                            hided_left.style.display = 'none';
+                            if (totalCount > visibleCount) {
+                                hided_right.style.display = 'inline-block';
+                            }
+                        } else if (vis[visibleCount - 1] == totalCount - 1 && hided_right) {
+                            // hided Hided-right icon.
+                            hided_right.style.display = 'none';
+                            if (totalCount > visibleCount) {
+                                hided_left.style.display = 'inline-block';
+                            }
+                        } else {
+                            hided_left.style.display = 'inline-block';
+                            hided_right.style.display = 'inline-block';
+                        }
+                    }
+
+                }
+            }
+            Yuko.utility.addEvent(document, fingerdown, paginationHandler);
+
+        }
+
         return {
             navigationDrawer: navigationDrawer,
             pageContainer: pageContainer,
             carousel: carousel,
             carouselV2: carouselV2,
-            scaleContainer: scaleContainer
+            scaleContainer: scaleContainer,
+            pagination: pagination
         };
 
     })();

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RyougiChan - Login to CMS</title>
+    <link rel="stylesheet" href="../../Styles/yuko-reset.css">
+    <link rel="stylesheet" href="../../Styles/yuko-global.css">
+    <link rel="stylesheet" href="../../Styles/material-icons.css">
+    <link rel="stylesheet" href="../../Styles/md-icons/css-sprite/sprite-navigation-white.css">
+    <link rel="stylesheet" href="../../Styles/yuko-material.css">
+    <link rel="stylesheet" href="../../Styles/yuko.css">
+    <link rel="stylesheet" href="../../Styles/yuko.component.css">
+    <link rel="stylesheet" href="../../Styles/cms-index.css">
+    <link rel="stylesheet" href="../../Styles/index@1200px.css">
+    <style>
+        #area-form {
+            width: 50%;
+            margin: 10% auto;
+            background: rgba(241, 241, 241, .7);
+        }
+
+        .yuko-docs .yuko-form>div {
+            width: 40%;
+            padding: 5%;
+        }
+
+        .yuko-docs.yuko-login {
+            height: 100%;
+        }
+
+
+        .yuko-docs .yuko-form .yuko-textfield {
+            display: block;
+            width: 70%;
+            margin-left: 0;
+        }
+
+        .yuko-docs .yuko-form .yuko-button {
+            width: 70%;
+        }
+
+
+        .yuko-docs .yuko-form .yuko-form_left {
+            background: rgba(255, 255, 255, .5);
+        }
+
+        .yuko-docs .yuko-form .yuko-form_right {
+            float: right;
+        }
+    </style>
+</head>
+
+<body class="icons-docs yuko-docs yuko-login">
+    <div id="main-container">
+        <div id="area-mask">
+            <div id="area-logo">
+                <a href="#"></a>
+            </div>
+            <div id="area-form">
+                <div class="yuko-form">
+                    <div class="yuko-form_right">
+                        <h2>Notice</h2>
+                        <div>
+                            &gt; If you don't have a account to access. Please ask
+                            <a href="">Adimistrator</a>
+                            for help.
+                        </div>
+                        <div>
+                            &gt; If you have your account but forget your password. Click link below to recover your password.
+                        </div>
+                        <a href="">&gt;&gt;&gt; Recover your password &lt;&lt;&lt;</a>
+                        <div id="alert">
+
+                        </div>
+                    </div>
+                    <div class="yuko-form_left">
+                        <h3>Content Management System</h3>
+                        <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                            <input class="yuko-textfield_input" type="text" pattern="^([^-^\d])([\w-]{1,31})$" id="yuko-input1">
+                            <label class="yuko-textfield_label" for="yuko-input1">Name</label>
+                            <span class="yuko-textfield_error">Letter, number, '_', '-' supported only! Max 32.</span>
+                        </div>
+                        <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                            <input class="yuko-textfield_input" type="password" id="yuko-input2">
+                            <label class="yuko-textfield_label" for="yuko-input2">Password</label>
+                        </div>
+                        <div class="yuko-button yuko-button_ripple yuko-button_null yuko-button_colored">
+                            <i class="">Login</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../Scripts/jquery/jquery.min.js"></script>
+    <script src="../../Scripts/jquery/jquery.smoove.js"></script>
+    <script src="../../Scripts/Yuko.js"></script>
+    <script src="../../Scripts/Yuko.component.js"></script>
+</body>
+
+</html>

@@ -1,12 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>RyougiChan - ようこそ！</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RyougiChan - CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="RyougiChan,ryougichan">
+    <meta name="description" content="This is RyougiChan!">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../../Styles/yuko-reset.css">
+    <link rel="stylesheet" href="../../Styles/yuko-global.css">
+    <link rel="stylesheet" href="../../Styles/material-icons.css">
+    <link rel="stylesheet" href="../../Styles/md-icons/css-sprite/sprite-navigation-white.css">
+    <link rel="stylesheet" href="../../Styles/yuko-material.css">
+    <link rel="stylesheet" href="../../Styles/yuko.css">
+    <link rel="stylesheet" href="../../Styles/yuko.component.css">
+    <link rel="stylesheet" href="../../Styles/index.css">
+    <link rel="stylesheet" href="../../Styles/index@1200px.css">
+    <style>
+        body.yuko-cms {
+            min-height: 100%;
+        }
+        body.yuko-cms #header {
+            top: 0 !important
+        }
+
+        body.yuko-cms #footer {
+            bottom: 0 !important
+        }
+
+        body.yuko-cms #header>div {
+            width: 90%;
+        }
+
+        body.yuko-cms #main>div {
+            width: 90%;
+        }
+
+        body.yuko-cms #main .main-middle_left {
+            width: 27%;
+            top: 90px;
+            bottom: 46px;
+            position: fixed;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            -ms-overflow-style:none;
+            overflow:-moz-scrollbars-none;
+        }
+
+        body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
+            display: none;
+        }
+        
+        body.yuko-cms .yuko-list.yuko-list_compact .yuko-list_item {
+            user-select: none;
+        }
+        body.yuko-cms .yuko-list > .yuko-list_item .yuko-list_item-content { width: 100% }
+        body.yuko-cms #main .main-middle_right {
+            width: 70%;
+        }
+
+        body.yuko-cms .yuko-list.yuko-list_compact .yuko-checkbox {
+            margin: 15px 5px;
+        }
+
+        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(2) {
+            width: 45%;
+        }
+        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(3) {
+            width: 8%;
+        }
+        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(4) {
+            width: 15%;
+        }
+        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(5) {
+            width: 15%;
+        }
+
+        body.yuko-docs .yuko-list.yuko-list_compact .yuko-list_item {
+            padding: 0;
+            margin: 1px 0;
+            cursor: pointer;
+        }
+
+        body.yuko-docs .yuko-list.yuko-list_compact>.yuko-list_item>span>span {
+            /* display: inline-block; */
+            float: left;
+        }
+    </style>
 </head>
-<body>
-    
+
+<body class="icons-docs yuko-docs yuko-cms">
+    <div id="main-container">
+        <!-- Background S -->
+        <div id="background">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <!-- Background E -->
+        <!-- Header S -->
+        <header id="header">
+            <div>
+                <div id="header-logo">
+                    <a href="#"></a>
+                </div>
+                <div id="header-nav">
+                    <ul class="header-nav-level1">
+                        <li>り
+                            <ul class="header-nav-level2">
+                                <li>
+                                    <a>一</a>
+                                </li>
+                                <li>
+                                    <a>二</a>
+                                </li>
+                                <li>
+                                    <a>三</a>
+                                </li>
+                                <li>
+                                    <a>四</a>
+                                </li>
+                                <li>
+                                    <a>五</a>
+                                </li>
+                                <li>
+                                    <a>六</a>
+                                </li>
+                                <li>
+                                    <a>七</a>
+                                </li>
+                                <li>
+                                    <a>八</a>
+                                </li>
+                                <li>
+                                    <a>九</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>ょ
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <li>う
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <li>ぎ
+                            <ul class="header-nav-level2">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- Header E -->
+        <!-- Main S -->
+        <section id="main">
+            <div class="main-middle">
+                <div class="main-middle_right">
+                    <div class="main-content">
+                        <h3>Article Management</h3><br>
+                        <ul class="yuko-list yuko-list_compact">
+                                <li class="yuko-list_item">
+                                    <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox yuko-checkbox-all">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            TITLE
+                                        </span>
+                                        <span>
+                                            Status
+                                        </span>
+                                        <span>
+                                            Update Time
+                                        </span>
+                                        <span>
+                                            Operation
+                                        </span>
+                                    </span>
+                                </li>
+                                <li class="yuko-list_item">
+                                    <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            TITLE
+                                        </span>
+                                        <span>
+                                            Status
+                                        </span>
+                                        <span>
+                                            Update Time
+                                        </span>
+                                        <span>
+                                            Operation
+                                        </span>
+                                    </span>
+                                </li>
+                                <li class="yuko-list_item">
+                                    <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            TITLE
+                                        </span>
+                                        <span>
+                                            Status
+                                        </span>
+                                        <span>
+                                            Update Time
+                                        </span>
+                                        <span>
+                                            Operation
+                                        </span>
+                                    </span>
+                                </li>
+                                <li class="yuko-list_item">
+                                    <span class="yuko-list_item-content">
+                                        <span class="yuko-checkbox">
+                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                            <span class="yuko-checkbox_box-outline">
+                                                <span class="yuko-checkbox_tick-outline"></span>
+                                            </span>
+                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                                <span class="yuko-ripple is-animating"></span>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            TITLE
+                                        </span>
+                                        <span>
+                                            Status
+                                        </span>
+                                        <span>
+                                            Update Time
+                                        </span>
+                                        <span>
+                                            Operation
+                                        </span>
+                                    </span>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main-middle_left">
+                    <div class="main-content">
+                        <ul class="yuko-list yuko-list_compact">
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-action">
+                                    ICON
+                                </span>
+                                <span class="yuko-list_item-content">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-action">
+                                    ICON
+                                </span>
+                                <span class="yuko-list_item-content">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <span class="main-to_top"></span>
+        </section>
+        <!-- Main E -->
+        <!-- Footer S -->
+        <footer id="footer">
+            <div class="footer-contact">
+                &nbsp; E-mail:
+                <a href="mailto:ryougi.chan.fire@gmail.com">ryougi.chan.fire@gmail.com</a>
+                <br> &nbsp; Copyright ©
+                <a href="https://github.com/RyougiChan">RyougiChan</a>. All Rights Reserved
+            </div>
+            <div>
+                Osaka, Japan &nbsp;|
+                <br> Technic:
+                <a href="https://github.com/RyougiChan">RyougiChan </a>
+                <a href="#">Management</a> &nbsp;|
+            </div>
+        </footer>
+        <!-- Footer E -->
+    </div>
+    <script src="../../Scripts/jquery/jquery.min.js"></script>
+    <script src="../../Scripts/jquery/jquery.smoove.js"></script>
+    <script src="../../Scripts/Yuko.js"></script>
+    <script src="../../Scripts/Yuko.component.js"></script>
+    <script src="../../Scripts/index.js"></script>
 </body>
+
 </html>
