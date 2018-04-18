@@ -89,6 +89,17 @@
             var checkboxs = document.querySelectorAll('.yuko-checkbox'),
                 isCancel;
 
+            for (var i = 0; i < checkboxs.length; i++) {
+                var box = checkboxs[i],
+                    inputs = box.getElementsByTagName('input');
+                if (inputs.length < 1) continue;
+                var input = inputs[0],
+                    checked = input.getAttribute('checked') == null ? false : true;
+                if (checked) {
+                    box.classList.add('is-checked');
+                }
+            }
+
             Yuko.utility.addEvent(document.body, fingerdown, function (evt) {
                 var _target = event.target;
                 if (_target.className.indexOf('yuko-checkbox') >= 0) {
@@ -124,10 +135,10 @@
                                 // Same-named input
                                 if (!checkall.hasAttribute('checked')) {
                                     cb.classList.add('is-checked');
-                                    cbInput.setAttribute('check', '');
+                                    cbInput.setAttribute('checked', '');
                                 } else {
                                     cb.classList.remove('is-checked');
-                                    cbInput.removeAttribute('check');
+                                    cbInput.removeAttribute('checked');
                                 }
                             }
                         }
@@ -455,14 +466,14 @@
                                 // Support	3.6 (1.9.2)[1]	7	    (Yes)	10	                12.02[2]	6.0
                                 reader = new FileReader();
                             reader.onload = function (readerEvent) {
-                                if(!isClearAllOldImg) {
+                                if (!isClearAllOldImg) {
                                     // Clear old
-                                    for(var o = 0; o < oldImgs.length; o++) {
+                                    for (var o = 0; o < oldImgs.length; o++) {
                                         imgBox.removeChild(oldImgs[o]);
                                     }
                                     isClearAllOldImg = true;
                                 }
-                                if(imgCroppr && imgCropprImage) {
+                                if (imgCroppr && imgCropprImage) {
                                     imgCroppr.style.zIndex = '7020';
                                     imgCroppr.style.opacity = 1;
                                     imgCropprImage.src = readerEvent.target.result;
