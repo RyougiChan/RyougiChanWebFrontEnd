@@ -89,6 +89,7 @@ body.yuko-cms #main #yuko-image_cropper--container {
     z-index: -1;
     background: rgba(0,0,0,.8);
 }
+
 body.yuko-cms #main #yuko-image_cropper {
     width: 60%;
     height: 100%;
@@ -96,6 +97,14 @@ body.yuko-cms #main #yuko-image_cropper {
     background: #f1f1f1;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+body.yuko-cms #main #yuko-image_cropper .yuko-button {
+    padding: 0 1.5em;
+}
+
+body.yuko-cms #main #yuko-image_cropper .yuko-button .ripple {
+    background-color: paleturquoise;
 }
 
 body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--area {
@@ -162,7 +171,8 @@ body.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--download .yuko-dial
     text-align: right;
 }
 
-body.yuko-cms #main #yuko-image_cropper input[type="radio"] {
+body.yuko-cms #main #yuko-image_cropper input[type="radio"],
+body.yuko-cms #main #yuko-image_cropper input[type="file"] {
     position:absolute; top:0; left:0; visibility: hidden; opacity: 0;
 }
 

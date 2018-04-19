@@ -9,15 +9,19 @@
     }
 
     // Event type distinction.
-    var fingerdown, fingermove, fingerup;
+    var fingerdown, fingermove, fingerup, floatover, floatout;
     if (isMobile()) {
         fingerdown = 'touchstart';
         fingermove = 'touchmove';
         fingerup = 'touchend';
+        floatover = 'touchstart';
+        floatout = 'touchend';
     } else {
         fingerdown = 'mousedown';
         fingermove = 'mousemove';
         fingerup = 'mouseup';
+        floatover = 'mouseover';
+        floatout = 'mouseout';
     }
 
     var initYukoComponent = {
@@ -85,7 +89,6 @@
         },
         // CheckBox
         'initCheckBoxs': function initCheckBox() {
-
             var checkboxs = document.querySelectorAll('.yuko-checkbox'),
                 isCancel;
 
@@ -512,6 +515,61 @@
                 };
             // In our test, touchstart event can not trigger `_input.click()` on mobile device. 
             Yuko.utility.addEvent(document, 'click', fileUploadHandler);
+        },
+        // Tooltip
+        'initToolTip': function initToolTip() {
+            var tooltip, // tooptip
+                trigger,
+                container_bound,
+                trigger_bound, // bound of trigger
+                tooltip_bound, // bound of tooptip
+                container, // container of yuko-tooltip
+                title, // show text
+                toolTipShowHandler = function (evt) {
+                    var _target = evt.target;
+                    if (_target.classList.contains('yuko-tooltip_trigger')) {
+                        trigger = _target;
+                    } else {
+                        trigger = Yuko.utility.hasAncestor(_target, { className: 'yuko-tooltip_trigger' });
+                    }
+                    if (trigger) {
+                        container = trigger.parentElement;
+                        if (!container.classList.contains('yuko-tooltip_container')) container.classList.toggle('yuko-tooltip_container');
+                        trigger_bound = trigger.getBoundingClientRect();
+                        container_bound = container.getBoundingClientRect();
+                        title = trigger.getAttribute('data-title');
+
+                        tooltip = document.createElement('span');
+                        tooltip.classList.toggle('yuko-tooltip');
+                        tooltip.classList.toggle('is-active');
+                        tooltip.innerHTML = title;
+                        tooltip_bound = tooltip.getBoundingClientRect();
+                        // tooltip.style.top = trigger_bound.bottom + 4 + 'px';
+                        tooltip.style.top = container_bound.bottom + 4 + 'px';
+                        // tooltip.style.left = trigger_bound.left + (trigger.offsetWidth - tooltip.offsetWidth) / 2 + 'px';
+                        tooltip.style.left = container_bound.left + 'px';
+                        container.appendChild(tooltip);
+                    }
+
+                },
+                toolTipHideHandler = function (evt) {
+                    var _target = evt.target;
+                    if (_target.classList.contains('yuko-tooltip')) {
+                        tooltip = _target;
+                        trigger = tooltip.previousElementSibling;
+                    } else if (_target.classList.contains('yuko-tooltip_trigger')) {
+                        trigger = _target;
+                    } else {
+                        trigger = Yuko.utility.hasAncestor(_target, { className: 'yuko-tooltip_trigger' });
+                    }
+                    if (trigger) {
+                        tooltip = trigger.nextElementSibling;
+                        container = trigger.parentElement;
+                        container.removeChild(tooltip);
+                    }
+                };
+            Yuko.utility.addEvent(document.body, floatover, toolTipShowHandler);
+            Yuko.utility.addEvent(document.body, floatout, toolTipHideHandler);
         }
     };
 
