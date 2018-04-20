@@ -249,6 +249,7 @@ $(function () {
       $inputImage.change(function () {
         var files = this.files;
         var file;
+        console.log($image.data('cropper'));
   
         if (!$image.data('cropper')) {
           return;

@@ -60,6 +60,16 @@
         }
     </style>
     <link rel="stylesheet" href="modification.css">
+    <!-- Include external CSS. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_style.min.css" rel="stylesheet" type="text/css"
+    />
 </head>
 
 <body class="icons-docs yuko-docs yuko-cms">
@@ -186,6 +196,18 @@
                                     </li>
                                     <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
                                         Drawing
+                                        <i class="material-icons remove" style="
+    position:  absolute;
+    right: -25%;
+    top: 0;
+    border-radius:  50%;
+    background: palegreen;
+    color: white;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size:  18px;
+">close</i>
                                     </li>
                                 </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
@@ -647,7 +669,7 @@
                                     </span>
                                 </label>
                             </div>
-                            
+
                             <!-- Drop Down List -->
                             <!--
                             <div class="dropdown dropup docs-options yuko-select">
@@ -954,9 +976,16 @@
     <script src="../../../Scripts/Yuko.js"></script>
     <script src="../../../Scripts/Yuko.component.js"></script>
     <script src="../../../Scripts/index.js"></script>
-    <script src="../../../Scripts/cropper/cropper.min.js"></script>
+    <script src="../../../Scripts/cropper/cropper.js"></script>
+    <!-- <script src="../../../Scripts/cropper/cropper.min.js"></script> -->
     <script src="../../../Scripts/cropper/jquery-cropper.min.js"></script>
     <script src="../../../Scripts/cropper/cropper-main.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/js/froala_editor.pkgd.min.js"></script>
     <script>
 
         var $imageCropper = $('#yuko-image_cropper--container'),
@@ -964,40 +993,82 @@
             $uploadImg = $('.edit-cover .yuko-upload input'),
             $uploadMoImg = $('.edit-cover .yuko-upload .no-img'),
             $uploadImgBox = $('.edit-cover .yuko-upload .img-box'),
-            $uploadImgPreview = $('.edit-cover .yuko-upload .img-box img');
+            $uploadImgLink = $('.edit-cover .yuko-textfield'),
+            $uploadImgPreview = $('.edit-cover .yuko-upload .img-box img'),
+            isFirst = true,
+            files,
+            file,
+            uploadedImageURL,
+            options = {
+                aspectRatio: 8 / 3,
+                preview: '.img-preview',
+                crop: function (e) {
+
+                }
+            };;
 
         $uploadImg.on('change', function (evt) {
-            $image.attr('src', URL.createObjectURL($uploadImg[0].files[0]));
-            $image.cropper({
-                aspectRatio: 16 / 9,
-                preview: '.img-preview',
-                crop: function (event) {
-                    // console.log(event.detail.x);
-                    // console.log(event.detail.y);
-                    // console.log(event.detail.width);
-                    // console.log(event.detail.height);
-                    // console.log(event.detail.rotate);
-                    // console.log(event.detail.scaleX);
-                    // console.log(event.detail.scaleY);
+            files = $uploadImg[0].files;
+            file = files[0];
+            if (isFirst && file) {
+                uploadedImageURL = URL.createObjectURL(file);
+                $image.attr('src', uploadedImageURL);
+                $image.cropper(options);
+                isFirst = false;
+            } else {
+                if (!$image.data('cropper')) {
+                    return;
                 }
-            });
-            // Get the Cropper.js instance after initialized
-            var cropper = $image.data('cropper');
-            var test = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
-        });
-        
-        $('.docs-buttons').on('click', '[data-method]', function () {
-            var $this = $(this);
-            var data = $this.data();
-            if(data.method == 'submitCropperImage') {
-                var canvas = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
-                $uploadImgPreview.attr('src', canvas.toDataURL());
-                $uploadMoImg.css('display', 'none');
-                $uploadImgBox.css('display', 'block');
-                $imageCropper.fadeOut();
+
+                if (files && files.length) {
+
+                    if (/^image\/\w+$/.test(file.type)) {
+                        uploadedImageName = file.name;
+                        uploadedImageType = file.type;
+
+                        if (uploadedImageURL) {
+                            URL.revokeObjectURL(uploadedImageURL);
+                        }
+
+                        uploadedImageURL = URL.createObjectURL(file);
+                        $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                    } else {
+                        window.alert('Please choose an image file.');
+                    }
+                }
             }
         });
 
+        $('.docs-buttons').on('click', '[data-method]', function () {
+            var $this = $(this);
+            var data = $this.data();
+            switch (data.method) {
+                case 'submitCropperImage':
+                    var canvas = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
+                    $('.edit-cover .yuko-upload .img-box img').attr('src', canvas.toDataURL());
+                    $uploadMoImg.css('display', 'none');
+                    $uploadImgLink.css('display', 'none');
+                    $uploadImgBox.css('display', 'block');
+                    $imageCropper.animate({
+                        'opacity': 0,
+                        'z-index': -1
+                    });
+                    break;
+                case 'destroy':
+                    isFirst = true,
+                        $imageCropper.animate({
+                            'opacity': 0,
+                            'z-index': -1
+                        });
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        $('.edit-info textarea').froalaEditor();
+        $('.edit-abstract textarea').froalaEditor();
+        $('.edit-body textarea').froalaEditor();
 
     </script>
 </body>

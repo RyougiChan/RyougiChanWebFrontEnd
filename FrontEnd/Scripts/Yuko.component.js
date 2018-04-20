@@ -479,7 +479,8 @@
                                 if (imgCroppr && imgCropprImage) {
                                     imgCroppr.style.zIndex = '7020';
                                     imgCroppr.style.opacity = 1;
-                                    imgCropprImage.src = readerEvent.target.result;
+                                    //imgCropprImage.src = readerEvent.target.result;
+                                    //console.log('set cropper image');
                                 } else {
                                     imgBox.style.display = 'block';
                                     if (noImg) noImg.style.display = 'none';
@@ -506,7 +507,6 @@
                     if (!_input) return;
                     // open file selector
                     _input.click();
-
                     // bind `_input` change event
                     if (!hasChangeEvent) {
                         Yuko.utility.addEvent(_input, 'change', fileUploadChangeHandler);
