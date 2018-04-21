@@ -7,8 +7,9 @@
 }
 #edit-page > div { padding: 12px 0; }
 #edit-page .yuko-textfield { width: 100%; margin: 1em 0 0; }
-#edit-page .yuko-textfield label { font-size: 1.2em; }
+/* #edit-page .yuko-textfield label { font-size: 1.2em; } */
 #edit-page .yuko-textfield input { border-bottom: none; }
+
 #edit-page .edit-cover {
     padding-top: 0;
     overflow: visible;
@@ -75,6 +76,18 @@
 #edit-page .edit-ctrl ul {
     text-align: right;
     margin: 12px 0 0;
+}
+#edit-page .edit-title input,
+#edit-page .edit-title label {
+    font-size: 1.6em;
+}
+#edit-page .edit-subtitle input,
+#edit-page .edit-subtitle label {
+    font-size: 1.3em;
+}
+#edit-page .edit-title label,
+#edit-page .edit-subtitle label {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 body.yuko-cms #main #yuko-image_cropper--container {

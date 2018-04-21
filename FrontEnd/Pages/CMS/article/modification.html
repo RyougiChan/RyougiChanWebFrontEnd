@@ -154,7 +154,7 @@
             <div class="main-middle">
                 <div class="main-middle_right">
                     <div class="main-content">
-                        <div id="edit-page" class="yuko-article">
+                        <div id="edit-page">
                             <div class="edit-cover">
                                 <div class="yuko-upload edit-cover_upload">
                                     <input type="file" accept="image/jpeg, image/jpg, image/png, image/bmp">
@@ -177,46 +177,61 @@
                             <div class="edit-title">
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <input class="yuko-textfield_input" type="text" id="yuko-input_title">
-                                    <label class="yuko-textfield_label" for="yuko-input_title">Title (limit: 30 characters.)</label>
+                                    <label class="yuko-textfield_label" for="yuko-input_title">Title</label>
                                 </div>
                             </div>
                             <hr>
                             <div class="edit-subtitle">
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <input class="yuko-textfield_input" type="text" id="yuko-input_subtitle">
-                                    <label class="yuko-textfield_label" for="yuko-input_subtitle">Subtitle (limit: 30 characters.)</label>
+                                    <label class="yuko-textfield_label" for="yuko-input_subtitle">Subtitle</label>
                                 </div>
                             </div>
                             <hr>
+                            <style>
+                                .yuko-docs .yuko-button.yuko-component_removable {
+                                    overflow: visible;
+                                }
+
+                                .yuko-docs .yuko-button.yuko-component_removable .remove {
+                                    position: absolute;
+                                    left: unset;
+                                    right: -20px;
+                                    top: 5px;
+                                    border-radius: 50%;
+                                    background: #3f51b5;
+                                    color: white;
+                                    width: 18px;
+                                    height: 18px;
+                                    line-height: 18px;
+                                    font-size: 18px;
+                                }
+
+                                .yuko-docs .yuko-button.yuko-component_removable .remove:hover {
+                                    background: brown;
+                                }
+                            </style>
                             <div class="edit-category">
                                 <h5>Select category for this article</h5>
                                 <ul class="edit-list">
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">
                                         Music
+                                        <i class="material-icons remove">close</i>
                                     </li>
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">
                                         Drawing
-                                        <i class="material-icons remove" style="
-    position:  absolute;
-    right: -25%;
-    top: 0;
-    border-radius:  50%;
-    background: palegreen;
-    color: white;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    font-size:  18px;
-">close</i>
+                                        <i class="material-icons remove">close</i>
                                     </li>
                                 </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
-                                    <input class="yuko-textfield_input" type="text" id="yuko-input_category">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_category" pattern="^[a-zA-Z0-9]+$">
                                     <label class="yuko-textfield_label" for="yuko-input_category">Category</label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="edit-info">
+                                <h5>Article Infomation</h5>
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <textarea class="yuko-textfield_input" type="text" id="yuko-input_info"></textarea>
                                     <label class="yuko-textfield_label" for="yuko-input_info">Article Infomation</label>
@@ -224,6 +239,7 @@
                             </div>
                             <hr>
                             <div class="edit-abstract">
+                                <h5>Abstract</h5>
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <textarea class="yuko-textfield_input" type="text" id="yuko-input_abstract"></textarea>
                                     <label class="yuko-textfield_label" for="yuko-input_abstract">Abstract</label>
@@ -233,20 +249,24 @@
                             <div class="edit-keywords">
                                 <h5>Keywords</h5>
                                 <ul class="edit-list">
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
-                                        keywords 1
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">
+                                        Keywords
+                                        <i class="material-icons remove">close</i>
                                     </li>
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
-                                        keywords 2
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">
+                                        Keywords
+                                        <i class="material-icons remove">close</i>
                                     </li>
                                 </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
-                                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords" pattern="^[a-zA-Z0-9]+$">
                                     <label class="yuko-textfield_label" for="yuko-input_keywords">Keywords</label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="edit-body">
+                                <h5>Article Body</h5>
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <textarea class="yuko-textfield_input" type="text" id="yuko-input_body"></textarea>
                                     <label class="yuko-textfield_label" for="yuko-input_body">Body</label>
@@ -255,22 +275,15 @@
                             <hr>
                             <div class="edit-ref yuko-article_ref">
                                 <h5>Reference</h5>
-                                <ul class="edit-ref_list yuko-article_ref-list">
-                                    <li class="">
-                                        Reference 1
-                                    </li>
-                                    <li class="">
-                                        Reference 2
-                                    </li>
-                                </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
-                                    <input class="yuko-textfield_input" type="text" id="yuko-input_ref">
+                                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_ref"></textarea>
                                     <label class="yuko-textfield_label" for="yuko-input_ref">Reference</label>
                                 </div>
                             </div>
                             <hr>
                             <div class="edit-licenses">
                                 <h5>Licenses</h5>
+                                <br>
                                 <div class="yuko-select">
                                     <div class="yuko-select_selected">Allow</div>
                                     <div class="yuko-select_items yuko-select_hide">
@@ -1069,7 +1082,57 @@
         $('.edit-info textarea').froalaEditor();
         $('.edit-abstract textarea').froalaEditor();
         $('.edit-body textarea').froalaEditor();
+        $('.edit-ref textarea').froalaEditor();
 
+        $('.yuko-textfield_input').on('keydown', function (evt) {
+            var key = evt.key,
+                target = evt.target,
+                edit_category = Yuko.utility.hasAncestor(target, { className: 'edit-category' }),
+                edit_keywords = Yuko.utility.hasAncestor(target, { className: 'edit-keywords' }),
+                goAhead = edit_category || edit_keywords;
+            if (key !== 'Enter' || !goAhead) return;
+            var textfield = goAhead.querySelector('.yuko-textfield'),
+                list = goAhead.querySelector('.edit-list'),
+                item_template = '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">{YUKO_ITEM_NAME}<i class="material-icons remove">close</i></li>',
+                input = textfield.querySelector('.yuko-textfield_input'),
+                tag_name = input.value,
+                error_tip = textfield.querySelector('.yuko-textfield_error');
+            if (!list) {
+                // Create a list
+                $('<ul class="edit-list">').insertBefore(textfield);
+                list = goAhead.querySelector('.edit-list');
+            }
+            // Check if input is empty
+            if (tag_name.replace(/\s*\t*/, '') === '') {
+                $(error_tip).html('Cannot be empty input!');
+                $(textfield).addClass('is-invalid');
+                return;
+            } else {
+                $(textfield).removeClass('is-invalid');
+            }
+            // Check if input is exist
+            for (var ti = 0; ti < list.children.length; ti++) {
+                var tag = list.children[ti].innerHTML.replace(/<i.*?<\/i>/ig, '').toLocaleLowerCase().trim();
+                console.log(tag);
+                if (tag === tag_name.toLocaleLowerCase().trim()) {
+                    $(error_tip).html('Tag "' + tag_name + '" already exist');
+                    $(textfield).addClass('is-invalid');
+                    return;
+                }
+            }
+            var pattern = input.getAttribute('pattern');
+            if (pattern) {
+                var re = new RegExp(pattern);
+                if (!re.test(tag_name)) {
+                    $(error_tip).html('Invalid format');
+                    $(textfield).addClass('is-invalid');
+                    return;
+                }
+            }
+            var new_item = item_template.replace('{YUKO_ITEM_NAME}', tag_name);
+            $(list).append(new_item);
+            input.value = '';
+        });
     </script>
 </body>
 

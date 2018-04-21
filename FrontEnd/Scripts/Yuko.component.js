@@ -33,6 +33,16 @@
                     Yuko.utility.addEvent(rippleBtns[i], fingerdown, Yuko.effect.rippleEffect);
                 }
             }
+            var removeBtnHandler = function (evt) {
+                var _target = evt.target,
+                    removeComponent = Yuko.utility.hasAncestor(_target, { className: 'yuko-component_removable' }),
+                    parentNode;
+                if (!(_target.classList.contains('remove') && removeComponent)) return;
+                parentNode = removeComponent.parentElement;
+                parentNode.removeChild(removeComponent);
+                console.log('remove');
+            };
+            Yuko.utility.addEvent(document, fingerdown, removeBtnHandler);
         },
         // TextField
         'initTextFields': function initTextField() {
@@ -56,8 +66,8 @@
             for (var i = 0; i < textfiled.length; i++) {
                 var pattern = textfiled[i].getAttribute('pattern');
                 if (pattern) {
+                    var re = new RegExp(pattern);
                     Yuko.utility.addEvent(textfiled[i], 'input', function (i) {
-                        var re = new RegExp(pattern);
                         if (this.value.trim() != '' && !(re.test(this.value))) {
                             if (!this.parentNode.classList.contains('is-invalid')) {
                                 this.parentNode.classList.add('is-invalid');
