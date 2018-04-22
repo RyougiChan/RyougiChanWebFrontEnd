@@ -59,6 +59,30 @@
             display: none;
         }
     </style>
+
+    <style>
+        .yuko-docs .yuko-button.yuko-component_removable {
+            overflow: visible;
+        }
+
+        .yuko-docs .yuko-button.yuko-component_removable .remove {
+            position: absolute;
+            left: unset;
+            right: -20px;
+            top: 5px;
+            border-radius: 50%;
+            background: #3f51b5;
+            color: white;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            font-size: 18px;
+        }
+
+        .yuko-docs .yuko-button.yuko-component_removable .remove:hover {
+            background: brown;
+        }
+    </style>
     <link rel="stylesheet" href="modification.css">
     <!-- Include external CSS. -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
@@ -188,29 +212,6 @@
                                 </div>
                             </div>
                             <hr>
-                            <style>
-                                .yuko-docs .yuko-button.yuko-component_removable {
-                                    overflow: visible;
-                                }
-
-                                .yuko-docs .yuko-button.yuko-component_removable .remove {
-                                    position: absolute;
-                                    left: unset;
-                                    right: -20px;
-                                    top: 5px;
-                                    border-radius: 50%;
-                                    background: #3f51b5;
-                                    color: white;
-                                    width: 18px;
-                                    height: 18px;
-                                    line-height: 18px;
-                                    font-size: 18px;
-                                }
-
-                                .yuko-docs .yuko-button.yuko-component_removable .remove:hover {
-                                    background: brown;
-                                }
-                            </style>
                             <div class="edit-category">
                                 <h5>Select category for this article</h5>
                                 <ul class="edit-list">
@@ -285,10 +286,11 @@
                                 <h5>Licenses</h5>
                                 <br>
                                 <div class="yuko-select">
-                                    <div class="yuko-select_selected">Allow</div>
+                                    <div class="yuko-select_selected">No License</div>
                                     <div class="yuko-select_items yuko-select_hide">
-                                        <div>Allow</div>
-                                        <div>Not Allow</div>
+                                        <div>No License</div>
+                                        <div>MIT License</div>
+                                        <div>Apache License, Version 2.0</div>
                                     </div>
                                 </div>
                                 <div class="yuko-textfield yuko-js-textfield">
@@ -299,13 +301,13 @@
                             <hr>
                             <div class="edit-ctrl">
                                 <ul>
-                                    <li class="yuko-button yuko-button_raised yuko-button_colored yuko-button_bordered yuko-button_ripple">
+                                    <li class="yuko-button yuko-button_raised yuko-button_colored yuko-button_bordered yuko-button_ripple" data-method="saveArticle">
                                         <i>Save Article</i>
                                     </li>
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple" data-method="previewArticle">
                                         Preview Article
                                     </li>
-                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple" data-method="saveAsDraft">
                                         Save as Draft
                                     </li>
                                 </ul>
@@ -964,6 +966,9 @@
                     </div>
                 </div>
             </div>
+            <div id="yuko-article-preview">
+
+            </div>
             <span class="main-to_top"></span>
         </section>
         <!-- Main E -->
@@ -1004,22 +1009,23 @@
         var $imageCropper = $('#yuko-image_cropper--container'),
             $image = $('#yuko-image_cropper--img'),
             $uploadImg = $('.edit-cover .yuko-upload input'),
-            $uploadMoImg = $('.edit-cover .yuko-upload .no-img'),
+            $uploadNoImg = $('.edit-cover .yuko-upload .no-img'),
             $uploadImgBox = $('.edit-cover .yuko-upload .img-box'),
+            boxWidth = Yuko.utility.getComputedSizeInPx($uploadNoImg[0], 'width'),
+            boxHeight = Yuko.utility.getComputedSizeInPx($uploadImgBox[0], 'height'),
             $uploadImgLink = $('.edit-cover .yuko-textfield'),
-            $uploadImgPreview = $('.edit-cover .yuko-upload .img-box img'),
             isFirst = true,
             files,
             file,
             uploadedImageURL,
             options = {
-                aspectRatio: 8 / 3,
+                aspectRatio: boxWidth / boxHeight,
                 preview: '.img-preview',
                 crop: function (e) {
 
                 }
             };;
-
+        console.log(boxWidth + ',' + boxHeight);
         $uploadImg.on('change', function (evt) {
             files = $uploadImg[0].files;
             file = files[0];
@@ -1057,9 +1063,10 @@
             var data = $this.data();
             switch (data.method) {
                 case 'submitCropperImage':
+                    $('.edit-cover .yuko-upload .img-box canvas').remove('canvas');
                     var canvas = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
-                    $('.edit-cover .yuko-upload .img-box img').attr('src', canvas.toDataURL());
-                    $uploadMoImg.css('display', 'none');
+                    $uploadImgBox.append(canvas);
+                    $uploadNoImg.css('display', 'none');
                     $uploadImgLink.css('display', 'none');
                     $uploadImgBox.css('display', 'block');
                     $imageCropper.animate({
@@ -1133,6 +1140,90 @@
             $(list).append(new_item);
             input.value = '';
         });
+
+        $('.yuko-button').on('click', function () {
+            var data = $(this).data(),
+                method = data.method;
+                cover = $('.edit-cover .img-box canvas')[0],
+                title = $('.edit-title .yuko-textfield_input').val(),
+                subtitle = $('.edit-subtitle .yuko-textfield_input').val(),
+                categorys = getTagValues($('.edit-category .edit-list')),
+                info = $('.edit-info .yuko-textfield_input').val(),
+                abstract = $('.edit-abstract .yuko-textfield_input').val(),
+                keywords = getTagValues($('.edit-keywords .edit-list')),
+                body = $('.edit-body .yuko-textfield_input').val(),
+                ref = $('.edit-ref  .yuko-textfield_input').val(),
+                licenses = $('.edit-licenses .yuko-select_selected').text().trim(),
+                addLicenses = $('.edit-licenses .yuko-textfield_input').val(),
+                formData = new FormData();
+            // FormData
+            formData.append('cover', cover.toBlob(function (blob) {
+                var url = URL.createObjectURL(blob);
+                console.log(url);
+                URL.revokeObjectURL(url);
+            }));
+            formData.append('title', title);
+            formData.append('subtitle', subtitle);
+            formData.append('categorys', categorys.toString());
+            formData.append('info', info);
+            formData.append('abstract', abstract);
+            formData.append('keywords', keywords.toString());
+            formData.append('body', body);
+            formData.append('ref', ref);
+            formData.append('licenses', licenses);
+            formData.append('addLicenses', addLicenses);
+            // Handler
+            var handler = {
+                saveArticle: function () {
+                    formData.set('action', 'save');
+                    $.ajax('/articles/', {
+                        method: 'POST',
+                        data: formData,
+                        dataType: 'JSON',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                },
+                saveAsDraft: function () {
+                    formData.set('action', 'saveAsDraft');
+                    $.ajax('/articles/', {
+                        method: 'POST',
+                        data: formData,
+                        dataType: 'JSON',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                },
+                previewArticle: function () {
+                    
+                }
+            };
+            if(handler.hasOwnProperty(method)) {
+                handler[method]();
+            }
+        });
+
+        function getTagValues(ele) {
+            if (!ele instanceof Element) return;
+            var values = [],
+                items = ele.children,
+                item,
+                value;
+            for (var c = 0; c < items.length; c++) {
+                item = items[c];
+                value = item.innerHTML.replace(/<.+>.*?<\/.+>/ig, '').trim();
+                values.push(value);
+            }
+            return values;
+        }
     </script>
 </body>
 

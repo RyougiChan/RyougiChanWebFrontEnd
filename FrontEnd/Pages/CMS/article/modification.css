@@ -37,6 +37,9 @@
     height: 300px;
     display: none;
 }
+#edit-page .edit-cover_upload .img-box canvas {
+    width: 100%;
+}
 #edit-page .edit-cover_upload .img-item {
     height: 100%;
     width: 100%;

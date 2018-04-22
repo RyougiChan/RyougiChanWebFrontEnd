@@ -470,7 +470,8 @@
                             noImg = _parent.querySelector('.no-img'),
                             imgBox = _parent.querySelector('.img-box');
                         if (imgBox) {
-                            var newImg = document.createElement('img'),
+                            var newImg = document.createElement('canvas'),
+                                ctx = newImg.getContext('2d'),
                                 oldImgs = imgBox.querySelectorAll('.img-item'),
                                 imgCroppr = document.getElementById('yuko-image_cropper--container'),
                                 imgCropprImage = document.getElementById('yuko-image_cropper--img'),
@@ -496,9 +497,20 @@
                                     if (noImg) noImg.style.display = 'none';
                                 }
                                 // Add new
-                                newImg.classList.add('img-item');
-                                newImg.src = readerEvent.target.result;
-                                imgBox.appendChild(newImg);
+                                var tempImg = new Image();
+                                tempImg.src = readerEvent.target.result;
+                                tempImg.onload = function () {
+                                    var width = tempImg.width,
+                                        height = tempImg.height;
+                                    newImg.width = width;
+                                    newImg.height = height;
+                                    ctx.fillStyle = "#ffffff";
+                                    ctx.fillRect(0, 0, width, height);
+                                    ctx.drawImage(tempImg, 0, 0, width, height);
+                                    
+                                    imgBox.appendChild(newImg);
+                                    console.log('append')
+                                }
                             };
                             reader.readAsDataURL(files[k]);
                         }
