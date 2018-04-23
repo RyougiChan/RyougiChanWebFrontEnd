@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Article.Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../Styles/yuko-reset.css">
+  <link rel="stylesheet" href="../Styles/yuko.css">
+  <link rel="stylesheet" href="../Styles/yuko-global.css">
+  <link rel="stylesheet" href="../Styles/material-icons.css">
+  <link rel="stylesheet" href="../Styles/yuko.component.css">
+  <link rel="stylesheet" href="../Styles/yuko-prettify.css">
+  <script src="../Scripts/google-code-prettify/prettify.js"></script>
+  <style>
+    /* Article Start */
+.yuko-docs .text-sup,
+.yuko-docs .text-sub {font-size: 10px;}
+.yuko-docs .text-sup {vertical-align: super;}
+.yuko-docs .text-sub {vertical-align: sub;}
+.yuko-docs .image-left,
+.yuko-docs .image-center,
+.yuko-docs .image-right,
+.yuko-docs .image-left_textwrapping img,
+.yuko-docs .image-right_textwrapping img {margin: 20px;}
+.yuko-docs .image-left {text-align: left;}
+.yuko-docs .image-center {text-align: center;}
+.yuko-docs .image-right {text-align: right;}
+.yuko-docs .image-left_textwrapping img {float: left; display: block; }
+.yuko-docs .image-right_textwrapping img {float: right; display: block; }
+
+.yuko-docs .yuko-article_container {margin: 0 auto; max-width: 1200px; background: #e4d4ff;min-height: 100%;}
+.yuko-docs .yuko-article {color: rgba(0, 0, 0, 0.66); padding: 1em; overflow: hidden; line-height: 1.5em}
+.yuko-docs .yuko-article * {font-family: Arial, Helvetica, sans-serif}
+.yuko-docs .yuko-article h1,
+.yuko-docs .yuko-article h2,
+.yuko-docs .yuko-article h3,
+.yuko-docs .yuko-article h4,
+.yuko-docs .yuko-article h5,
+.yuko-docs .yuko-article h6 {margin: 1em auto; max-width: 100%;}
+.yuko-docs .yuko-article h1 {text-align: left;}
+.yuko-docs .yuko-article h2 {text-align: left;font-size: 20px;font-style: italic; font-weight: 500;}
+.yuko-docs .yuko-article p {text-indent: 2em; margin-bottom: 1em;}
+.yuko-docs .yuko-article a {color: rgba(33, 150, 243, 1); text-decoration: underline}
+.yuko-docs .yuko-article code {display: inline-block; margin: 0 4px; padding: 4px 10px; border-radius: 5px; color: #f1f1f1; background: rgba(33, 150, 243, 0.8); text-align: left; text-indent: 0}
+.yuko-docs .yuko-article sub,
+.yuko-docs .yuko-article sup,
+.yuko-docs .yuko-article super {font-size: 10px;}
+.yuko-docs .yuko-article > div { padding: 10px; margin: 0 10px; overflow: hidden; }
+.yuko-docs .yuko-article .yuko-article_abstract p {font-style: italic; font-size: 90%; line-height: 1.5em;}
+.yuko-docs .yuko-article .yuko-article_keywords {font-weight: 800;}
+.yuko-docs .yuko-article .yuko-article_title {font-size: 36px;}
+.yuko-docs .yuko-article .yuko-article_subtitle {font-size: 20px;}
+.yuko-docs .yuko-article .yuko-article_title-1st {font-size: 24px;}
+.yuko-docs .yuko-article .yuko-article_title-2nd {font-size: 18px;}
+.yuko-docs .yuko-article .yuko-article_title-3rd {font-size: 16px;}
+.yuko-docs .yuko-article .yuko-article_title-4th {font-size: 14px;}
+
+.yuko-docs .yuko-article .yuko-article_ref,.yuko-docs .yuko-article .yuko-article_licenses {font-size: 16px;}
+.yuko-docs .yuko-article .yuko-article_ref .yuko-article_ref-list,
+.yuko-docs .yuko-article .yuko-article_licenses .yuko-article_licenses-list {font-size: 14px; font-style: italic; margin: 4px 0 0 18px; text-decoration: none; list-style: circle;}
+.yuko-docs .yuko-article .yuko-article_ref .yuko-article_ref-list li,
+.yuko-docs .yuko-article .yuko-article_licenses .yuko-article_licenses-list li {line-height: 1.5em; font-size: 90%;}
+.yuko-docs .yuko-article .yuko-article_highlight,
+.yuko-docs .yuko-article .yuko-article_mark,
+.yuko-docs .yuko-article .yuko-article_warning,
+.yuko-docs .yuko-article .yuko-article_error {margin: 10px 0; padding: 10px; color:#f1f1f1; font-size: 14px;}
+.yuko-docs .yuko-article .yuko-article_highlight {background: rgba(255, 255, 255, 0.6); color: rgba(60, 60, 128, 1); border-left: 5px solid rgba(60, 60, 128, 1);}
+.yuko-docs .yuko-article .yuko-article_mark {background: rgba(128, 255, 128, 0.6); color: rgba(60, 128, 60, 1); border-left: 5px solid rgba(60, 128, 60, 1);}
+.yuko-docs .yuko-article .yuko-article_warning {background: rgba(255, 209, 128, 0.6); color: rgba(128, 104, 60, 1); border-left: 5px solid rgba(128, 104, 60, 1);}
+.yuko-docs .yuko-article .yuko-article_error {background: rgba(255, 128, 128, 0.6); color:rgba(128, 60, 60, 1); border-left: 5px solid rgba(128, 60, 60, 1);}
+/* Article End */
+  </style>
+</head>
+
+<body class="yuko-docs">
+  <div class="yuko-article_container">
+    <div class="yuko-article">
+      <!-- Title -->
+      <div class="yuko-article_title yuko-article_highlight"><h1>Title - Mass Efficiency of Alkene Syntheses with Tri- and Tetrasubstituted Double Bonds</h1></div>
+      <!-- SubTitle -->
+      <div class="yuko-article_subtitle yuko-article_highlight"><h2>SunTitle</h2></div>
+      <!-- Info -->
+      <div class="yuko-article_info yuko-article_highlight">
+        <h5 class="yuko-article_highlight">Info</h5>
+        <span>
+            <a href="http://pubs.acs.org/author/Eissen%2C+Marco">Marco Eissen</a>*†  and Dieter Lenoir*‡
+            † Gymnasium Ganderkesee, Am Steinacker 12, 27777 Ganderkesee, Germany
+            ‡ Helmholtz Zentrum München, Postfach 1129, 85758 Neuherberg, Germany
+        </span>
+      </div>
+      <!-- Abstract -->
+      <div class="yuko-article_abstract yuko-article_highlight">
+        <h5 class="yuko-article_highlight">Abstract</h5>
+        <p>
+            Environmental factors and process mass intensity were determined and evaluated for more than 30 standard procedures for the synthesis of alkenes with tri- and tetrasubstituted double bonds. They contain some of the most commonly used reaction types for the synthesis of alkenes, e.g., Peterson, Shapiro, Heck, Suzuki, and Negishi. Four kinds of syntheses of geminal dihalides were also considered. The highest efficiency is found when employing the olefin metathesis reaction followed by other modern catalytic processes, and the lowest efficiency is found with the Julia–Lythgoe process. Several types of McMurry coupling reactions show that the efficiency is dependent on the variant of this type of reaction. These metrics point out weaknesses as well as optimization potentials and show which performances can be expected. This could provide an orientation when mass efficiency aspects are relevant during the synthesis planning of alkenes with tri- and tetrasubstituted double bonds.
+        </p>
+        <div class="image-center"><img src="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/ascecg/2017/ascecg.2017.5.issue-11/acssuschemeng.7b02479/20171031/images/medium/sc-2017-02479v_0006.gif" alt="" /></div>        
+      </div>
+      <!-- Keywords -->
+      <div class="yuko-article_keywords yuko-article_highlight">
+        <h5 class="yuko-article_highlight">Keywords</h5>
+        <span>Keywords: Alkenes; EATOS; Environmental factor; Process mass intensity; Waste prevention</span>
+      </div>
+      <!-- Article Body -->
+      <div class="yuko-article_body">
+        <h3>1st Title</h3>
+        <p>
+            The regio- and stereoselective synthesis of alkenes with tri- and tetrasubstituted double bonds is a central topic in current organic chemistry.<sup>(1)</sup> The importance of this field is highlighted by the edition of a volume about this topic in the series “Science of Synthesis”,(2) edited by the publisher Thieme, Stuttgart. 1,2-Elimination reactions of alcohols and esters (Chapter 47.1.4.5 of ref 2) were the first ones used for the synthesis of alkenes during the beginning of organic chemistry and are still applied, meaning the syn-elimination reactions in drug synthesis.(3) Within the last five decades, new and more efficient methods have been developed.(4-6) The synthesis of alkenes with tri- and tetrasubstituted double bonds was greatly improved with the development of catalytic procedures.(7-10)
+        </p>
+        <div class="image-left_textwrapping"><img src="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/ascecg/2017/ascecg.2017.5.issue-11/acssuschemeng.7b02479/20171031/images/medium/sc-2017-02479v_0006.gif" alt="" /></div>        
+        <h4>2nd Title</h4>
+        <p>
+            The regio- and stereoselective synthesis of alkenes with tri- and tetrasubstituted double bonds is a central topic in current organic chemistry.<span class="text-sup">(1)</span> The importance of this field is highlighted by the edition of a volume about this topic in the series “Science of Synthesis”,(2) edited by the publisher Thieme, Stuttgart. 1,2-Elimination reactions of alcohols and esters (Chapter 47.1.4.5 of ref 2) were the first ones used for the synthesis of alkenes during the beginning of organic chemistry and are still applied, meaning the syn-elimination reactions in drug synthesis.(3) Within the last five decades, new and more efficient methods have been developed.(4-6) The synthesis of alkenes with tri- and tetrasubstituted double bonds was greatly improved with the development of catalytic procedures.(7-10)
+        </p>
+        <div class="image-right_textwrapping"><img src="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/ascecg/2017/ascecg.2017.5.issue-11/acssuschemeng.7b02479/20171031/images/medium/sc-2017-02479v_0006.gif" alt="" /></div>
+        <h5>3rd Title</h5>
+        <p>
+            The regio- and stereoselective synthesis of alkenes with tri- and tetrasubstituted double bonds is a central topic in current organic chemistry.(1) The importance of this field is highlighted by the edition of a volume about this topic in the series “Science of Synthesis”,(2) edited by the publisher Thieme, Stuttgart. 1,2-Elimination reactions of alcohols and esters (Chapter 47.1.4.5 of ref 2) were the first ones used for the synthesis of alkenes during the beginning of organic chemistry and are still applied, meaning the syn-elimination reactions in drug synthesis.(3) Within the last five decades, new and more efficient methods have been developed.(4-6) The synthesis of alkenes with tri- and tetrasubstituted double bonds was greatly improved with the development of catalytic procedures.(7-10)
+        </p>
+        <h6>4th Title</h6>
+        <p>
+            The regio- and stereoselective synthesis of alkenes with tri- and tetrasubstituted double bonds is a central topic in current organic chemistry.(1) The importance of this field is highlighted by the edition of a volume about this topic in the series “Science of Synthesis”,(2) edited by the publisher Thieme, Stuttgart. 1,2-Elimination reactions of alcohols and esters (Chapter 47.1.4.5 of ref 2) were the first ones used for the synthesis of alkenes during the beginning of organic chemistry and are still applied, meaning the syn-elimination reactions in drug synthesis.(3) Within the last five decades, new and more efficient methods have been developed.(4-6) The synthesis of alkenes with tri- and tetrasubstituted double bonds was greatly improved with the development of catalytic procedures.(7-10)
+        </p>
+      </div>
+      <!-- Reference -->
+      <div class="yuko-article_ref">
+        <h5 class="yuko-article_highlight">Ref</h5>
+        <ul class="yuko-article_ref-list">
+          <li>Ref_01</li>
+          <li>Ref_02</li>
+          <li>Ref_03</li>
+          <li>Butters, M.; Catterick, D.; Craig, A.; Curzons, A.; Dale, D.; Gillmore, A.; Green, S. P.; Marziano, I.; Sherlock, J. P.; White, W. Critical assessment of pharmaceutical processess - A rationale for changing the synthetic route Chem. Rev. 2006, 106, 3002– 3027 DOI: 10.1021/cr050982w [ACS Full Text ACS Full Text], [CAS]</li>
+        </ul>
+      </div>
+      <!-- Highlight -->
+      <blockquote class="yuko-article_highlight"><span>Highlight</span></blockquote>
+      <!-- Mark -->
+      <blockquote class="yuko-article_mark"><span>Mark</span></blockquote>
+      <!-- Warning -->
+      <blockquote class="yuko-article_warning"><span>Warning</span></blockquote>
+      <!-- Error -->
+      <blockquote class="yuko-article_error"><span>Error</span></blockquote>
+      <div>
+          <!-- Sub -->
+          <p>
+              E = m<sub>waste</sub> / m<sub>product</sub> = (m<sub>input</sub> - m<sub>product</sub>) / m<sub>product</sub>
+          </p>
+          <!-- Delete -->
+          <p>
+            <del>E = m<sub>waste</sub> / m<sub>product</sub> = (m<sub>input</sub> - m<sub>product</sub>) / m<sub>product</sub></del>
+          </p>
+          <!-- COde -->
+          <p>
+            Code >> <code>addEventListener</code>
+          </p>
+          <!-- Pre Line Code -->
+          <blockquote>
+            <pre id="test">
+                <blockquote class="yuko-article_highlight"><span>Highlight</span></blockquote>
+                <blockquote class="yuko-article_mark"><span>Mark</span></blockquote>
+                <blockquote class="yuko-article_warning"><span>Warning</span></blockquote>
+                <blockquote class="yuko-article_error"><span>Error</span></blockquote>
+                <style>
+                  body.yuko-docs .yuko-article .yuko-article_title-1st {font-size: 24px;}
+                  body.yuko-docs .yuko-article .yuko-article_title-2nd {font-size: 18px;}
+                  body.yuko-docs .yuko-article .yuko-article_title-3rd {font-size: 16px;}
+                  body.yuko-docs .yuko-article .yuko-article_title-4th {font-size: 14px;}
+                </style>
+                <script>
+                    function htmlEscape(s) {
+                      return s
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;');
+                    }
+                </script>
+            </pre>
+          </blockquote>
+      </div>
+    </div>
+  </div>
+  <script src="../Scripts/Yuko.js"></script>
+  <script>
+    window.onload = function(){
+      var allPre = document.querySelectorAll('pre');
+      for(var i = 0; i < allPre.length; i++) {
+        var className = allPre[i].className,
+        innerHTML = allPre[i].innerHTML,
+        // Deal with special mark.
+        blankLength = innerHTML.match(/\s+/)[0].length,
+        tranHTML = htmlEscape(test.innerHTML).replace(/&lt;script src[\s\S]*?&gt;&lt;\/script&gt;|&lt;!--\?[\s\S]*?--&gt;|&lt;pre\b[\s\S]*?&lt;\/pre&gt;/g, '<span class="operative">$&<\/span>').replace(/\n\s{16}/g, '\n').replace(/\s{16}/,'');
+        allPre[i].innerHTML = tranHTML;
+        // Add class 'prettyprint linenums'
+        console.log(blankLength);
+        if(className.indexOf('prettyprint linenums') < 0) {
+          allPre[i].className = className + 'prettyprint linenums';
+        }
+      }
+      // Make mark.
+      prettyPrint();
+    }
+    function htmlEscape(s) {
+      return s
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+  </script>
+</body>
+
+</html>

@@ -99,6 +99,8 @@
     background: #f1f1f1;    
     overflow-x: hidden;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
 }
 .yuko-docs #yuko-nav-list::-webkit-scrollbar {
     display: none;

@@ -1124,40 +1124,132 @@
 
             var children,
                 target;
-            
-            if(id) {
-                children = ele.querySelector('#'+id);
+
+            if (id) {
+                children = ele.querySelector('#' + id);
             }
-            if(className) {
-                if(children) {
-                    if(!children.classList.contains(className)) children = null;
+            if (className) {
+                if (children) {
+                    if (!children.classList.contains(className)) children = null;
                 } else {
-                    children = ele.querySelectorAll('.'+className);
-                    if(children.length == 0) children = null;
+                    children = ele.querySelectorAll('.' + className);
+                    if (children.length == 0) children = null;
                 }
             }
-            if(nodeName) {
+            if (nodeName) {
                 nodeName = nodeName.toLocaleLowerCase();
-                if(children) {
+                if (children) {
                     // if children has a length property, it is a NodeList, else a Element
-                    if(children.length) {
+                    if (children.length) {
                         target = [];
                         for (var i = 0; i < children.length; i++) {
-                            if(children[i].nodeName.toLocaleLowerCase() == nodeName) {
+                            if (children[i].nodeName.toLocaleLowerCase() == nodeName) {
                                 target.push(children[i]);
                             }
                         }
                     } else {
-                        if(children.nodeName.toLocaleLowerCase() != nodeName) children = null;
+                        if (children.nodeName.toLocaleLowerCase() != nodeName) children = null;
                     }
                 } else {
                     children = ele.getElementsByTagName(nodeName);
                 }
             }
-            if(!children) target = null;
+            if (!children) target = null;
             else target = children;
 
             return target;
+        }
+
+        /**
+         * Join object's properties with specific seperator
+         * @param {object} obj object
+         * @param {string} seperator seperator
+         */
+        function joinObj(obj, seperator) {
+            var out = [];
+            for (var k in obj) {
+                out.push(k);
+            }
+            return out.join(seperator);
+        }
+
+        /**
+         * Get Date Format By Country Code
+         * @param {string} countryInput Country Code: A3 (UN)
+         */
+        function getDateFormatByCountryCode(countryInput) {
+            // Written by Will Morrison 2018-04-05
+            //https://en.wikipedia.org/wiki/
+            //https://www.worldatlas.com/aatlas/ctycodes.htm
+            var countryFormatType = {
+                default: 'YYYY-MM-DD',
+                ISO8601: 'YYYY-MM-DD',
+                INTERNATIONAL: 'YYYY-MM-DD',
+                USA: 'M/d/yyyy',
+                GBR: 'd MMMM yyyy',
+                NLD: 'dd-MM-yyyy',
+                CHN: 'yy年MM月dd日',
+                JPN: 'yy年MM月dd日'
+                // EXPAND ME!
+            }
+            if (!countryInput) {
+                countryInput = "default";
+            }
+            if (!(countryInput in countryFormatType)) {
+                return countryInput;
+            }
+            // Build Regex Dynamically based on the list above.
+            // Should end up with something like this "/(INTERNATIONAL+|USA+|GBR+|CHN+)/g"  
+            var countryMatchRegex = joinObj(countryFormatType, "|");
+            var regEx = new RegExp(countryMatchRegex, "g");
+            countryInput = countryInput.replace(regEx, function (countryCode) {
+                return countryFormatType[countryCode];
+            });
+
+            return countryInput;
+        }
+
+        /**
+         * Get date in specific format
+         * @param {Date} date date time. eg: new Date()
+         * @param {string} format formt for data. eg: yyyy-MM-dd hh-mm-ss
+         */
+        function getFormattedDate(date, format) {
+            // Written by Will Morrison 2018-04-05
+            // Validate that we're working with a date
+            if (!typeof date.getMonth === 'function') {
+                date = new Date(date);
+            }
+            format = getDateFormatByCountryCode(format);
+
+            var dateObject = {
+                M: date.getMonth() + 1,
+                d: date.getDate(),
+                D: date.getDate(),
+                h: date.getHours(),
+                m: date.getMinutes(),
+                s: date.getSeconds(),
+                y: date.getFullYear(),
+                Y: date.getFullYear()
+            };
+            // Build Regex Dynamically based on the list above.
+            // Should end up with something like this "/([Yy]+|M+|[Dd]+|h+|m+|s+)/g"
+            var dateMatchRegex = joinObj(dateObject, "+|") + "+";
+            var regEx = new RegExp(dateMatchRegex, "g");
+            format = format.replace(regEx, function (formatToken) {
+                var datePartValue = dateObject[formatToken.slice(-1)];
+                var tokenLength = formatToken.length;
+                // A conflict exists between specifying 'd' for no zero pad -> expand to '10' and specifying yy for just two year digits '01' instead of '2001'.  One expands, the other contracts.
+                // so Constrict Years but Expand All Else
+                if (formatToken.indexOf('y') < 0 && formatToken.indexOf('Y') < 0) {
+                    // Expand single digit format token 'd' to multi digit value '10' when needed
+                    var tokenLength = Math.max(formatToken.length, datePartValue.toString().length);
+                }
+                var zeroPad = (datePartValue.toString().length < formatToken.length ? "0".repeat(tokenLength) : "");
+                return (zeroPad + datePartValue).slice(-tokenLength);
+            });
+
+            return format;
         }
 
         return {
@@ -1180,7 +1272,9 @@
             crossBrowser: crossBrowser,
             isMobile: isMobile,
             hasAncestor: hasAncestor,
-            hasChildren: hasChildren
+            hasChildren: hasChildren,
+            joinObj: joinObj,
+            getFormattedDate: getFormattedDate
         }
     })();
 
@@ -1201,7 +1295,7 @@
             // if (footer) footer.style.top = (firstPageHeight < document.body.clientHeight - headerHeight ? document.body.clientHeight - headerHeight : firstPageHeight + headerHeight).toString() + 'px';
             // Default main style
             for (var i = 0; i < mains.length; i++) {
-                
+
                 mains[i].style.height = mains[i].children[0].offsetHeight + 'px';
 
                 //if (mains[i] && mains[i].parentNode.classList.contains('yuko-tab_container')) {
