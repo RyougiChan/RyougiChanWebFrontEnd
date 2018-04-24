@@ -92,7 +92,44 @@
 #edit-page .edit-subtitle label {
     color: rgba(0, 0, 0, 0.7);
 }
+body.yuko-cms {
+    min-height: 100%;
+}
 
+body.yuko-cms #header {
+    top: 0 !important
+}
+
+body.yuko-cms #footer {
+    bottom: 0 !important
+}
+
+body.yuko-cms #header>div {
+    width: 90%;
+}
+
+body.yuko-cms #main>div {
+    width: 90%;
+}
+
+body.yuko-cms #main .main-middle_left {
+    width: 27%;
+    top: 90px;
+    bottom: 46px;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+body.yuko-cms #main .main-middle_right {
+    width: 70%;
+}
+
+body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
+    display: none;
+}
 body.yuko-cms #main #yuko-image_cropper--container {
     width: 100%;
     height: 100%;
@@ -199,7 +236,7 @@ body.yuko-cms #main #yuko-article-preview::-webkit-scrollbar {
     border-top: 0.5px solid rgba(63, 81, 181, 0.5);
 }
 .yuko-dialog-content .yuko-dialog-body canvas {
-    max-width: 100%;
+    width: 100%;
 }
 .yuko-dialog-content .yuko-dialog-footer {
     text-align: right;
@@ -211,7 +248,7 @@ body.yuko-cms #main #yuko-image_cropper input[type="file"] {
 }
 
         img {
-            max-width: 100%;
+            width: 100%;
             /* This rule is very important, please do not ignore this! */
         }
 

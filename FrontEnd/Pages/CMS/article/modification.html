@@ -22,44 +22,6 @@
     <link rel="stylesheet" href="../../../Styles/yuko-prettify.css">
     <script src="../../../Scripts/google-code-prettify/prettify.js"></script>
     <style>
-        body.yuko-cms {
-            min-height: 100%;
-        }
-
-        body.yuko-cms #header {
-            top: 0 !important
-        }
-
-        body.yuko-cms #footer {
-            bottom: 0 !important
-        }
-
-        body.yuko-cms #header>div {
-            width: 90%;
-        }
-
-        body.yuko-cms #main>div {
-            width: 90%;
-        }
-
-        body.yuko-cms #main .main-middle_left {
-            width: 27%;
-            top: 90px;
-            bottom: 46px;
-            position: fixed;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            -ms-overflow-style: none;
-            overflow: -moz-scrollbars-none;
-        }
-
-        body.yuko-cms #main .main-middle_right {
-            width: 70%;
-        }
-
-        body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
-            display: none;
-        }
     </style>
 
     <style>
@@ -197,6 +159,7 @@
                                 <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
                                     <input class="yuko-textfield_input" type="text" id="yuko-input_cover">
                                     <label class="yuko-textfield_label" for="yuko-input_cover">Image Link Here (Optional) </label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
                                 </div>
                             </div>
                             <hr>
@@ -225,7 +188,7 @@
                                     </li>
                                 </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
-                                    <input class="yuko-textfield_input" type="text" id="yuko-input_category" pattern="^\s*[a-zA-Z0-9]+\s*$">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_category" pattern="^\s*[a-zA-Z0-9\u2E80-\u9FFF]+\s*$">
                                     <label class="yuko-textfield_label" for="yuko-input_category">Category</label>
                                     <span class="yuko-textfield_error">Invalid Format</span>
                                 </div>
@@ -256,7 +219,7 @@
                                     </li>
                                 </ul>
                                 <div class="yuko-textfield yuko-js-textfield">
-                                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords" pattern="^\s*[a-zA-Z0-9]+\s*$">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords" pattern="^\s*[a-zA-Z0-9\u2E80-\u9FFF]+\s*$">
                                     <label class="yuko-textfield_label" for="yuko-input_keywords">Keywords</label>
                                     <span class="yuko-textfield_error">Invalid Format</span>
                                 </div>
@@ -985,7 +948,9 @@
                     </div>
                 </div>
             </div>
-            <span class="main-to_top"></span>
+            <span class="main-to_top">
+                <i class="material-icons yuko-tooltip_trigger" data-title="To Top">flight_takeoff</i>
+            </span>
         </section>
         <!-- Main E -->
         <!-- Footer S -->
@@ -1025,11 +990,11 @@
         var $imageCropper = $('#yuko-image_cropper--container'),
             $image = $('#yuko-image_cropper--img'),
             $uploadImg = $('.edit-cover .yuko-upload input'),
+            $uploadImgLink = $('.edit-cover .yuko-textfield .yuko-textfield_input'),
             $uploadNoImg = $('.edit-cover .yuko-upload .no-img'),
             $uploadImgBox = $('.edit-cover .yuko-upload .img-box'),
             boxWidth = Yuko.utility.getComputedSizeInPx($uploadNoImg[0], 'width'),
             boxHeight = Yuko.utility.getComputedSizeInPx($uploadImgBox[0], 'height'),
-            $uploadImgLink = $('.edit-cover .yuko-textfield'),
             $previewArticle = $('body.yuko-cms #main #yuko-article-preview'),
             $article = $('body.yuko-cms #main #yuko-article-preview .yuko-article'),
             isFirst = true,
@@ -1042,8 +1007,8 @@
                 crop: function (e) {
 
                 }
-            };;
-            
+            };
+        // Cover upload listener
         $uploadImg.on('change', function (evt) {
             files = $uploadImg[0].files;
             file = files[0];
@@ -1075,22 +1040,42 @@
                 }
             }
         });
-
+        // Cover link listener
+        $uploadImgLink.on('focusout', function () {
+            var link = $uploadImgLink.val().trim(),
+                regexp = /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/,
+                $parent = $uploadImgLink.parent();
+            if (!link) { $parent.removeClass('is-invalid'); return;}
+            if (!regexp.test(link)) {
+                $parent.addClass('is-invalid');
+                return;
+            }
+            $parent.removeClass('is-invalid');
+            $uploadNoImg.css('display', 'none');
+            $uploadImgBox.css('display', 'block');
+            // Remove Inputed Image
+            $('.edit-cover .yuko-upload .img-box').children().remove();
+            // Append New Image
+            $uploadImgBox.append('<img src="' + link + '"/>' );
+        });
+        // Category, Keywords listener
         $('.docs-buttons').on('click', '[data-method]', function () {
             var $this = $(this);
             var data = $this.data();
             switch (data.method) {
                 case 'submitCropperImage':
-                    $('.edit-cover .yuko-upload .img-box canvas').remove('canvas');
+                    $('.edit-cover .yuko-upload .img-box').children().remove();
                     var canvas = $image.cropper("getCroppedCanvas", { maxWidth: 4096, maxHeight: 4096 });
                     $uploadImgBox.append(canvas);
                     $uploadNoImg.css('display', 'none');
-                    $uploadImgLink.css('display', 'none');
+                    //$uploadImgLink.css('display', 'none');
                     $uploadImgBox.css('display', 'block');
                     $imageCropper.animate({
                         'opacity': 0,
                         'z-index': -1
                     });
+                    $uploadImgLink.val('');
+                    $uploadImgLink.parent().removeClass('is-invalid');
                     break;
                 case 'destroy':
                     isFirst = true,
@@ -1103,20 +1088,15 @@
                     break;
             }
         });
-
-        $('.edit-info textarea').froalaEditor();
-        $('.edit-abstract textarea').froalaEditor();
-        $('.edit-body textarea').froalaEditor();
-        $('.edit-ref textarea').froalaEditor();
-
+        // Category, Keywords listener
         $('.yuko-textfield_input').on('keydown', function (evt) {
             var key = evt.key,
                 target = evt.target,
                 edit_category = Yuko.utility.hasAncestor(target, { className: 'edit-category' }),
                 edit_keywords = Yuko.utility.hasAncestor(target, { className: 'edit-keywords' }),
                 goAhead = edit_category || edit_keywords;
-            if(!goAhead) return;
-            
+            if (!goAhead) return;
+
             var textfield = goAhead.querySelector('.yuko-textfield'),
                 list = goAhead.querySelector('.edit-list'),
                 category_item_template = '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">{YUKO_ITEM_NAME}</li>',
@@ -1124,8 +1104,8 @@
                 input = textfield.querySelector('.yuko-textfield_input'),
                 tag_name = input.value.trim(),
                 error_tip = textfield.querySelector('.yuko-textfield_error');
-            
-                error_tip.innerHTML = 'Invalid format';
+
+            error_tip.innerHTML = 'Invalid format';
             if (key !== 'Enter') return;
             if (!list) {
                 // Create a list
@@ -1143,7 +1123,7 @@
             // Check if input is exist
             for (var ti = 0; ti < list.children.length; ti++) {
                 var tag = list.children[ti].innerHTML.replace(/<i.*?<\/i>/ig, '').toLocaleLowerCase().trim();
-                
+
                 if (tag === tag_name.toLocaleLowerCase().trim()) {
                     $(error_tip).html('Tag "' + tag_name + '" already exist');
                     $(textfield).addClass('is-invalid');
@@ -1163,16 +1143,16 @@
             $(list).append(new_item);
             input.value = '';
         });
-
+        // Control button listener
         var isPretty;
         $('.yuko-button').on('click', function () {
             var data = $(this).data(),
                 method = data.method,
-                handler = {saveArticle:null,saveAsDraft:null,previewArticle:null};
-            if(!handler.hasOwnProperty(method)) return;
-            
+                handler = { saveArticle: null, saveAsDraft: null, previewArticle: null };
+            if (!handler.hasOwnProperty(method)) return;
+
             var cover = $('.edit-cover .img-box canvas')[0],
-                cover_url,
+                cover_url = $('.edit-cover .yuko-textfield .yuko-textfield_input').val().trim(),
                 title = $('.edit-title .yuko-textfield_input').val().trim(),
                 subtitle = $('.edit-subtitle .yuko-textfield_input').val().trim(),
                 categorys = getTagValues($('.edit-category .edit-list')[0], 'yuko-button_colored'),
@@ -1187,10 +1167,12 @@
             // FormData
 
             if (cover) {
-                formData.append('cover', cover.toBlob(function (blob) {
-                    cover_url = URL.createObjectURL(blob);
-                }));
+                formData.append('cover', cover.toBlob(function (blob) {}));
+                cover_url = cover.toDataURL();
+            } else if (cover_url) {
+                formData.append('cover_url', cover_url);
             }
+            
             formData.append('title', title);
             formData.append('subtitle', subtitle);
             formData.append('categorys', categorys.toString());
@@ -1244,16 +1226,16 @@
                         $ref = $previewArticle.find('.yuko-article_ref'),
                         $licenses = $previewArticle.find('.yuko-article_licenses');
                     // Cover
-                    if(cover) {
-                        $cover.html(cover);
+                    if (cover_url) {
+                        $cover.html('<img src="' + cover_url +'" />');
                     } else {
                         $cover.html('');
                     }
                     // Title
-                    if(title) {
+                    if (title) {
                         $title.html('<h1>' + title + '</h1>');
-                    }else {
-                        $title.html('<h1 class="yuko-article_error">No title</h1>');
+                    } else {
+                        $title.html('<h1 class="yuko-article_error">No title : Title required!</h1>');
                     }
                     // SubTitle
                     if (subtitle) { $subtitle.html('<h2>' + subtitle + '</h2>'); $subtitle.css('display', 'block') }
@@ -1275,7 +1257,7 @@
                         $info.append(list);
                     }
                     // Abstract
-                    if (abstract) { $abstract.html('<h5 class="yuko-article_highlight">Abstract</h5>' + abstract);  $abstract.css('display', 'block') }
+                    if (abstract) { $abstract.html('<h5 class="yuko-article_highlight">Abstract</h5>' + abstract); $abstract.css('display', 'block') }
                     else { $abstract.html(''); $abstract.css('display', 'none') }
                     // Keywords
                     if (keywords.length > 0) {
@@ -1294,7 +1276,7 @@
                     }
                     // Body
                     if (body) { $body.html(body) }
-                    else { $body.html('<p class="yuko-article_error">No content</p>') }
+                    else { $body.html('<p class="yuko-article_error">No content : Content required!</p>') }
                     // Reference
                     if (ref) {
                         ref = ref.replace(/^<ul>/, '<ul class="yuko-article_ref-list">').replace(/^<ol>/, '<ol class="yuko-article_ref-list">');
@@ -1349,21 +1331,22 @@
                 handler[method]();
             }
         });
-
+        // Preview Article button listener 2
         $previewArticle.on('click', function (evt) {
             var _target = evt.target;
             if (!Yuko.utility.hasAncestor(_target, { className: 'yuko-article' })) {
                 $previewArticle.fadeOut();
             }
         });
-
+        // Category listener 2
         $('.edit-category').on('click', function (evt) {
             var $target = $(evt.target);
-            if(!$target.hasClass('yuko-button')) return;
+            if (!$target.hasClass('yuko-button')) return;
             var isSelected = $target.hasClass('yuko-button_colored');
-            
-                isSelected ? $target.removeClass('yuko-button_colored') : $target.addClass('yuko-button_colored');
+
+            isSelected ? $target.removeClass('yuko-button_colored') : $target.addClass('yuko-button_colored');
         });
+        // Public Method
         function getTagValues(ele, selector) {
             if (!ele instanceof Element) return;
             var values = [],
@@ -1372,21 +1355,27 @@
                 value;
             for (var c = 0; c < items.length; c++) {
                 item = items[c];
-                if(selector) {
+                if (selector) {
                     console.log(item);
-                    if(!item.classList.contains(selector)) continue;
+                    if (!item.classList.contains(selector)) continue;
                 }
                 value = item.innerHTML.replace(/<.+>.*?<\/.+>/ig, '').trim();
                 values.push(value);
             }
             return values;
         }
+
         function htmlEscape(s) {
             return s
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;');
         }
+        // Editor
+        $('.edit-info textarea').froalaEditor();
+        $('.edit-abstract textarea').froalaEditor();
+        $('.edit-body textarea').froalaEditor();
+        $('.edit-ref textarea').froalaEditor();
     </script>
 </body>
 

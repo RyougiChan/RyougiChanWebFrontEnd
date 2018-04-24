@@ -1,5 +1,8 @@
 /* Component Global Start */
 .text_ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
+.yuko-docs .yuko-component_removable {overflow: visible;}
+.yuko-docs .yuko-component_removable .remove {position: absolute;left: unset;right: -20px;top: 5px;border-radius: 50%;background: #3f51b5;color: white;width: 18px;height: 18px;line-height: 18px;font-size: 18px;}
+.yuko-docs .yuko-component_removable .remove:hover {background: brown;}
 /* Component Global End */
 
 /* Button Start */
@@ -275,15 +278,15 @@ body.yuko-docs .yuko-imgcard_content .yuko-imgcard_content-text > p { color: #ff
 .yuko-docs .yuko-article h1 {text-align: left;}
 .yuko-docs .yuko-article h2 {text-align: left;font-size: 20px;font-style: italic; font-weight: 500;}
 .yuko-docs .yuko-article p {text-indent: 2em; margin-bottom: 1em;}
-.yuko-docs .yuko-article a {color: rgba(33, 150, 243, 1); text-decoration: underline}
-.yuko-docs .yuko-article code {display: inline-block; margin: 0 4px; padding: 4px 10px; border-radius: 5px; color: #f1f1f1; background: rgba(33, 150, 243, 0.8); text-align: left; text-indent: 0}
+.yuko-docs .yuko-article a {color: #3f51b5; text-decoration: underline}
+.yuko-docs .yuko-article code {display: inline-block; margin: 0 4px; padding: 4px 10px; border-radius: 5px; color: #f1f1f1; background: #3f51b5; text-align: left; text-indent: 0}
 .yuko-docs .yuko-article sub,
 .yuko-docs .yuko-article sup,
 .yuko-docs .yuko-article super {font-size: 10px;}
 .yuko-docs .yuko-article > div { padding: 10px; overflow: hidden; }
 .yuko-docs .yuko-article .yuko-article_cover { margin: 0 -1em; padding: 0; }
 .yuko-docs .yuko-article .yuko-article_cover canvas,
-.yuko-docs .yuko-article .yuko-article_cover img {max-width: 100%;}
+.yuko-docs .yuko-article .yuko-article_cover img {width: 100%;}
 .yuko-docs .yuko-article .yuko-article_abstract p {font-style: italic; font-size: 90%; line-height: 1.5em;}
 .yuko-docs .yuko-article .yuko-article_keywords {font-weight: 800;}
 .yuko-docs .yuko-article .yuko-article_title {font-size: 36px;}

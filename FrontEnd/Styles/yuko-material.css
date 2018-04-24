@@ -58,7 +58,7 @@ body.icons-docs #page-container #page-inner-container {
 }
 
 body.icons-docs header {
-  background: #03a9f4;
+  background: #3f51b5;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -67,7 +67,7 @@ body.icons-docs .noninitial-chapter .header-wrapper, body.icons-docs .header-wra
 }
 
 body.icons-docs h1, body.icons-docs a {
-  color: #03a9f4;
+  color: #3f51b5;
 }
 
 body.icons-docs h1 {
@@ -91,7 +91,7 @@ body.icons-docs h3 {
 }
 
 body.icons-docs h2, body.icons-docs h3 {
-  color: #03a9f4;
+  color: #3f51b5;
   /* padding-top: 24px;  */
 }
 
