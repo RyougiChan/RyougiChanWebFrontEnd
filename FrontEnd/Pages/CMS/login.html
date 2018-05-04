@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RyougiChan - Login to CMS</title>
-    <link rel="stylesheet" href="../../Styles/yuko-reset.css">
-    <link rel="stylesheet" href="../../Styles/yuko-global.css">
-    <link rel="stylesheet" href="../../Styles/material-icons.css">
-    <link rel="stylesheet" href="../../Styles/md-icons/css-sprite/sprite-navigation-white.css">
-    <link rel="stylesheet" href="../../Styles/yuko-material.css">
-    <link rel="stylesheet" href="../../Styles/yuko.css">
-    <link rel="stylesheet" href="../../Styles/yuko.component.css">
-    <link rel="stylesheet" href="../../Styles/cms-index.css">
-    <link rel="stylesheet" href="../../Styles/index@1200px.css">
+    <link rel="stylesheet" href="../..//Styles/yuko-reset.css">
+    <link rel="stylesheet" href="../..//Styles/yuko-global.css">
+    <link rel="stylesheet" href="../..//Styles/material-icons.css">
+    <link rel="stylesheet" href="../..//Styles/md-icons/css-sprite/sprite-navigation-white.css">
+    <link rel="stylesheet" href="../..//Styles/yuko-material.css">
+    <link rel="stylesheet" href="../..//Styles/yuko.css">
+    <link rel="stylesheet" href="../..//Styles/yuko.component.css">
+    <link rel="stylesheet" href="../..//Styles/cms-index.css">
+    <link rel="stylesheet" href="../..//Styles/index@1200px.css">
     <style>
         #area-form {
             width: 50%;
@@ -22,7 +22,10 @@
             background: rgba(241, 241, 241, .7);
         }
 
-        .yuko-docs .yuko-form>div {
+        #area-twostepverification {
+        }
+
+        .yuko-docs .yuko-form > div {
             width: 40%;
             padding: 5%;
         }
@@ -49,6 +52,10 @@
 
         .yuko-docs .yuko-form .yuko-form_right {
             float: right;
+        }
+
+        .area-dialog.yuko-dialog {
+            display: none;
         }
     </style>
 </head>
@@ -79,27 +86,142 @@
                     <div class="yuko-form_left">
                         <h3>Content Management System</h3>
                         <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
-                            <input class="yuko-textfield_input" type="text" pattern="^([^-^\d])([\w-]{1,31})$" id="yuko-input1">
-                            <label class="yuko-textfield_label" for="yuko-input1">Name</label>
+                            <input class="yuko-textfield_input" type="text" pattern="^([^-^\d])([\w-]{1,31})$" id="yuko-input_name">
+                            <label class="yuko-textfield_label" for="yuko-input_name">Name</label>
                             <span class="yuko-textfield_error">Letter, number, '_', '-' supported only! Max 32.</span>
                         </div>
                         <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
-                            <input class="yuko-textfield_input" type="password" id="yuko-input2">
-                            <label class="yuko-textfield_label" for="yuko-input2">Password</label>
+                            <input class="yuko-textfield_input" type="password" id="yuko-input_pw">
+                            <label class="yuko-textfield_label" for="yuko-input_pw">Password</label>
+                            <span class="yuko-textfield_error">Invaild name or password.</span>
                         </div>
-                        <div class="yuko-button yuko-button_ripple yuko-button_null yuko-button_colored">
+                        <div class="yuko-button yuko-button_ripple yuko-button_null yuko-button_colored cms-login">
                             <i class="">Login</i>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="area-dialog yuko-dialog">
+                <div class="yuko-dialog-content">
+                    <div class="yuko-dialog-header">
+                        <h5 class="yuko-dialog-title">PIN Code</h5>
+                        <span class="yuko-dialog_close yuko-button" data-method="closeDialog">
+                            <span>×</span>
+                        </span>
+                    </div>
+                    <div class="yuko-dialog-body">
+                        <div class="yuko-textfield yuko-js-textfield">
+                            <input class="yuko-textfield_input" type="text" id="yuko-input_pinvalue" maxlength="6" pattern="^\d{6}$">
+                            <label class="yuko-textfield_label" for="yuko-input_pinvalue">PIN Code</label>
+                            <span class="yuko-textfield_error">Invalid Format</span>
+                        </div>『eg: 123456』
+                    </div>
+                    <div class="yuko-dialog-footer">
+                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="closeDialog">Close</span>
+                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="submitDialog">Submit</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../../Scripts/jquery/jquery.min.js"></script>
-    <script src="../../Scripts/jquery/jquery.smoove.js"></script>
-    <script src="../../Scripts/Yuko.js"></script>
-    <script src="../../Scripts/Yuko.component.js"></script>
+    <script src="../..//Scripts/jquery/jquery.min.js"></script>
+    <script src="../..//Scripts/jquery/jquery.smoove.js"></script>
+    <script src="../..//Scripts/Yuko.js"></script>
+    <script src="../..//Scripts/Yuko.component.js"></script>
+    <script>
+        var userID,
+            loginHandler = function (evt) {
+                var name = $('#yuko-input_name').val().trim(),
+                    pw = $('#yuko-input_pw').val().trim();
+                if (name == '' || pw == '') return;
+                $.ajax({
+                    url: '/rcms/verification',
+                    method: 'post',
+                    data: { name: name, pw: pw },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        if (data.return_code == '200') {
+                            $('.area-dialog.yuko-dialog').fadeIn();
+                            $('.area-dialog.yuko-dialog').find('.yuko-textfield_input').focus();
+                            userID = data.return_data.userID;
+                            console.log(data.return_data.userID);
+                        } else {
+                            var $errBox = $('#yuko-input_pw').siblings('.yuko-textfield_error');
+                            $errBox.html(data.return_msg);
+                            $('#yuko-input_pw').parent().addClass('is-invalid');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        $(document.documentElement).html(error.responseText);
+                    }
+                })
+            };
+        $('#yuko-input_pw').on('input propertychange', function () {
+            $('#yuko-input_pw').parent().removeClass('is-invalid');
+        });
+        $('.cms-login').on('click', loginHandler);
+        $('#yuko-input_pw').on('keydown', function (evt) {
+            if (evt.key == 'Enter') {
+                var name = $('#yuko-input_name').val(),
+                    namePattern = $('#yuko-input_name').attr('pattern'),
+                    pw = $('#yuko-input_pw').val();
+                if (name != '' && pw != '' && new RegExp(namePattern).test(name)) {
+                    loginHandler(evt);
+                }
+            }
+        });
+
+        var $dialog = $('.area-dialog.yuko-dialog');
+        var submitDialog = function (evt) {
+            var pinValue = $('#yuko-input_pinvalue').val(),
+                $this = $(this),
+                $errBox = $dialog.find('.yuko-textfield_error');
+            if (pinValue.trim() == '') return;
+            $.ajax({
+                url: '/rcms/twostepverification',
+                method: 'post',
+                data: { pinValue: pinValue, userID: userID },
+                success: function (data) {
+                    console.log(data);
+                    if (data.return_code == '200') {
+                        window.location.href = '/rcms/index';
+                        $dialog.fadeOut();
+                    } else {
+                        $errBox.parents('.yuko-textfield').addClass('is-invalid');
+                        $errBox.html('Invalid pin code');
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+
+            });
+        }
+        $('#yuko-input_pinvalue').on('keydown', function (evt) {
+            if (evt.key == 'Enter') {
+                submitDialog(evt);
+            }
+        });
+        $('.yuko-dialog .yuko-button').on('click', function (evt) {
+            var $this = $(this),
+                data = $(this).data(),
+                $dialog = $this.parents('.yuko-dialog'),
+                method = data.method;
+            switch (method) {
+                case 'closeDialog':
+                    $dialog.fadeOut();
+                    break;
+                case 'submitDialog':
+                    submitDialog(evt);
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
 </body>
 
 </html>

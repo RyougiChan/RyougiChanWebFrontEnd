@@ -1061,7 +1061,7 @@
 
             if (id) {
                 parent = ele.parentElement;
-                while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                while (parent != document.documentElement && parent.nodeName.toLocaleLowerCase() != 'body') {
                     if (parent.id == id) {
                         tempTarget = parent;
                         break;
@@ -1077,7 +1077,7 @@
                     }
                 } else {
                     parent = ele.parentElement;
-                    while (parent.nodeName.toLocaleLowerCase() != 'body') {
+                    while (parent != document.documentElement && parent.nodeName.toLocaleLowerCase() != 'body') {
                         if (parent.classList.contains(className)) {
                             tempTarget = parent;
                             break;

@@ -13,13 +13,16 @@ CREATE TABLE IF NOT EXISTS `R_Article` (
   `editor` VARCHAR(100) NOT NULL,
   `authorDesc` VARCHAR(150),
   `license` VARCHAR(100),
+  `addLicense` VARCHAR(100),
   `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updateTime` DATETIME NOT NULL,
   `abstract` VARCHAR(2000),
   `keywords` VARCHAR(200),
   `content` MEDIUMTEXT NOT NULL,
   `reference` MEDIUMTEXT,
-  `thumb` VARCHAR(150),
+  `cover` VARCHAR(150),
+  `isDraft` BIT(1) NOT NULL DEFAULT 0,
+  `readCount` int NOT NULL DEFAULT 0,
   PRIMARY KEY `pk_id`(`id`)
 ) ENGINE = InnoDB;
 

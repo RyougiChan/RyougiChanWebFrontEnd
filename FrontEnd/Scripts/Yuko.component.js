@@ -64,21 +64,23 @@
                 }
             }
             for (var i = 0; i < textfiled.length; i++) {
-                var pattern = textfiled[i].getAttribute('pattern');
-                if (pattern) {
-                    var re = new RegExp(pattern);
-                    Yuko.utility.addEvent(textfiled[i], 'input', function (i) {
-                        if (this.value.trim() != '' && !(re.test(this.value))) {
-                            if (!this.parentNode.classList.contains('is-invalid')) {
-                                this.parentNode.classList.add('is-invalid');
+                Yuko.utility.addEvent(textfiled[i], 'input', (function (i) {
+                    var pattern = textfiled[i].getAttribute('pattern');
+                    if (pattern) {
+                        var re = new RegExp(pattern);
+                        return function () {
+                            if (this.value.trim() != '' && !(re.test(this.value))) {
+                                if (!this.parentNode.classList.contains('is-invalid')) {
+                                    this.parentNode.classList.add('is-invalid');
+                                }
+                            } else {
+                                if (this.parentNode.classList.contains('is-invalid')) {
+                                    this.parentNode.classList.remove('is-invalid');
+                                }
                             }
-                        } else {
-                            if (this.parentNode.classList.contains('is-invalid')) {
-                                this.parentNode.classList.remove('is-invalid');
-                            }
-                        }
-                    });
-                }
+                        };
+                    }
+                })(i));
                 Yuko.utility.addEvent(textfiled[i], 'focusin', focusinCall);
                 Yuko.utility.addEvent(textfiled[i], 'focusout', focusoutCall);
             }
@@ -507,7 +509,7 @@
                                     ctx.fillStyle = "#ffffff";
                                     ctx.fillRect(0, 0, width, height);
                                     ctx.drawImage(tempImg, 0, 0, width, height);
-                                    
+
                                     imgBox.appendChild(newImg);
                                     console.log('append')
                                 }
@@ -590,8 +592,8 @@
                         container.removeChild(tooltip);
                     }
                 };
-            Yuko.utility.addEvent(document.body, floatover, toolTipShowHandler);
-            Yuko.utility.addEvent(document.body, floatout, toolTipHideHandler);
+            Yuko.utility.addEvent(document, floatover, toolTipShowHandler);
+            Yuko.utility.addEvent(document, floatout, toolTipHideHandler);
         }
     };
 

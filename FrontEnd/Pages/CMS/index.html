@@ -21,6 +21,7 @@
         body.yuko-cms {
             min-height: 100%;
         }
+
         body.yuko-cms #header {
             top: 0 !important
         }
@@ -38,41 +39,53 @@
         }
 
         body.yuko-cms #main .main-middle_left {
-            width: 27%;
+            width: 20%;
             top: 90px;
             bottom: 46px;
             position: fixed;
             overflow-y: scroll;
             overflow-x: hidden;
-            -ms-overflow-style:none;
-            overflow:-moz-scrollbars-none;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
         }
 
         body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
             display: none;
         }
-        
+
         body.yuko-cms .yuko-list.yuko-list_compact .yuko-list_item {
             user-select: none;
         }
-        body.yuko-cms .yuko-list > .yuko-list_item .yuko-list_item-content { width: 100% }
+
+        body.yuko-cms .yuko-list>.yuko-list_item .yuko-list_item-content {
+            width: 100%
+        }
+
         body.yuko-cms #main .main-middle_right {
-            width: 70%;
+            width: 80%;
+        }
+
+        body.yuko-cms #main .main-middle_right .main-content {
+            width: 90%;
+            margin: 40px 0 40px auto;
         }
 
         body.yuko-cms .yuko-list.yuko-list_compact .yuko-checkbox {
-            margin: 15px 5px;
+            margin: 15px 15px;
         }
 
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(2) {
             width: 45%;
         }
+
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(3) {
-            width: 8%;
+            width: 10%;
         }
+
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(4) {
             width: 15%;
         }
+
         body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(5) {
             width: 15%;
         }
@@ -172,105 +185,109 @@
             <div class="main-middle">
                 <div class="main-middle_right">
                     <div class="main-content">
-                        <h3>Article Management</h3><br>
                         <ul class="yuko-list yuko-list_compact">
-                                <li class="yuko-list_item">
-                                    <span class="yuko-list_item-content">
-                                        <span class="yuko-checkbox yuko-checkbox-all">
-                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
-                                            <span class="yuko-checkbox_box-outline">
-                                                <span class="yuko-checkbox_tick-outline"></span>
-                                            </span>
-                                        </span>
-                                        <span>
-                                            TITLE
-                                        </span>
-                                        <span>
-                                            Status
-                                        </span>
-                                        <span>
-                                            Update Time
-                                        </span>
-                                        <span>
-                                            Operation
+                            <li class="yuko-list_item">
+                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Edit</div>
+                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Delete</div>
+                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Save as draft</div>
+                            </li>
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-content">
+                                    <span class="yuko-checkbox yuko-checkbox-all">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <span class="yuko-checkbox_box-outline">
+                                            <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
                                     </span>
-                                </li>
-                                <li class="yuko-list_item">
-                                    <span class="yuko-list_item-content">
-                                        <span class="yuko-checkbox">
-                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
-                                            <span class="yuko-checkbox_box-outline">
-                                                <span class="yuko-checkbox_tick-outline"></span>
-                                            </span>
-                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
-                                                <span class="yuko-ripple is-animating"></span>
-                                            </span>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                    <span>
+                                        Status
+                                    </span>
+                                    <span>
+                                        Update Time
+                                    </span>
+                                    <span>
+                                        Author
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-content">
+                                    <span class="yuko-checkbox">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <span class="yuko-checkbox_box-outline">
+                                            <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
-                                        <span>
-                                            TITLE
-                                        </span>
-                                        <span>
-                                            Status
-                                        </span>
-                                        <span>
-                                            Update Time
-                                        </span>
-                                        <span>
-                                            Operation
+                                        <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                            <span class="yuko-ripple is-animating"></span>
                                         </span>
                                     </span>
-                                </li>
-                                <li class="yuko-list_item">
-                                    <span class="yuko-list_item-content">
-                                        <span class="yuko-checkbox">
-                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
-                                            <span class="yuko-checkbox_box-outline">
-                                                <span class="yuko-checkbox_tick-outline"></span>
-                                            </span>
-                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
-                                                <span class="yuko-ripple is-animating"></span>
-                                            </span>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                    <span>
+                                        Status
+                                    </span>
+                                    <span>
+                                        Update Time
+                                    </span>
+                                    <span>
+                                        Author
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-content">
+                                    <span class="yuko-checkbox">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <span class="yuko-checkbox_box-outline">
+                                            <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
-                                        <span>
-                                            TITLE
-                                        </span>
-                                        <span>
-                                            Status
-                                        </span>
-                                        <span>
-                                            Update Time
-                                        </span>
-                                        <span>
-                                            Operation
+                                        <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                            <span class="yuko-ripple is-animating"></span>
                                         </span>
                                     </span>
-                                </li>
-                                <li class="yuko-list_item">
-                                    <span class="yuko-list_item-content">
-                                        <span class="yuko-checkbox">
-                                            <input type="checkbox" class="yuko-checkbox_input" name="cb">
-                                            <span class="yuko-checkbox_box-outline">
-                                                <span class="yuko-checkbox_tick-outline"></span>
-                                            </span>
-                                            <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
-                                                <span class="yuko-ripple is-animating"></span>
-                                            </span>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                    <span>
+                                        Status
+                                    </span>
+                                    <span>
+                                        Update Time
+                                    </span>
+                                    <span>
+                                        Author
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item">
+                                <span class="yuko-list_item-content">
+                                    <span class="yuko-checkbox">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <span class="yuko-checkbox_box-outline">
+                                            <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
-                                        <span>
-                                            TITLE
-                                        </span>
-                                        <span>
-                                            Status
-                                        </span>
-                                        <span>
-                                            Update Time
-                                        </span>
-                                        <span>
-                                            Operation
+                                        <span class="yuko-checkbox_ripple yuko-js-ripple-effect yuko-ripple--center">
+                                            <span class="yuko-ripple is-animating"></span>
                                         </span>
                                     </span>
-                                </li>
+                                    <span>
+                                        TITLE
+                                    </span>
+                                    <span>
+                                        Status
+                                    </span>
+                                    <span>
+                                        Update Time
+                                    </span>
+                                    <span>
+                                        Author
+                                    </span>
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
