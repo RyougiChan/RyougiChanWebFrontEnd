@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `R_Article` (
   `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updateTime` DATETIME NOT NULL,
   `abstract` VARCHAR(2000),
+  `categorys` VARCHAR(200),
   `keywords` VARCHAR(200),
   `content` MEDIUMTEXT NOT NULL,
   `reference` MEDIUMTEXT,

@@ -1077,7 +1077,7 @@
                     }
                 } else {
                     parent = ele.parentElement;
-                    while (parent != document.documentElement && parent.nodeName.toLocaleLowerCase() != 'body') {
+                    while (null != parent && parent != document.documentElement && parent.nodeName.toLocaleLowerCase() != 'body') {
                         if (parent.classList.contains(className)) {
                             tempTarget = parent;
                             break;
@@ -1338,10 +1338,21 @@
 
         }
 
+        // Initial All Snackbar Style
+        function initSnackbarStyle() {
+            var snackbars = document.getElementsByClassName('yuko-snackbar');
+            for (var i = 0; i < snackbars.length; i++) {
+                var s = snackbars[i],
+                    h = s.offsetHeight;
+                s.style.transform = 'translate(-50%, ' + h + 'px)';
+            }
+        }
+
         return {
             initFragStyle: initFragStyle,
             initCarouselStyle: initCarouselStyle,
-            initCarouselV2Style: initCarouselV2Style
+            initCarouselV2Style: initCarouselV2Style,
+            initSnackbarStyle: initSnackbarStyle
         }
     })();
 
@@ -1399,9 +1410,32 @@
             }
         }
 
+        /**
+         * Trigger a specific snackbar
+         * @param {String} snackbar snackbar's selector
+         * @param {String} content snackbar's text content
+         */
+        function triggerSnackbar(snackbar, content) {
+            var snackbar = document.querySelector('.yuko-snackbar');
+            if (snackbar != undefined) {
+                var snackbarText = snackbar.querySelector('.yuko-snackbar_text');
+                if(content) snackbarText.innerHTML = content;
+                // snackbarBound = snackbar.getBoundingClientRect();
+                if (!snackbar.classList.contains('is-active')) {
+                    snackbar.classList.add('is-active');
+                }
+                setTimeout(function () {
+                    if (snackbar.classList.contains('is-active')) {
+                        snackbar.classList.remove('is-active');
+                    }
+                }, 4000);
+            }
+        }
+
         return {
             bindDrawerNavItemToPage: bindDrawerNavItemToPage,
-            bindListItemToPage: bindListItemToPage
+            bindListItemToPage: bindListItemToPage,
+            triggerSnackbar: triggerSnackbar
         };
 
     })();
@@ -2698,7 +2732,10 @@
                     }
                     for (var i = 0; i < visibles[index].length; i++) {
                         // Change content of items
-                        items[i].innerHTML = "<a>" + (visibles[index][i] + 1) + "</a>";
+                        //items[i].innerHTML = "<a>" + (visibles[index][i] + 1) + "</a>";
+                        // If using innerHTML here, we can not trigger event. such as click.
+                        var item = items[i].children[0];
+                        item.innerText = (visibles[index][i] + 1);
                     }
                 } else {
                     // refresh all
@@ -2708,7 +2745,10 @@
                             items = paging.querySelectorAll('.yuko-pagination_item');
                         for (var j = 0; j < vis.length; j++) {
                             // Change content of items
-                            items[j].innerHTML = "<a>" + (vis[j] + 1) + "</a>";
+                            //items[j].innerHTML = "<a>" + (vis[j] + 1) + "</a>";
+                            // If using innerHTML here, we can not trigger event. such as click.
+                            var item = items[j].children[0];
+                            item.innerText = (vis[j] + 1);
                         }
                     }
                 }
@@ -3039,6 +3079,11 @@
                     }
 
                 }
+
+                // Set current active index
+                if (_active) {
+                    pagination.setAttribute('data-active', _active.innerText);
+                }
             }
             Yuko.utility.addEvent(document, fingerdown, paginationHandler);
 
@@ -3062,6 +3107,7 @@
         Yuko.style.initCarouselStyle();
         // CarouselV2 style
         Yuko.style.initCarouselV2Style();
+        Yuko.style.initSnackbarStyle();
         // When a resize event happen
         Yuko.utility.addEvent(win, 'resize', function () {
             // Fragment style

@@ -40,7 +40,7 @@
                 if (!(_target.classList.contains('remove') && removeComponent)) return;
                 parentNode = removeComponent.parentElement;
                 parentNode.removeChild(removeComponent);
-                console.log('remove');
+                //console.log('remove');
             };
             Yuko.utility.addEvent(document, fingerdown, removeBtnHandler);
         },
@@ -138,11 +138,13 @@
                     }
                     _last = _this.lastElementChild;
                     _input = _this.firstElementChild;
+                    var checkallbox = document.querySelector('.yuko-checkbox-all input[name="'+_input.name+'"]');
 
                     // If is a check-all checkbox
                     if (_this.classList.contains('yuko-checkbox-all')) {
                         var checkall = _this.firstElementChild; // Check all input
                         // If is a check-all checkbox
+                        var checkboxs = document.querySelectorAll('.yuko-checkbox');
                         for (var cbi = 0; cbi < checkboxs.length; cbi++) {
                             var cb = checkboxs[cbi],
                                 cbInput = cb.firstElementChild;
@@ -165,6 +167,12 @@
                         _input.setAttribute('checked', '');
                         isCancel = false;
                     } else {
+                        if(checkallbox) {
+                            var checkallparent = checkallbox.parentElement;
+                            if(checkallparent.classList.contains('is-checked'))
+                                checkallparent.classList.remove('is-checked');
+                            checkallbox.removeAttribute('checked');
+                        }
                         isCancel = true;
                     }
 
@@ -420,36 +428,60 @@
         // Snackbar
         'initSnackbar': function initSnackbar() {
             var snackbarHandler = function (evt) {
-                // snackbar: snackbar
                 var _target = evt.target,
-                    snackbar,
-                    snackbarBound;
-
-                if (_target == document.documentElement || !_target.parentElement) {
-                    // If press on a blank area.
-                    return;
-                }
-
+                  snackbarTrigger,
+                  snackbar,
+                  snackbarBound,
+                  ancestor = Yuko.utility.hasAncestor(_target, { className: 'yuko-snackbar_trigger' });
+          
                 if (_target.classList.contains('yuko-snackbar_trigger')) {
-                    snackbar = _target.nextElementSibling;
+                  // itself
+                  snackbarTrigger = _target;
+                } else if (ancestor) {
+                  snackbarTrigger = ancestor;
                 }
-                if (_target.parentElement.classList.contains('yuko-snackbar_trigger')) {
-                    snackbar = _target.parentElement.nextElementSibling;
-                }
+                if(!snackbarTrigger) return;
+                var s = snackbarTrigger.getAttribute('name');
+                snackbar = document.querySelector('.yuko-snackbar[name="'+s+'"]');
+          
                 if (snackbar != undefined) {
-                    snackbarBound = snackbar.getBoundingClientRect();
-                    if (!snackbar.classList.contains('is-active')) {
-                        snackbar.classList.add('is-active');
+                  snackbarBound = snackbar.getBoundingClientRect();
+                  if (!snackbar.classList.contains('is-active')) {
+                    snackbar.classList.add('is-active');
+                  }
+                  setTimeout(function () {
+                    if (snackbar.classList.contains('is-active')) {
+                      snackbar.classList.remove('is-active');
                     }
-                    setTimeout(function () {
-                        if (snackbar.classList.contains('is-active')) {
-                            snackbar.classList.remove('is-active');
-                        }
-                    }, 4000);
+                  }, 4000);
                 }
+              };
+            Yuko.utility.addEvent(document, 'click', snackbarHandler);
+        },
+        // List
+        'initList': function initList() {
+            var list = document.querySelectorAll('.yuko-list'),
+                listClickHandler = function (evt) {
+                    var _this = this,
+                        _target = evt.target,
+                        activeItem = _this.querySelector('.yuko-list_item.is-active'),
+                        item;
+                    if(_target.classList.contains('yuko-list_item')) {
+                        item = _target;
+                    }else {
+                        item = Yuko.utility.hasAncestor(_target, { className: 'yuko-list_item'} );
+                    }
+                    
+                    if(!item) return;
+                    if(activeItem) activeItem.classList.remove('is-active');
+                    item.classList.add('is-active');
+                    activeItem = item;
+                };
 
+            for(var i = 0; i < list.length; i++)
+            {
+                Yuko.utility.addEvent(list[i], fingerup, listClickHandler);
             }
-            Yuko.utility.addEvent(document, fingerdown, snackbarHandler);
         },
         // File Upload
         'initFileUpload': function initFileUpload() {
@@ -511,8 +543,8 @@
                                     ctx.drawImage(tempImg, 0, 0, width, height);
 
                                     imgBox.appendChild(newImg);
-                                    console.log('append')
-                                }
+                                    //console.log('append')
+                                };
                             };
                             reader.readAsDataURL(files[k]);
                         }

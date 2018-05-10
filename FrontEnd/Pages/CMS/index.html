@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="../../Styles/yuko.component.css">
     <link rel="stylesheet" href="../../Styles/index.css">
     <link rel="stylesheet" href="../../Styles/index@1200px.css">
+    <link rel="stylesheet" href="../../Styles/cropper/cropper.min.css">
+    <link rel="stylesheet" href="../../Styles/cropper/cropper-main.css">
+    <link rel="stylesheet" href="../../Styles/yuko-prettify.css">
+    <script src="../../Scripts/google-code-prettify/prettify.js"></script>
+    <link rel="stylesheet" href="../../Styles/modification.css">
     <style>
         body.yuko-cms {
             min-height: 100%;
@@ -58,7 +63,7 @@
         }
 
         body.yuko-cms .yuko-list>.yuko-list_item .yuko-list_item-content {
-            width: 100%
+            /* width: 100% */
         }
 
         body.yuko-cms #main .main-middle_right {
@@ -100,7 +105,30 @@
             /* display: inline-block; */
             float: left;
         }
+
+        .main-middle_right .main-content {
+            display: none;
+        }
+
+        .main-middle_right .main-content:first-of-type {
+            display: block;
+        }
+        .management-ctrlBtn {
+            background: rgba(255,255,255,0.8);
+            height: 56px;
+            line-height: 56px;
+        }
+        .management-ctrlBtn .yuko-button {
+            margin: 10px 0 0 10px;
+        }
     </style>
+    <!-- Include external CSS. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="icons-docs yuko-docs yuko-cms">
@@ -184,17 +212,26 @@
         <section id="main">
             <div class="main-middle">
                 <div class="main-middle_right">
-                    <div class="main-content">
+                    <!-- Index -->
+                    <div class="main-content" data-module="management-index">
+                        <h3>ようこそ！</h3>
+                        <p>
+                            ここは僕（
+                            <a href="https://github.com/RyougiChan">RyougiChan</a>）のサイト。
+                        </p>
+                        <p>あなたをお連れしました、この町の、願いが葉う場所に。</p>
+                    </div>
+                    <!-- Admin -->
+                    <div class="main-content" data-module="management-admin">
+                        <div class="management-ctrlBtn">
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Edit</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Delete</div>
+                        </div>
                         <ul class="yuko-list yuko-list_compact">
-                            <li class="yuko-list_item">
-                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Edit</div>
-                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Delete</div>
-                                <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Save as draft</div>
-                            </li>
                             <li class="yuko-list_item">
                                 <span class="yuko-list_item-content">
                                     <span class="yuko-checkbox yuko-checkbox-all">
-                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb-admin">
                                         <span class="yuko-checkbox_box-outline">
                                             <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
@@ -216,7 +253,7 @@
                             <li class="yuko-list_item">
                                 <span class="yuko-list_item-content">
                                     <span class="yuko-checkbox">
-                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb-admin">
                                         <span class="yuko-checkbox_box-outline">
                                             <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
@@ -241,7 +278,7 @@
                             <li class="yuko-list_item">
                                 <span class="yuko-list_item-content">
                                     <span class="yuko-checkbox">
-                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb-admin">
                                         <span class="yuko-checkbox_box-outline">
                                             <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
@@ -266,7 +303,7 @@
                             <li class="yuko-list_item">
                                 <span class="yuko-list_item-content">
                                     <span class="yuko-checkbox">
-                                        <input type="checkbox" class="yuko-checkbox_input" name="cb">
+                                        <input type="checkbox" class="yuko-checkbox_input" name="cb-admin">
                                         <span class="yuko-checkbox_box-outline">
                                             <span class="yuko-checkbox_tick-outline"></span>
                                         </span>
@@ -285,39 +322,509 @@
                                     </span>
                                     <span>
                                         Author
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Article -->
+                    <div class="main-content" data-module="management-article">
+                        <!-- Articles ctrl -->
+                        <div class="management-ctrlBtn">
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleEdit">Add</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleEdit">Edit</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleDelete">Delete</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="update" data-u_article="{'isDraft':true}">Save as draft</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="update" data-u_article="{'isDraft':false}">Cancel set draft</div>
+                        </div>
+                        <!-- Articles list -->
+                        <ul class="yuko-list yuko-list_compact article-list"></ul>
+                        <!-- Articles pagination -->
+                        <div class="yuko-pagination yuko-pagination__round yuko-pagination__async pagination-article" data-active="1">
+                            <span class="yuko-pagination_func backward">
+                                <a>&lt;</a>
+                            </span>
+                            <span class="yuko-pagination_func first">
+                                <a>F</a>
+                            </span>
+                            <span class="yuko-pagination_func hided">
+                                <a>...</a>
+                            </span>
+                            <ul class="yuko-pagination_list">
+                                <li class="yuko-pagination_item active">
+                                    <a>7</a>
+                                </li>
+                                <li class="yuko-pagination_item">
+                                    <a>8</a>
+                                </li>
+                                <li class="yuko-pagination_item">
+                                    <a>9</a>
+                                </li>
+                                <li class="yuko-pagination_item">
+                                    <a>10</a>
+                                </li>
+                                <li class="yuko-pagination_item">
+                                    <a>11</a>
+                                </li>
+                                <li class="yuko-pagination_item">
+                                    <a>12</a>
+                                </li>
+                            </ul>
+                            <span class="yuko-pagination_func hided">
+                                <a>...</a>
+                            </span>
+                            <span class="yuko-pagination_func last">
+                                <a>L</a>
+                            </span>
+                            <span class="yuko-pagination_func forward">
+                                <a>&gt;</a>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Article edit -->
+                    <div class="main-content" data-module="article-edit">
+                        <div id="edit-page">
+                            <div class="edit-cover">
+                                <div class="yuko-upload edit-cover_upload">
+                                    <input type="file" accept="image/jpeg, image/jpg, image/png, image/bmp">
+                                    <div class="no-img">
+                                        <i class="material-icons">image</i>
+                                        <h4>Add article cover there. This is optional.</h4>
+                                        <p class="tips">Image less than 3MB and in JPG/JPEG/BMP/PNG format is supported.</p>
+                                        <p class="tips">Or add a image link in the textfield below</p>
+                                    </div>
+                                    <div class="img-box">
+        
+                                    </div>
+                                </div>
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_cover">
+                                    <label class="yuko-textfield_label" for="yuko-input_cover">Image Link Here (Optional) </label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-title">
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_title">
+                                    <label class="yuko-textfield_label" for="yuko-input_title">Title</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-subtitle">
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_subtitle">
+                                    <label class="yuko-textfield_label" for="yuko-input_subtitle">Subtitle</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-category">
+                                <h5>Select category for this article</h5>
+                                <ul class="edit-list">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                                        Music
+                                    </li>
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">
+                                        Drawing
+                                    </li>
+                                </ul>
+                                <div class="yuko-textfield yuko-js-textfield">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_category" pattern="^\s*[a-zA-Z0-9\u2E80-\u9FFF]+\s*$">
+                                    <label class="yuko-textfield_label" for="yuko-input_category">Category</label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-info">
+                                <h5>Article Infomation</h5>
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_info"></textarea>
+                                    <label class="yuko-textfield_label" for="yuko-input_info">Article Infomation</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-abstract">
+                                <h5>Abstract</h5>
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_abstract"></textarea>
+                                    <label class="yuko-textfield_label" for="yuko-input_abstract">Abstract</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-keywords">
+                                <h5>Keywords</h5>
+                                <ul class="edit-list">
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">
+                                        Delete me
+                                        <i class="material-icons remove">close</i>
+                                    </li>
+                                </ul>
+                                <div class="yuko-textfield yuko-js-textfield">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_keywords" pattern="^\s*[a-zA-Z0-9\u2E80-\u9FFF]+\s*$">
+                                    <label class="yuko-textfield_label" for="yuko-input_keywords">Keywords</label>
+                                    <span class="yuko-textfield_error">Invalid Format</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-body">
+                                <h5>Article Body</h5>
+                                <div class="yuko-textfield yuko-js-textfield yuko-textfield_floating-label">
+                                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_body"></textarea>
+                                    <label class="yuko-textfield_label" for="yuko-input_body">Body</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-ref yuko-article_ref">
+                                <h5>Reference</h5>
+                                <div class="yuko-textfield yuko-js-textfield">
+                                    <textarea class="yuko-textfield_input" type="text" id="yuko-input_ref"></textarea>
+                                    <label class="yuko-textfield_label" for="yuko-input_ref">Reference</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-licenses">
+                                <h5>Licenses</h5>
+                                <br>
+                                <div class="yuko-select">
+                                    <div class="yuko-select_selected">No License</div>
+                                    <div class="yuko-select_items yuko-select_hide">
+                                        <div>No License</div>
+                                        <div>MIT License</div>
+                                        <div>Apache License, Version 2.0</div>
+                                    </div>
+                                </div>
+                                <div class="yuko-textfield yuko-js-textfield">
+                                    <input class="yuko-textfield_input" type="text" id="yuko-input_licenses">
+                                    <label class="yuko-textfield_label" for="yuko-input_licenses">Additional Terms</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="edit-ctrl">
+                                <ul>
+                                    <li class="yuko-button yuko-button_raised yuko-button_colored yuko-button_bordered yuko-button_ripple" data-method="saveArticle">
+                                        <i>Save Article</i>
+                                    </li>
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple" data-method="previewArticle">
+                                        Preview Article
+                                    </li>
+                                    <li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_ripple" data-method="saveAsDraft">
+                                        Save as Draft
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-middle_left">
+                    <div class="main-content">
+                        <ul class="yuko-list yuko-list_compact">
+                            <li class="yuko-list_item is-active" data-method="management-index">
+                                <span class="yuko-list_item-action">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                </span>
+                                <span class="yuko-list_item-content">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                    <span>
+                                        CMS Index
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item" data-method="management-admin">
+                                <span class="yuko-list_item-action">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                </span>
+                                <span class="yuko-list_item-content">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                    <span>
+                                        Admin management
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="yuko-list_item" data-method="management-article">
+                                <span class="yuko-list_item-action">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                </span>
+                                <span class="yuko-list_item-content">
+                                    <i class="yuko-list_item-avatar material-icons">send</i>
+                                    <span>
+                                        Article management
                                     </span>
                                 </span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="main-middle_left">
-                    <div class="main-content">
-                        <ul class="yuko-list yuko-list_compact">
-                            <li class="yuko-list_item">
-                                <span class="yuko-list_item-action">
-                                    ICON
-                                </span>
-                                <span class="yuko-list_item-content">
-                                    <i class="yuko-list_item-avatar material-icons">send</i>
-                                    <span>
-                                        TITLE
-                                    </span>
-                                </span>
-                            </li>
-                            <li class="yuko-list_item">
-                                <span class="yuko-list_item-action">
-                                    ICON
-                                </span>
-                                <span class="yuko-list_item-content">
-                                    <i class="yuko-list_item-avatar material-icons">send</i>
-                                    <span>
-                                        TITLE
-                                    </span>
-                                </span>
-                            </li>
-                        </ul>
+            </div>
+            <div id="yuko-image_cropper--container">
+                <div id="yuko-image_cropper">
+                    <!-- Wrap the image or canvas element with a block element (container) -->
+                    <div class="yuko-image_cropper--area">
+                        <img id="yuko-image_cropper--img" src="">
                     </div>
+                    <!-- <h3>Preview:</h3> -->
+                    <div class="yuko-image_cropper--preview clearfix">
+                        <div class="img-preview preview-lg"></div>
+                        <div class="img-preview preview-md"></div>
+                        <div class="img-preview preview-sm"></div>
+                        <div class="img-preview preview-xs"></div>
+                    </div>
+                    <!-- Control Panel -->
+                    <div class="yuko-image_cropper--control">
+                        <div class="docs-buttons">
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="setDragMode" data-option="move" data-title="Move">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+                                        <i class="material-icons">gamepad</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="setDragMode" data-option="crop" data-title="Crop">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+                                        <i class="material-icons">crop</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="zoom" data-option="0.1" data-title="Zoom In">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                        <i class="material-icons">zoom_in</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="zoom" data-option="-0.1" data-title="Zoom Out">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                        <i class="material-icons">zoom_out</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="move" data-option="-10" data-second-option="0" data-title="Move Left">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;move&quot;, -10, 0)">
+                                        <i class="material-icons">keyboard_arrow_left</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="move" data-option="10" data-second-option="0" data-title="Move Right">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;move&quot;, 10, 0)">
+                                        <i class="material-icons">keyboard_arrow_right</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="move" data-option="0" data-second-option="-10" data-title="Move Up">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;move&quot;, 0, -10)">
+                                        <i class="material-icons">keyboard_arrow_up</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="move" data-option="0" data-second-option="10" data-title="Move Down">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;move&quot;, 0, 10)">
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="rotate" data-option="-45" data-title="Rotate Left">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;rotate&quot;, -45)">
+                                        <i class="material-icons">rotate_left</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="rotate" data-option="45" data-title="Rotate Right">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;rotate&quot;, 45)">
+                                        <i class="material-icons">rotate_right</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="scaleX" data-option="-1" data-title="Flip Horizontal">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;scaleX&quot;, -1)">
+                                        <i class="material-icons">swap_horiz</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="scaleY" data-option="-1" data-title="Flip Vertical">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;scaleY&quot;, -1)">
+                                        <i class="material-icons">swap_vert</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="crop" data-title="Crop">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;crop&quot;)">
+                                        <i class="material-icons">check</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="clear" data-title="Clear">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;clear&quot;)">
+                                        <i class="material-icons">close</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="disable" data-title="Disable">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;disable&quot;)">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="enable" data-title="Enable">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;enable&quot;)">
+                                        <i class="material-icons">lock_open</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="reset" data-title="Reset">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;reset&quot;)">
+                                        <i class="material-icons">autorenew</i>
+                                    </span>
+                                </span>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple btn-upload" for="inputImage" data-title="Upload image file">
+                                    <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                    <span class="yuko-tooltip_trigger" data-title="Import image with Blob URLs">
+                                        <i class="material-icons">file_upload</i>
+                                    </span>
+                                </label>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="destroy" data-title="Destroy">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;destroy&quot;)">
+                                        <i class="material-icons">delete</i>
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <div class="btn-group btn-group-crop">
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="getCroppedCanvas">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
+                                        Download
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="getCroppedCanvas">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 160, height: 90 })">
+                                        160&times;90
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="getCroppedCanvas">
+                                    <span class="yuko-tooltip_trigger" data-title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 320, height: 180 })">
+                                        320&times;180
+                                    </span>
+                                </span>
+                                <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="submitCropperImage">
+                                    <span class="yuko-tooltip_trigger" data-title="Submit Cropped Image">
+                                        Submit Cropped Image
+                                    </span>
+                                </span>
+                            </div>
+        
+                            <!-- Download -->
+                            <div class="yuko-image_cropper--download yuko-dialog">
+                                <div class="yuko-dialog-content">
+                                    <div class="yuko-dialog-header">
+                                        <h5 class="yuko-dialog-title">Cropped</h5>
+                                        <span class="yuko-dialog_close yuko-button" data-method="closeDownloadDialog">
+                                            <span>&times;</span>
+                                        </span>
+                                    </div>
+                                    <div class="yuko-dialog-body"></div>
+                                    <div class="yuko-dialog-footer">
+                                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="closeDownloadDialog">Close</span>
+                                        <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="docs-toggles">
+                            <!-- Ratio -->
+                            <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple active">
+                                    <input type="radio" class="sr-only" id="aspectRatio0" name="aspectRatio" value="1.7777777777777777">
+                                    <span class="yuko-tooltip_trigger" data-title="aspectRatio: 16 / 9">
+                                        16:9
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.3333333333333333">
+                                    <span class="yuko-tooltip_trigger" data-title="aspectRatio: 4 / 3">
+                                        4:3
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
+                                    <span class="yuko-tooltip_trigger" data-title="aspectRatio: 1 / 1">
+                                        1:1
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="aspectRatio3" name="aspectRatio" value="0.6666666666666666">
+                                    <span class="yuko-tooltip_trigger" data-title="aspectRatio: 2 / 3">
+                                        2:3
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="aspectRatio4" name="aspectRatio" value="NaN">
+                                    <span class="yuko-tooltip_trigger" data-title="aspectRatio: NaN">
+                                        Free
+                                    </span>
+                                </label>
+                            </div>
+                            <!-- View Mode -->
+                            <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple active">
+                                    <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
+                                    <span class="yuko-tooltip_trigger" data-title="View Mode 0">
+                                        VM0
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
+                                    <span class="yuko-tooltip_trigger" data-title="View Mode 1">
+                                        VM1
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="viewMode2" name="viewMode" value="2">
+                                    <span class="yuko-tooltip_trigger" data-title="View Mode 2">
+                                        VM2
+                                    </span>
+                                </label>
+                                <label class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">
+                                    <input type="radio" class="sr-only" id="viewMode3" name="viewMode" value="3">
+                                    <span class="yuko-tooltip_trigger" data-title="View Mode 3">
+                                        VM3
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="yuko-article-preview">
+                <div class="yuko-article_container">
+                    <div class="yuko-article">
+                        <!-- Cover -->
+                        <div class="yuko-article_cover"></div>
+                        <!-- Title -->
+                        <div class="yuko-article_title"></div>
+                        <!-- SubTitle -->
+                        <div class="yuko-article_subtitle"></div>
+                        <!-- Info -->
+                        <div class="yuko-article_info"></div>
+                        <!-- Abstract -->
+                        <div class="yuko-article_abstract"></div>
+                        <!-- Keywords -->
+                        <div class="yuko-article_keywords"></div>
+                        <!-- Article Body -->
+                        <div class="yuko-article_body"></div>
+                        <!-- Reference -->
+                        <div class="yuko-article_ref"></div>
+                        <!-- Licenses -->
+                        <div class="yuko-article_licenses"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="yuko-snackbar" name="notice">
+                    <div class="yuko-snackbar_text">Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?</div>
+                    <div class="yuko-snackbar_action">Cancel</div>
                 </div>
             </div>
             <span class="main-to_top"></span>
@@ -345,6 +852,690 @@
     <script src="../../Scripts/Yuko.js"></script>
     <script src="../../Scripts/Yuko.component.js"></script>
     <script src="../../Scripts/index.js"></script>
+    <script src="../../Scripts/cropper/cropper.js"></script>
+    <!-- <script src="../../Scripts/cropper/cropper.min.js"></script> -->
+    <script src="../../Scripts/cropper/jquery-cropper.min.js"></script>
+    <script src="../../Scripts/cropper/cropper-main.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        var NUM_PER_PAGE = 1;
+    </script>
+    <script>
+        var $imageCropper = $('#yuko-image_cropper--container'),
+            $image = $('#yuko-image_cropper--img'),
+            $uploadImg = $('.edit-cover .yuko-upload input'),
+            $uploadImgLink = $('.edit-cover .yuko-textfield .yuko-textfield_input'),
+            $uploadNoImg = $('.edit-cover .yuko-upload .no-img'),
+            $uploadImgBox = $('.edit-cover .yuko-upload .img-box'),
+            boxWidth = Yuko.utility.getComputedSizeInPx($uploadNoImg[0], 'width'),
+            boxHeight = Yuko.utility.getComputedSizeInPx($uploadImgBox[0], 'height'),
+            $previewArticle = $('body.yuko-cms #main #yuko-article-preview'),
+            $article = $('body.yuko-cms #main #yuko-article-preview .yuko-article'),
+            $article_paging = $('.yuko-pagination.pagination-article'),
+            isFirst = true,
+            isPaginationInit = false,
+            files,
+            file,
+            uploadedImageURL,
+            options = {
+                aspectRatio: boxWidth / boxHeight,
+                preview: '.img-preview',
+                crop: function (e) {
+
+                }
+            };
+        // Cover upload listener
+        $uploadImg.on('change', function (evt) {
+            files = $uploadImg[0].files;
+            file = files[0];
+            if (isFirst && file) {
+                uploadedImageURL = URL.createObjectURL(file);
+                $image.attr('src', uploadedImageURL);
+                $image.cropper(options);
+                isFirst = false;
+            } else {
+                if (!$image.data('cropper')) {
+                    return;
+                }
+
+                if (files && files.length) {
+
+                    if (/^image\/\w+$/.test(file.type)) {
+                        uploadedImageName = file.name;
+                        uploadedImageType = file.type;
+
+                        if (uploadedImageURL) {
+                            URL.revokeObjectURL(uploadedImageURL);
+                        }
+
+                        uploadedImageURL = URL.createObjectURL(file);
+                        $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                    } else {
+                        window.alert('Please choose an image file.');
+                    }
+                }
+            }
+        });
+        // Cover link listener
+        $uploadImgLink.on('focusout', function () {
+            var link = $uploadImgLink.val().trim(),
+                regexp = /(https?|ftp|file):\/\/[-A-Za-z0-9+&@@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@@#/%=~_|]/,
+                $parent = $uploadImgLink.parent();
+            if (!link) {
+                $parent.removeClass('is-invalid');
+                return;
+            }
+            if (!regexp.test(link)) {
+                $parent.addClass('is-invalid');
+                return;
+            }
+            $parent.removeClass('is-invalid');
+            $uploadNoImg.css('display', 'none');
+            $uploadImgBox.css('display', 'block');
+            // Remove Inputed Image
+            $('.edit-cover .yuko-upload .img-box').children().remove();
+            // Append New Image
+            $uploadImgBox.append('<img src="' + link + '"/>');
+        });
+        // Category, Keywords listener
+        $('.docs-buttons').on('click', '[data-method]', function () {
+            var $this = $(this);
+            var data = $this.data();
+            switch (data.method) {
+                case 'submitCropperImage':
+                    $('.edit-cover .yuko-upload .img-box').children().remove();
+                    var canvas = $image.cropper("getCroppedCanvas", {
+                        maxWidth: 4096,
+                        maxHeight: 4096
+                    });
+                    $uploadImgBox.append(canvas);
+                    $uploadNoImg.css('display', 'none');
+                    //$uploadImgLink.css('display', 'none');
+                    $uploadImgBox.css('display', 'block');
+                    $imageCropper.animate({
+                        'opacity': 0,
+                        'z-index': -1
+                    });
+                    $uploadImgLink.val('');
+                    $uploadImgLink.parent().removeClass('is-invalid');
+                    break;
+                case 'destroy':
+                    isFirst = true,
+                        $imageCropper.animate({
+                            'opacity': 0,
+                            'z-index': -1
+                        });
+                    break;
+                default:
+                    break;
+            }
+        });
+        // Category, Keywords listener
+        $('.yuko-textfield_input').on('keydown', function (evt) {
+            var key = evt.key,
+                target = evt.target,
+                edit_category = Yuko.utility.hasAncestor(target, {
+                    className: 'edit-category'
+                }),
+                edit_keywords = Yuko.utility.hasAncestor(target, {
+                    className: 'edit-keywords'
+                }),
+                goAhead = edit_category || edit_keywords;
+            if (!goAhead) return;
+
+            var textfield = goAhead.querySelector('.yuko-textfield'),
+                list = goAhead.querySelector('.edit-list'),
+                category_item_template = '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored">{YUKO_ITEM_NAME}</li>',
+                keywords_item_template = '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">{YUKO_ITEM_NAME}<i class="material-icons remove">close</i></li>',
+                input = textfield.querySelector('.yuko-textfield_input'),
+                tag_name = input.value.trim(),
+                error_tip = textfield.querySelector('.yuko-textfield_error');
+
+            error_tip.innerHTML = 'Invalid format';
+            if (key !== 'Enter') return;
+            if (!list) {
+                // Create a list
+                $('<ul class="edit-list">').insertBefore(textfield);
+                list = goAhead.querySelector('.edit-list');
+            }
+            // Check if input is empty
+            if (tag_name.replace(/\s*\t*/, '') === '') {
+                $(error_tip).html('Cannot be empty input!');
+                $(textfield).addClass('is-invalid');
+                return;
+            } else {
+                $(textfield).removeClass('is-invalid');
+            }
+            // Check if input is exist
+            for (var ti = 0; ti < list.children.length; ti++) {
+                var tag = list.children[ti].innerHTML.replace(/<i.*?<\/i>/ig, '').toLocaleLowerCase().trim();
+
+                if (tag === tag_name.toLocaleLowerCase().trim()) {
+                    $(error_tip).html('Tag "' + tag_name + '" already exist');
+                    $(textfield).addClass('is-invalid');
+                    return;
+                }
+            }
+            var pattern = input.getAttribute('pattern');
+            if (pattern) {
+                var re = new RegExp(pattern);
+                if (!re.test(tag_name)) {
+                    $(error_tip).html('Invalid format');
+                    $(textfield).addClass('is-invalid');
+                    return;
+                }
+            }
+            var new_item = edit_category ? category_item_template.replace('{YUKO_ITEM_NAME}', tag_name) : keywords_item_template.replace('{YUKO_ITEM_NAME}', tag_name);
+            $(list).append(new_item);
+            input.value = '';
+        });
+        // Control button listener
+        var isPretty;
+        $('.yuko-button').on('click', function () {
+            var data = $(this).data(),
+                method = data.method,
+                handler = {
+                    saveArticle: null,
+                    saveAsDraft: null,
+                    previewArticle: null,
+                    update: null,
+                    articleAdd: null,
+                    articleEdit: null
+                };
+            console.log(method);
+            if (!handler.hasOwnProperty(method)) return;
+
+            var id = $('#edit-page').attr('data-article'),
+                cover = $('.edit-cover .img-box canvas')[0],
+                cover_url = $('.edit-cover .yuko-textfield .yuko-textfield_input').val().trim(),
+                title = $('.edit-title .yuko-textfield_input').val().trim(),
+                subtitle = $('.edit-subtitle .yuko-textfield_input').val().trim(),
+                categorys = getTagValues($('.edit-category .edit-list')[0], 'yuko-button_colored'),
+                info = $('.edit-info .yuko-textfield_input').val().trim(),
+                abstract = $('.edit-abstract .yuko-textfield_input').val().trim(),
+                keywords = getTagValues($('.edit-keywords .edit-list')[0]),
+                body = $('.edit-body .yuko-textfield_input').val().trim(),
+                ref = $('.edit-ref .yuko-textfield_input').val().trim(),
+                licenses = $('.edit-licenses .yuko-select_selected').text().trim(),
+                addLicenses = $('.edit-licenses .yuko-textfield_input').val().trim(),
+                snackbar = '.yuko-snackbar[name="notice"]',
+                formData = new FormData(),
+                buildHandler = function () {
+                    // FormData
+                    formData.append('id', id);
+                    formData.append('title', title);
+                    formData.append('cover_url', cover_url);
+                    formData.append('subtitle', subtitle);
+                    formData.append('categorys', categorys.toString());
+                    formData.append('info', info);
+                    formData.append('abstract', abstract);
+                    formData.append('keywords', keywords.toString());
+                    formData.append('body', body);
+                    formData.append('ref', ref);
+                    formData.append('licenses', licenses);
+                    formData.append('addLicenses', addLicenses);
+                    // Handler
+                    handler = {
+                        // Save article
+                        saveArticle: function () {
+                            formData.set('action', 'save');
+                            $.ajax('/articles/save', {
+                                method: 'POST',
+                                data: formData,
+                                dataType: 'JSON',
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    console.log(data);
+                                    Yuko.event.triggerSnackbar(snackbar, data.return_msg);
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                    Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                                }
+                            });
+                        },
+                        // Save article as a draft
+                        saveAsDraft: function () {
+                            formData.set('action', 'saveAsDraft');
+                            formData.append('isDraft', 'true');
+                            $.ajax('/articles/save', {
+                                method: 'POST',
+                                data: formData,
+                                dataType: 'JSON',
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    console.log(data);
+                                    Yuko.event.triggerSnackbar(snackbar, data.return_msg);
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                    Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                                }
+                            });
+                        },
+                        // Update a article
+                        update: function () {
+                            formData.set('action', 'update');
+                            formData.set('npp', NUM_PER_PAGE);
+                            formData.set('cp', $article_paging.attr('data-active'));
+                            if (!id) {
+                                id = getAllChecked('cb-article');
+                                if (!id) {
+                                    Yuko.event.triggerSnackbar(snackbar, 'Nothing selected')
+                                    return;
+                                }
+                                formData.set('id', id);
+                            }
+
+                            var u_article = JSON.parse(data.u_article.replace(/'/g, '"'));
+                            for (var i in u_article) {
+                                formData.set(i.toString(), u_article[i]);
+                            }
+                            $.ajax('/articles/update', {
+                                method: 'POST',
+                                data: formData,
+                                dataType: 'json',
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    console.log(data);
+                                    var articles = data.return_data.articles;
+                                    refreshArticles(articles);
+                                    Yuko.event.triggerSnackbar(snackbar, 'Article updated');
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                    Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                                }
+                            });
+                        },
+                        // Article preview
+                        previewArticle: function () {
+                            var $cover = $previewArticle.find('.yuko-article_cover'),
+                                $title = $previewArticle.find('.yuko-article_title'),
+                                $subtitle = $previewArticle.find('.yuko-article_subtitle'),
+                                $info = $previewArticle.find('.yuko-article_info'),
+                                $abstract = $previewArticle.find('.yuko-article_abstract'),
+                                $keywords = $previewArticle.find('.yuko-article_keywords'),
+                                $body = $previewArticle.find('.yuko-article_body'),
+                                $ref = $previewArticle.find('.yuko-article_ref'),
+                                $licenses = $previewArticle.find('.yuko-article_licenses');
+                            // Cover
+                            if (cover_url) {
+                                $cover.html('<img src="' + cover_url + '" />');
+                            } else {
+                                $cover.html('');
+                            }
+                            // Title
+                            if (title) {
+                                $title.html('<h1>' + title + '</h1>');
+                            } else {
+                                $title.html('<h1 class="yuko-article_error">No title : Title required!</h1>');
+                            }
+                            // SubTitle
+                            if (subtitle) {
+                                $subtitle.html('<h2>' + subtitle + '</h2>');
+                                $subtitle.css('display', 'block')
+                            } else {
+                                $subtitle.html('');
+                                $subtitle.css('display', 'none')
+                            }
+                            // Info
+                            var publishDate = Yuko.utility.getFormattedDate(new Date(), 'default');
+                            $info.html('<h5 class="yuko-article_highlight">Info</h5>' + '<span>Publish Time: ' + publishDate + ' | 9999 Readed</span>');
+                            if (info) {
+                                $info.append(info);
+                            }
+                            // Category
+                            if (categorys.length > 0) {
+                                var list = '<ul class="tags-list">';
+                                for (var cgi = 0; cgi < categorys.length; cgi++) {
+                                    var category = categorys[cgi];
+                                    list += '<li class="yuko-button yuko-button_bordered yuko-button_raised yuko-button_colored">' + category + '</li>';
+                                }
+                                list += '</ul>';
+                                $info.append(list);
+                            }
+                            // Abstract
+                            if (abstract) {
+                                $abstract.html('<h5 class="yuko-article_highlight">Abstract</h5>' + abstract);
+                                $abstract.css('display', 'block')
+                            } else {
+                                $abstract.html('');
+                                $abstract.css('display', 'none')
+                            }
+                            // Keywords
+                            if (keywords.length > 0) {
+                                $keywords.html('<h5 class="yuko-article_highlight">Keywords</h5>');
+                                var list = '<ul class="tags-list">';
+                                for (var kwi = 0; kwi < keywords.length; kwi++) {
+                                    var keyword = keywords[kwi];
+                                    list += '<li class="yuko-button yuko-button_bordered yuko-button_raised yuko-button_colored">' + keyword + '</li>';
+                                }
+                                list += '</ul>';
+                                $keywords.append(list);
+                                $keywords.css('display', 'block');
+                            } else {
+                                $keywords.html('');
+                                $keywords.css('display', 'none')
+                            }
+                            // Body
+                            if (body) {
+                                $body.html(body)
+                            } else {
+                                $body.html('<p class="yuko-article_error">No content : Content required!</p>')
+                            }
+                            // Reference
+                            if (ref) {
+                                ref = ref.replace(/^<ul>/, '<ul class="yuko-article_ref-list">').replace(/^<ol>/, '<ol class="yuko-article_ref-list">');
+                                $ref.html('<h5 class="yuko-article_highlight">Reference</h5>' + ref);
+                                $ref.css('display', 'block')
+                            } else {
+                                $ref.html('');
+                                $ref.css('display', 'none')
+                            }
+                            // Licenses
+                            if ((licenses && licenses.trim().toLocaleLowerCase() !== 'no license') || addLicenses) {
+                                $licenses.html('<h5 class="yuko-article_highlight">Licenses</h5>');
+                                if (licenses.trim().toLocaleLowerCase() !== 'no license') {
+                                    $licenses.append('<ul class="yuko-article_licenses-list"><li>' + licenses + '</li></ul>')
+                                }
+                                if (addLicenses) {
+                                    var $list = $licenses.find('.yuko-article_licenses-list');
+                                    if (!$list[0]) $licenses.append('<ul class="yuko-article_licenses-list"></ul>');
+                                    $list = $licenses.find('.yuko-article_licenses-list');
+                                    $list.append('<li>' + addLicenses + '</li>');
+                                    $licenses.css('display', 'block')
+                                }
+                            } else {
+                                $licenses.html('');
+                                $licenses.css('display', 'none')
+                            }
+
+                            if (!isPretty) {
+                                var allPre = document.querySelectorAll('.yuko-article pre');
+                                for (var i = 0; i < allPre.length; i++) {
+                                    var className = allPre[i].className,
+                                        innerHTML = allPre[i].innerHTML,
+                                        // Deal with special mark.
+                                        blankLength = innerHTML.match(/\s+/)[0].length,
+                                        tranHTML = htmlEscape(test.innerHTML).replace(/&lt;script src[\s\S]*?&gt;&lt;\/script&gt;|&lt;!--\?[\s\S]*?--&gt;|&lt;pre\b[\s\S]*?&lt;\/pre&gt;/g, '<span class="operative">$&<\/span>').replace(/\n\s{16}/g, '\n').replace(/\s{16}/, '');
+                                    allPre[i].innerHTML = tranHTML;
+                                    // Add class 'prettyprint linenums'
+                                    console.log(blankLength);
+                                    if (className.indexOf('prettyprint linenums') < 0) {
+                                        allPre[i].className = className + 'prettyprint linenums';
+                                    }
+                                }
+                                // Make mark.
+                                prettyPrint();
+                                isPretty = true;
+                            }
+                            $previewArticle.fadeIn();
+                            $article.focus();
+                        },
+                        // Edit/Add a article
+                        articleEdit: function () {
+                            if (!isSingleChecked('cb-article')) {
+                                Yuko.event.triggerSnackbar(snackbar, 'Single checked allowed only!');
+                                return;
+                            }
+                            var $modules = $('.main-middle_right .main-content');
+                            $modules.fadeOut(0);
+                            $('.main-middle_right .main-content[data-module=' + 'article-edit' + ']').fadeIn();
+
+                            // Fill article content
+                            var id = getAllChecked('cb-article');
+                            $('#edit-page').attr('data-article', id);
+                            $.ajax({
+                                url: '/articles/get?id=' + id,
+                                method: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.return_code == '200') {
+                                        var a = data.return_data.articles; // article identify by 'id'
+                                        if (a.cover) {
+                                            var img = '<img src="' + a.cover + '"/>';
+                                            $cover.html(img);
+                                            $cover_url.val(a.cover);
+                                        }
+                                        $title.val(a.title);
+                                        $subtitle.val(a.subTitle);
+                                        if (a.categorys) {
+                                            var cats = a.categorys.split(','),
+                                                catsList = '';
+                                            for (var i = 0; i < cats.length; i++) {
+                                                catsList += '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">' + cats[i] + '</li >';
+                                            }
+                                            $categorys.html(catsList);
+                                        }
+                                        //var a_info = '<span>Publish Time: ' + a.createTime + ' | ' + a.readCount + ' Readed</span>' + a.authorDesc;
+                                        $info.val(a.authorDesc);
+                                        $info_editor.removeClass('show-placeholder');
+                                        $info_editor.children(0).html(a.authorDesc)
+                                        $abstract.val(a._abstract);
+                                        $abstract_editor.children(0).html(a._abstract);
+                                        if (a.keywords) {
+                                            var kws = a.keywords.split(','),
+                                                kwsList = '';
+                                            for (var i = 0; i < kws.length; i++) {
+                                                kwsList += '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">' + kws[i] + '<i class="material-icons remove">close</i></li>';
+                                            }
+                                            $keywords.html(kwsList);
+                                        }
+                                        $body.val(a.content);
+                                        $body_editor.children(0).html(a.content)
+                                        $ref.val(a.reference);
+                                        $ref_editor.children(0).html(a.reference)
+                                        $licenses.text(a.license);
+                                        $addLicenses.val(a.addLicense);
+                                        $addLicenses.focus();
+                                        $subtitle.focus();
+                                        $cover_url.focus();
+                                        $title.focus();
+                                    }
+                                },
+                                error: function (error) {
+                                    console.log(error)
+                                    Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                                }
+                            });
+                        }
+                    };
+                    if (handler.hasOwnProperty(method)) {
+                        handler[method]();
+                    }
+                };
+
+            if (cover) {
+                cover.toBlob(function (blob) {
+                    formData.append('cover', blob);
+                    buildHandler();
+                });
+                // cover_url = cover.toDataURL();
+            } else {
+                buildHandler();
+            }
+        });
+
+        // Preview Article button listener 2
+        $previewArticle.on('click', function (evt) {
+            var _target = evt.target;
+            if (!Yuko.utility.hasAncestor(_target, {
+                className: 'yuko-article'
+            })) {
+                $previewArticle.fadeOut();
+            }
+        });
+        // Category listener 2
+        $('.edit-category').on('click', function (evt) {
+            var $target = $(evt.target);
+            if (!$target.hasClass('yuko-button')) return;
+            var isSelected = $target.hasClass('yuko-button_colored');
+
+            isSelected ? $target.removeClass('yuko-button_colored') : $target.addClass('yuko-button_colored');
+        });
+        // Editor
+        $('.edit-info textarea').froalaEditor();
+        $('.edit-abstract textarea').froalaEditor();
+        $('.edit-body textarea').froalaEditor();
+        $('.edit-ref textarea').froalaEditor();
+    </script>
+    <script>
+        var $cover = $('.edit-cover .img-box'),
+            $cover_url = $('.edit-cover .yuko-textfield .yuko-textfield_input'),
+            $title = $('.edit-title .yuko-textfield_input'),
+            $subtitle = $('.edit-subtitle .yuko-textfield_input'),
+            $categorys = $('.edit-category .edit-list'),
+            $info = $('.edit-info .yuko-textfield_input'),
+            $info_editor = $('.edit-info .fr-wrapper'),
+            $abstract = $('.edit-abstract .yuko-textfield_input'),
+            $abstract_editor = $('.edit-abstract .fr-wrapper'),
+            $keywords = $('.edit-keywords .edit-list'),
+            $body = $('.edit-body .yuko-textfield_input'),
+            $body_editor = $('.edit-body .fr-wrapper'),
+            $ref = $('.edit-ref .yuko-textfield_input'),
+            $ref_editor = $('.edit-ref .fr-wrapper'),
+            $licenses = $('.edit-licenses .yuko-select_selected'),
+            $addLicenses = $('.edit-licenses .yuko-textfield_input');
+
+        $('.main-middle_left .yuko-list_item').on('click', function (evt) {
+            var $this = $(this),
+                data = $this.data(),
+                method = data.method,
+                selector = '.main-middle_right .main-content[data-module=' + method + ']',
+                $modules = $('.main-middle_right .main-content'),
+                $module = $(selector),
+                ajaxRequest = {
+                    // get article list
+                    "management-article": function () {
+                        $.ajax({
+                            url: '/articles/get?npp=' + NUM_PER_PAGE,
+                            method: 'GET',
+                            success: function (data) {
+                                var articles = data.return_data.articles,
+                                    total = data.return_data.total,
+                                    p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
+                                    vis_nums = p_nums < 5 ? p_nums : 5;;
+                                refreshArticles(articles);
+
+                                if (!isPaginationInit) {
+                                    Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                                    isPaginationInit = true;
+                                }
+                                console.log(articles);
+                            },
+                            error: function (error) {
+                                Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                            }
+                        });
+                    }
+                };
+
+            $('input').removeAttr('checked');
+            $('.yuko-checkbox').removeClass('is-checked');
+            $modules.fadeOut(0);
+            $module.fadeIn();
+            if (ajaxRequest.hasOwnProperty(method)) {
+                ajaxRequest[method]();
+            }
+        });
+
+        // Public Method
+        function getTagValues(ele, selector) {
+            if (!ele instanceof Element) return;
+            var values = [],
+                items = ele.children,
+                item,
+                value;
+            for (var c = 0; c < items.length; c++) {
+                item = items[c];
+                if (selector) {
+                    if (!item.classList.contains(selector)) continue;
+                }
+                value = item.innerHTML.replace(/<.+>.*?<\/.+>/ig, '').trim();
+                values.push(value);
+            }
+            return values;
+        }
+
+        function htmlEscape(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function isSingleChecked(name) {
+            var selector = 'input[name="' + name + '"]:checked';
+            return $(selector).length == 1;
+        }
+
+        function getChecked(name) {
+            var selector = 'input[name="' + name + '"]:checked';
+            return $(selector).val();
+        }
+
+        function getAllChecked(name) {
+            var checkeds = '',
+                selector = 'input[name="' + name + '"]:checked';
+            console.log(selector);
+            console.log($(selector));
+            $(selector).each(function () {
+                checkeds += $(this).val() + ($(this)[0] != $(selector).last()[0] ? ',' : '');
+            });
+            return checkeds;
+        }
+
+        function refreshArticles(articles) {
+            var $articleList = $('.yuko-list.article-list'),
+                newList = '<li class="yuko-list_item"><span class="yuko-list_item-content"><span class="yuko-checkbox yuko-checkbox-all"><input type="checkbox" class="yuko-checkbox_input" name="cb-article"><span class="yuko-checkbox_box-outline"><span class="yuko-checkbox_tick-outline"></span></span></span><span>Title</span><span>Is a draft</span><span>Update Time</span><span>Author</span></span></li>';
+            for (var a in articles) {
+                var article = articles[a],
+                    id = article.id,
+                    title = htmlEscape(article.title),
+                    author = htmlEscape(article.author),
+                    updateTime = htmlEscape(article.updateTime),
+                    isDraft = article.isDraft,
+                    newItem = '<li class="yuko-list_item"><span class="yuko-list_item-content"><span class="yuko-checkbox"><input type="checkbox" class="yuko-checkbox_input" name="cb-article" value="' + id + '"><span class="yuko-checkbox_box-outline"><span class="yuko-checkbox_tick-outline"></span></span></span><span>' + title + '</span><span>' + isDraft + '</span><span>' + updateTime + '</span><span>' + author + '</span></span></li>';
+                newList += newItem;
+            }
+            $articleList.html(newList);
+        }
+
+    </script>
+
+    <script>
+        $article_paging.on('click', function (evt) {
+            var _target = evt.target,
+                $this = $(this),
+                active = $this.attr('data-active');
+            $.ajax({
+                url: '/articles/get?npp=' + NUM_PER_PAGE + '&cp=' + active,
+                method: 'GET',
+                success: function (data) {
+                    var articles = data.return_data.articles,
+                        total = data.return_data.total,
+                        p_nums = Math.floor(total / NUM_PER_PAGE) + 1,
+                        vis_nums = p_nums < 5 ? p_nums : 5;;
+                    refreshArticles(articles);
+
+                    // Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                },
+                error: function (error) {
+                    Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>

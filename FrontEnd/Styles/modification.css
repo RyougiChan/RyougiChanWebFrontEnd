@@ -80,6 +80,9 @@
     text-align: right;
     margin: 12px 0 0;
 }
+#edit-page .edit-ctrl ul li {
+    line-height: 36px;
+}
 #edit-page .edit-title input,
 #edit-page .edit-title label {
     font-size: 1.6em;
@@ -191,11 +194,12 @@
     display: none;
 }
 
-.yuko-cms #main #yuko-image_cropper .yuko-image_cropper--download .yuko-dialog {
-    /* width: 50%;
-    margin: 20% auto;
-    background-color: white;
-    z-index: 7020; */
+.yuko-cms #yuko-image_cropper .btn-group .yuko-button {
+    padding: 0 1.5em;
+}
+
+.yuko-cms #yuko-image_cropper .yuko-dialog-content {
+    margin: 20%;
 }
 
 .yuko-cms #main #yuko-article-preview {
