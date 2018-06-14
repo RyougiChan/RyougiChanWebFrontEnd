@@ -465,20 +465,18 @@
                             </div>
 
                             <!-- Download -->
-                            <div class="yuko-image_cropper--download">
-                                <div class="yuko-dialog">
-                                    <div class="yuko-dialog-content">
-                                        <div class="yuko-dialog-header">
-                                            <h5 class="yuko-dialog-title">Cropped</h5>
-                                            <span class="yuko-dialog_close yuko-button" data-method="closeDownloadDialog">
-                                                <span>&times;</span>
-                                            </span>
-                                        </div>
-                                        <div class="yuko-dialog-body"></div>
-                                        <div class="yuko-dialog-footer">
-                                            <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="closeDownloadDialog">Close</span>
-                                            <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
-                                        </div>
+                            <div class="yuko-image_cropper--download yuko-dialog">
+                                <div class="yuko-dialog-content">
+                                    <div class="yuko-dialog-header">
+                                        <h5 class="yuko-dialog-title">Cropped</h5>
+                                        <span class="yuko-dialog_close yuko-button" data-method="close">
+                                            <span>&times;</span>
+                                        </span>
+                                    </div>
+                                    <div class="yuko-dialog-body"></div>
+                                    <div class="yuko-dialog-footer">
+                                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="close">Close</span>
+                                        <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
                                     </div>
                                 </div>
                             </div>
@@ -1071,6 +1069,7 @@
                             'z-index': -1
                         });
                     break;
+            break;
                 default:
                     break;
             }

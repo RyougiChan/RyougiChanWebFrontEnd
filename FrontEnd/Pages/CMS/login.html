@@ -124,6 +124,10 @@
             </div>
         </div>
     </div>
+    <div class="yuko-snackbar" name="notice">
+        <div class="yuko-snackbar_text">Share your feeling now?</div>
+        <div class="yuko-snackbar_action" data-action="cancel">Cancel</div>
+    </div>
 
     <script src="../../Scripts/jquery/jquery.min.js"></script>
     <script src="../../Scripts/jquery/jquery.smoove.js"></script>
@@ -131,6 +135,8 @@
     <script src="../../Scripts/Yuko.component.js"></script>
     <script>
         var userID,
+            $nameField = $('#yuko-input_name'),
+            $pwField = $('#yuko-input_pw'),
             loginHandler = function (evt) {
                 var name = $('#yuko-input_name').val().trim(),
                     pw = $('#yuko-input_pw').val().trim();
@@ -162,12 +168,14 @@
         $('#yuko-input_pw').on('input propertychange', function () {
             $('#yuko-input_pw').parent().removeClass('is-invalid');
         });
+
         $('.cms-login').on('click', loginHandler);
+
         $('#yuko-input_pw').on('keydown', function (evt) {
             if (evt.key == 'Enter') {
-                var name = $('#yuko-input_name').val(),
-                    namePattern = $('#yuko-input_name').attr('pattern'),
-                    pw = $('#yuko-input_pw').val();
+                var namePattern = $('#yuko-input_name').attr('pattern'),
+                    pw = $pwField.val(),
+                    name = $nameField.val();
                 if (name != '' && pw != '' && new RegExp(namePattern).test(name)) {
                     loginHandler(evt);
                 }
@@ -220,6 +228,19 @@
                 default:
                     break;
             }
+        });
+        
+        $(document).ready(function () {
+            setTimeout(function () {
+                var pw = $pwField.val(),
+                name = $nameField.val();
+                if (pw != '') {
+                    $pwField.focus();
+                }
+                if (name != '') {
+                    $nameField.focus();
+                }
+            }, 200);
         });
     </script>
 </body>

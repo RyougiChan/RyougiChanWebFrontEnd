@@ -433,7 +433,22 @@
                   snackbar,
                   snackbarBound,
                   ancestor = Yuko.utility.hasAncestor(_target, { className: 'yuko-snackbar_trigger' });
-          
+                if (_target.classList.contains('yuko-snackbar_action')) {
+                    snackbar = _target.parentElement;
+                    var action = _target.getAttribute('data-action'),
+                        actionHandler = {
+                            cancel: function () {
+                                console.log(snackbar);
+                                if (snackbar.classList.contains('is-active')) {
+                                    snackbar.classList.remove('is-active');
+                                }
+                            }
+                        };
+                    if (action && actionHandler.hasOwnProperty(action.toLowerCase())) {
+                        actionHandler[action.toLowerCase()]();
+                    }
+                }
+        
                 if (_target.classList.contains('yuko-snackbar_trigger')) {
                   // itself
                   snackbarTrigger = _target;
@@ -626,6 +641,25 @@
                 };
             Yuko.utility.addEvent(document, floatover, toolTipShowHandler);
             Yuko.utility.addEvent(document, floatout, toolTipHideHandler);
+        },
+        // Dialog
+        'initDialog': function initDialog() {
+            var closeDialogHandler = function (evt) {
+                var _target = evt.target,
+                    dialog;
+                if (!_target || _target == document.documentElement) return;
+                if (_target.classList.contains('yuko-dialog')) {
+                    _target.classList.remove('is-active');
+                }
+                if (_target.getAttribute('data-method') == 'close' || _target.parentElement.getAttribute('data-method') == 'close' ||
+                    _target.getAttribute('data-method') == 'confirm' || _target.parentElement.getAttribute('data-method') == 'confirm') {
+                    dialog = Yuko.utility.hasAncestor(_target, { className: 'yuko-dialog' });
+                }
+                if (dialog) {
+                    dialog.classList.remove('is-active');
+                }
+            };
+            Yuko.utility.addEvent(document, 'click', closeDialogHandler);
         }
     };
 

@@ -173,8 +173,9 @@ $(function () {
             if (result) {
               var $downloadCanvas = $('.yuko-image_cropper--download .yuko-dialog-body');
               if($downloadCanvas[0]) {
-                $downloadCanvas.html(result);
-                $('.yuko-image_cropper--download').fadeIn();
+                  $downloadCanvas.html(result);
+                  // Yuko
+                  $('.yuko-image_cropper--download').addClass('is-active');
               }
   
               if (!$download.hasClass('disabled')) {
@@ -193,8 +194,6 @@ $(function () {
             }
   
             break;
-          case 'closeDownloadDialog':
-          $('.yuko-image_cropper--download').fadeOut();
             break;
         }
   

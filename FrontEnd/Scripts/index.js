@@ -20,12 +20,27 @@
      * 
      */
     function styleControl() {
+        // PC | Mobile layout switcher
         if (window.innerWidth <= 1024) {
             $('#main-container_m').css('display', 'block');
             $('#main-container').css('display', 'none');
         } else {
             $('#main-container_m').css('display', 'none');
             $('#main-container').css('display', 'block');
+        }
+        // Mobile layout style
+        var $mPages = $('#main-container_m > #yuko-main-container > .yuko-main-content > .yuko-page'),
+            currentPageId = $('#main-container_m > #yuko-main-container > .yuko-main-content').attr('data-page-index'),
+            $currentPage = $('#main-container_m > #yuko-main-container > .yuko-main-content > .yuko-page[data-page-id="' + currentPageId + '"]');
+        if ($currentPage.length > 0) {
+            var mScrWidth = $mPages[0].offsetWidth;
+            for (var i = 0; i < $mPages.length; i++) {
+                var $ele = $($mPages[i]);
+                if (i != currentPageId) {
+                    $ele.width(mScrWidth);
+                }
+                $ele.css('left', mScrWidth * i);
+            }
         }
     }
     styleControl();
@@ -36,7 +51,9 @@
      */
     function navHandler(navSelector) {
         var nav = document.querySelector(navSelector);
+        if (!nav) { return; }
         var navLevel1 = nav.querySelector('ul');
+        if (!navLevel1) { return; }
         var navLevel1Items = navLevel1.children;
         var hoverIn = function () {
             var $this = $(this);
@@ -87,7 +104,7 @@
     });
     
     $(window).on('orientationchange', function () {
-        location.reload();
+        //location.reload();
     });
     
     // [PC] Main container scroll controllor
@@ -105,7 +122,7 @@
                 width = $scrollNode.width(),
                 height = $scrollNode.height(),
                 // Length of element's top to the working area's top
-                itemTop = $item.offset().top - document.documentElement.scrollTop,
+                itemTop = $item.offset().top - (document.documentElement.scrollTop || document.body.scrollTop),
                 offset = '100%';
 
             if (offset.indexOf('%') > -1) {
@@ -124,6 +141,7 @@
     $(window).on('scroll', function () {
         anim($(this));
         var isForword = $(this).scrollTop() > mainScrollTop ? true : false;
+        //console.log('isForword=' + isForword);
         var jsMethod = function () {
             if (isForword) {
                 if (!isAnimating) {
@@ -135,9 +153,9 @@
                             isAnimating = false;
                         });
                     }
-                    var totalHeight = document.documentElement.offsetHeight,
-                        scrollTop = document.documentElement.scrollTop;
-                    if (scrollTop / totalHeight > 0.8) {
+                    var totalHeight = document.body.offsetHeight,
+                        scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    if (totalHeight - scrollTop - document.documentElement.offsetHeight < 120) {
                         if (parseInt($('footer').css('bottom')) !== 0) {
                             isAnimating = true;
                             $('#footer').animate({
@@ -171,10 +189,9 @@
         };
         if (isForword) {
             $('#header').css('top', '-90px');
-            var totalHeight = document.documentElement.offsetHeight,
-                scrollTop = document.documentElement.scrollTop;
-
-            if (scrollTop / totalHeight > 0.8) {
+            var totalHeight = document.body.offsetHeight,
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (totalHeight - scrollTop - document.documentElement.offsetHeight < 120) {
                 $('#footer').css('bottom', '0');
             }
         } else {
@@ -186,6 +203,12 @@
     // [PC] Main to_top controllor
     $('#main .main-to_top').on('click', function () {
         $(document.documentElement).animate({
+            scrollTop: 0
+        }, 300, function () {
+            $('#main .main-to_top').css('display', 'none');
+            $('#main .main-to_top').css('top', 'auto');
+        });
+        $(document.body).animate({
             scrollTop: 0
         }, 300, function () {
             $('#main .main-to_top').css('display', 'none');

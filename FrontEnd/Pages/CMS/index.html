@@ -27,73 +27,83 @@
             min-height: 100%;
         }
 
-        body.yuko-cms #header {
-            top: 0 !important
-        }
+            body.yuko-cms #header {
+                top: 0 !important
+            }
 
-        body.yuko-cms #footer {
-            bottom: 0 !important
-        }
+            body.yuko-cms #footer {
+                bottom: 0 !important
+            }
 
-        body.yuko-cms #header>div {
-            width: 90%;
-        }
+            body.yuko-cms #header > div {
+                width: 90%;
+            }
 
-        body.yuko-cms #main>div {
-            width: 90%;
-        }
+            body.yuko-cms #main > div {
+                width: 90%;
+            }
 
-        body.yuko-cms #main .main-middle_left {
-            width: 20%;
-            top: 90px;
-            bottom: 46px;
-            position: fixed;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            -ms-overflow-style: none;
-            overflow: -moz-scrollbars-none;
-        }
+            body.yuko-cms #main .main-middle_left {
+                width: 20%;
+                top: 90px;
+                bottom: 46px;
+                position: fixed;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                -ms-overflow-style: none;
+                overflow: -moz-scrollbars-none;
+            }
 
-        body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
-            display: none;
-        }
+                body.yuko-cms #main .main-middle_left::-webkit-scrollbar {
+                    display: none;
+                }
 
-        body.yuko-cms .yuko-list.yuko-list_compact .yuko-list_item {
-            user-select: none;
-        }
+            body.yuko-cms .yuko-list.yuko-list_compact .yuko-list_item {
+                user-select: none;
+            }
 
-        body.yuko-cms .yuko-list>.yuko-list_item .yuko-list_item-content {
-            /* width: 100% */
-        }
+            body.yuko-cms .yuko-list > .yuko-list_item .yuko-list_item-content {
+                /* width: 100% */ text-indent: 10px;
+            }
 
-        body.yuko-cms #main .main-middle_right {
-            width: 80%;
-        }
+            body.yuko-cms #main .main-middle_right {
+                width: 80%;
+            }
 
-        body.yuko-cms #main .main-middle_right .main-content {
-            width: 90%;
-            margin: 40px 0 40px auto;
-        }
+                body.yuko-cms #main .main-middle_right .main-content {
+                    width: 90%;
+                    margin: 40px 0 40px auto;
+                }
+            body.yuko-cms .yuko-list.yuko-list_compact.article-list > .yuko-list_item:first-child,
+            body.yuko-cms .yuko-list.yuko-list_compact.admin-list > .yuko-list_item:first-child {
+                color: #3f51b5;
+                font-weight: bold;
+            }
 
-        body.yuko-cms .yuko-list.yuko-list_compact .yuko-checkbox {
-            margin: 15px 15px;
-        }
+            body.yuko-cms .yuko-list.yuko-list_compact .yuko-checkbox {
+                margin: 15px 15px;
+            }
+            body.yuko-cms .yuko-list.admin-list > .yuko-list_item > span > span:not(:first-child) {
+                width: 15%;
+            }
+            body.yuko-cms .yuko-list.admin-list > .yuko-list_item > span > span:nth-of-type(3) {
+                width: 25%;
+            }
+            body.yuko-cms .yuko-list.article-list > .yuko-list_item > span > span:nth-of-type(2) {
+                width: 40%;
+            }
 
-        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(2) {
-            width: 45%;
-        }
+            body.yuko-cms .yuko-list.article-list > .yuko-list_item > span > span:nth-of-type(3) {
+                width: 10%;
+            }
 
-        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(3) {
-            width: 10%;
-        }
+            body.yuko-cms .yuko-list.article-list > .yuko-list_item > span > span:nth-of-type(4) {
+                width: 25%;
+            }
 
-        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(4) {
-            width: 15%;
-        }
-
-        body.yuko-cms .yuko-list.yuko-list_compact>.yuko-list_item>span>span:nth-of-type(5) {
-            width: 15%;
-        }
+            body.yuko-cms .yuko-list.article-list > .yuko-list_item > span > span:nth-of-type(5) {
+                width: 15%;
+            }
 
         body.yuko-docs .yuko-list.yuko-list_compact .yuko-list_item {
             padding: 0;
@@ -101,26 +111,30 @@
             cursor: pointer;
         }
 
-        body.yuko-docs .yuko-list.yuko-list_compact>.yuko-list_item>span>span {
+        body.yuko-docs .yuko-list.yuko-list_compact > .yuko-list_item > span > span {
             /* display: inline-block; */
             float: left;
+            padding: 0;
         }
 
         .main-middle_right .main-content {
             display: none;
         }
 
-        .main-middle_right .main-content:first-of-type {
-            display: block;
-        }
-        .management-ctrlBtn {
+            .main-middle_right .main-content:first-of-type {
+                display: block;
+            }
+
+        .management-ctrlBtn,
+        .pagination-article {
             background: rgba(255,255,255,0.8);
             height: 56px;
             line-height: 56px;
         }
-        .management-ctrlBtn .yuko-button {
-            margin: 10px 0 0 10px;
-        }
+
+            .management-ctrlBtn .yuko-button {
+                margin: 10px 0 0 10px;
+            }
     </style>
     <!-- Include external CSS. -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -146,65 +160,6 @@
                 <div id="header-logo">
                     <a href="#"></a>
                 </div>
-                <div id="header-nav">
-                    <ul class="header-nav-level1">
-                        <li>り
-                            <ul class="header-nav-level2">
-                                <li>
-                                    <a>一</a>
-                                </li>
-                                <li>
-                                    <a>二</a>
-                                </li>
-                                <li>
-                                    <a>三</a>
-                                </li>
-                                <li>
-                                    <a>四</a>
-                                </li>
-                                <li>
-                                    <a>五</a>
-                                </li>
-                                <li>
-                                    <a>六</a>
-                                </li>
-                                <li>
-                                    <a>七</a>
-                                </li>
-                                <li>
-                                    <a>八</a>
-                                </li>
-                                <li>
-                                    <a>九</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>ょ
-                            <ul class="header-nav-level2">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </li>
-                        <li>う
-                            <ul class="header-nav-level2">
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </li>
-                        <li>ぎ
-                            <ul class="header-nav-level2">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </header>
         <!-- Header E -->
@@ -227,7 +182,7 @@
                             <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Edit</div>
                             <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple">Delete</div>
                         </div>
-                        <ul class="yuko-list yuko-list_compact">
+                        <ul class="yuko-list yuko-list_compact admin-list">
                             <li class="yuko-list_item">
                                 <span class="yuko-list_item-content">
                                     <span class="yuko-checkbox yuko-checkbox-all">
@@ -331,7 +286,7 @@
                     <div class="main-content" data-module="management-article">
                         <!-- Articles ctrl -->
                         <div class="management-ctrlBtn">
-                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleEdit">Add</div>
+                            <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleAdd">Add</div>
                             <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleEdit">Edit</div>
                             <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="articleDelete">Delete</div>
                             <div class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" data-method="update" data-u_article="{'isDraft':true}">Save as draft</div>
@@ -340,7 +295,7 @@
                         <!-- Articles list -->
                         <ul class="yuko-list yuko-list_compact article-list"></ul>
                         <!-- Articles pagination -->
-                        <div class="yuko-pagination yuko-pagination__round yuko-pagination__async pagination-article" data-active="1">
+                        <div class="yuko-pagination yuko-pagination__round yuko-pagination__async pagination-article" data-pagination="p1" data-active="1">
                             <span class="yuko-pagination_func backward">
                                 <a>&lt;</a>
                             </span>
@@ -523,10 +478,7 @@
                                     <i class="yuko-list_item-avatar material-icons">send</i>
                                 </span>
                                 <span class="yuko-list_item-content">
-                                    <i class="yuko-list_item-avatar material-icons">send</i>
-                                    <span>
-                                        CMS Index
-                                    </span>
+                                    CMS Index
                                 </span>
                             </li>
                             <li class="yuko-list_item" data-method="management-admin">
@@ -534,10 +486,7 @@
                                     <i class="yuko-list_item-avatar material-icons">send</i>
                                 </span>
                                 <span class="yuko-list_item-content">
-                                    <i class="yuko-list_item-avatar material-icons">send</i>
-                                    <span>
-                                        Admin management
-                                    </span>
+                                    Admin management
                                 </span>
                             </li>
                             <li class="yuko-list_item" data-method="management-article">
@@ -545,10 +494,7 @@
                                     <i class="yuko-list_item-avatar material-icons">send</i>
                                 </span>
                                 <span class="yuko-list_item-content">
-                                    <i class="yuko-list_item-avatar material-icons">send</i>
-                                    <span>
-                                        Article management
-                                    </span>
+                                    Article management
                                 </span>
                             </li>
                         </ul>
@@ -713,19 +659,18 @@
                                     </span>
                                 </span>
                             </div>
-        
                             <!-- Download -->
                             <div class="yuko-image_cropper--download yuko-dialog">
                                 <div class="yuko-dialog-content">
                                     <div class="yuko-dialog-header">
                                         <h5 class="yuko-dialog-title">Cropped</h5>
-                                        <span class="yuko-dialog_close yuko-button" data-method="closeDownloadDialog">
+                                        <span class="yuko-dialog_close yuko-button" data-method="close">
                                             <span>&times;</span>
                                         </span>
                                     </div>
                                     <div class="yuko-dialog-body"></div>
                                     <div class="yuko-dialog-footer">
-                                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="closeDownloadDialog">Close</span>
+                                        <span class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain" data-method="close">Close</span>
                                         <a class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_colored yuko-button_ripple" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
                                     </div>
                                 </div>
@@ -821,12 +766,6 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="yuko-snackbar" name="notice">
-                    <div class="yuko-snackbar_text">Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?</div>
-                    <div class="yuko-snackbar_action">Cancel</div>
-                </div>
-            </div>
             <span class="main-to_top"></span>
         </section>
         <!-- Main E -->
@@ -847,6 +786,11 @@
         </footer>
         <!-- Footer E -->
     </div>
+    
+    <div class="yuko-snackbar" name="notice">
+        <div class="yuko-snackbar_text">Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?Share your feeling now?</div>
+        <div class="yuko-snackbar_action">Cancel</div>
+    </div>
     <script src="../../Scripts/jquery/jquery.min.js"></script>
     <script src="../../Scripts/jquery/jquery.smoove.js"></script>
     <script src="../../Scripts/Yuko.js"></script>
@@ -863,7 +807,7 @@
     <!-- Include Editor JS files. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/js/froala_editor.pkgd.min.js"></script>
     <script>
-        var NUM_PER_PAGE = 1;
+        var NUM_PER_PAGE = 9;
     </script>
     <script>
         var $imageCropper = $('#yuko-image_cropper--container'),
@@ -877,6 +821,24 @@
             $previewArticle = $('body.yuko-cms #main #yuko-article-preview'),
             $article = $('body.yuko-cms #main #yuko-article-preview .yuko-article'),
             $article_paging = $('.yuko-pagination.pagination-article'),
+            // article content 
+            $cover = $('.edit-cover .img-box'),
+            $cover_url = $('.edit-cover .yuko-textfield .yuko-textfield_input'),
+            $title = $('.edit-title .yuko-textfield_input'),
+            $subtitle = $('.edit-subtitle .yuko-textfield_input'),
+            $categorys = $('.edit-category .edit-list'),
+            $info = $('.edit-info .yuko-textfield_input'),
+            $info_editor = $('.edit-info .fr-wrapper'),
+            $abstract = $('.edit-abstract .yuko-textfield_input'),
+            $abstract_editor = $('.edit-abstract .fr-wrapper'),
+            $keywords = $('.edit-keywords .edit-list'),
+            $body = $('.edit-body .yuko-textfield_input'),
+            $body_editor = $('.edit-body .fr-wrapper'),
+            $ref = $('.edit-ref .yuko-textfield_input'),
+            $ref_editor = $('.edit-ref .fr-wrapper'),
+            $licenses = $('.edit-licenses .yuko-select_selected'),
+            $addLicenses = $('.edit-licenses .yuko-textfield_input'),
+
             isFirst = true,
             isPaginationInit = false,
             files,
@@ -1045,7 +1007,8 @@
                     previewArticle: null,
                     update: null,
                     articleAdd: null,
-                    articleEdit: null
+                    articleEdit: null,
+                    articleDelete: null
                 };
             console.log(method);
             if (!handler.hasOwnProperty(method)) return;
@@ -1067,7 +1030,7 @@
                 formData = new FormData(),
                 buildHandler = function () {
                     // FormData
-                    formData.append('id', id);
+                    if (id) { formData.append('id', id); }
                     formData.append('title', title);
                     formData.append('cover_url', cover_url);
                     formData.append('subtitle', subtitle);
@@ -1079,6 +1042,8 @@
                     formData.append('ref', ref);
                     formData.append('licenses', licenses);
                     formData.append('addLicenses', addLicenses);
+                    formData.set('npp', NUM_PER_PAGE);
+                    formData.set('cp', $article_paging.attr('data-active'));
                     // Handler
                     handler = {
                         // Save article
@@ -1092,7 +1057,19 @@
                                 contentType: false,
                                 success: function (data) {
                                     console.log(data);
+                                    var articles = data.return_data.articles,
+                                        total = data.return_data.total,
+                                        p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
+                                        vis_nums = p_nums < 5 ? p_nums : 5;
+                                    console.log(articles);
+                                    console.log(p_nums);
+                                    console.log(vis_nums);
+                                    refreshArticles(articles);
+                                    //TODO: cannot using Yuko.widget.pagination here
+                                    //Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                                    Yuko.init.initPagination($article_paging[0], p_nums, vis_nums, true, true, true);
                                     Yuko.event.triggerSnackbar(snackbar, data.return_msg);
+                                    $('#edit-page').attr('data-article', '');
                                 },
                                 error: function (error) {
                                     console.log(error);
@@ -1112,6 +1089,13 @@
                                 contentType: false,
                                 success: function (data) {
                                     console.log(data);
+                                    var articles = data.return_data.articles,
+                                        total = data.return_data.total,
+                                        p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
+                                        vis_nums = p_nums < 5 ? p_nums : 5;
+                                    refreshArticles(articles);
+                                    //Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                                    Yuko.init.initPagination($article_paging[0], p_nums, vis_nums, true, true, true);
                                     Yuko.event.triggerSnackbar(snackbar, data.return_msg);
                                 },
                                 error: function (error) {
@@ -1123,12 +1107,10 @@
                         // Update a article
                         update: function () {
                             formData.set('action', 'update');
-                            formData.set('npp', NUM_PER_PAGE);
-                            formData.set('cp', $article_paging.attr('data-active'));
                             if (!id) {
                                 id = getAllChecked('cb-article');
                                 if (!id) {
-                                    Yuko.event.triggerSnackbar(snackbar, 'Nothing selected')
+                                    Yuko.event.triggerSnackbar(snackbar, 'Nothing was selected')
                                     return;
                                 }
                                 formData.set('id', id);
@@ -1281,7 +1263,43 @@
                             $previewArticle.fadeIn();
                             $article.focus();
                         },
-                        // Edit/Add a article
+                        // Add a article
+                        articleAdd: function () {
+                            formData.set('cp', 1);
+                            var $modules = $('.main-middle_right .main-content');
+                            $modules.fadeOut(0);
+                            $cover.html('');
+                            $cover_url.val('');
+                            $title.val('');
+                            $subtitle.val('');
+                            var cats = ['Music', 'Drawing'],
+                                catsList = '';
+                            for (var i = 0; i < cats.length; i++) {
+                                catsList += '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain">' + cats[i] + '</li >';
+                            }
+                            $categorys.html(catsList);
+                            //var a_info = '<span>Publish Time: ' + a.createTime + ' | ' + a.readCount + ' Readed</span>' + a.authorDesc;
+                            $info.val('');
+                            $info_editor.addClass('show-placeholder');
+                            $info_editor.children('.fr-view').html('<p><br></p>');
+                            $abstract.val('');
+                            $abstract_editor.children('.fr-view').html('<p><br></p>');
+                            var kws = ['Delete me'],
+                                kwsList = '';
+                            for (var i = 0; i < kws.length; i++) {
+                                kwsList += '<li class="yuko-button yuko-button_raised yuko-button_bordered yuko-button_plain yuko-component_removable">' + kws[i] + '<i class="material-icons remove">close</i></li>';
+                            }
+                            $keywords.html(kwsList);
+                            $body.val('');
+                            $body_editor.children('.fr-view').html('<p><br></p>')
+                            $ref.val('');
+                            $ref_editor.children('.fr-view').html('<p><br></p>')
+                            $licenses.text('No License');
+                            $addLicenses.val('');
+
+                            $('.main-middle_right .main-content[data-module=' + 'article-edit' + ']').fadeIn();
+                        },
+                        // Edit a article
                         articleEdit: function () {
                             if (!isSingleChecked('cb-article')) {
                                 Yuko.event.triggerSnackbar(snackbar, 'Single checked allowed only!');
@@ -1299,6 +1317,7 @@
                                 method: 'GET',
                                 dataType: 'json',
                                 success: function (data) {
+                                    console.log(data);
                                     if (data.return_code == '200') {
                                         var a = data.return_data.articles; // article identify by 'id'
                                         if (a.cover) {
@@ -1317,11 +1336,21 @@
                                             $categorys.html(catsList);
                                         }
                                         //var a_info = '<span>Publish Time: ' + a.createTime + ' | ' + a.readCount + ' Readed</span>' + a.authorDesc;
-                                        $info.val(a.authorDesc);
                                         $info_editor.removeClass('show-placeholder');
-                                        $info_editor.children(0).html(a.authorDesc)
-                                        $abstract.val(a._abstract);
-                                        $abstract_editor.children(0).html(a._abstract);
+                                        if (a.authorDesc) {
+                                            $info.val(a.authorDesc);
+                                            $info_editor.children(0).html(a.authorDesc);
+                                        } else {
+                                            $abstract_editor.addClass('show-placeholder');
+                                            $abstract_editor.children('.fr-view').html('<p><br></p>');
+                                        }
+                                        if (a._abstract) {
+                                            $abstract.val(a._abstract);
+                                            $abstract_editor.children(0).html(a._abstract);
+                                        } else {
+                                            $abstract_editor.addClass('show-placeholder');
+                                            $abstract_editor.children('.fr-view').html('<p><br></p>');
+                                        }
                                         if (a.keywords) {
                                             var kws = a.keywords.split(','),
                                                 kwsList = '';
@@ -1331,9 +1360,21 @@
                                             $keywords.html(kwsList);
                                         }
                                         $body.val(a.content);
-                                        $body_editor.children(0).html(a.content)
+                                        if (a.content) {
+                                            $body.val(a.content);
+                                            $body_editor.children(0).html(a.content);
+                                        } else {
+                                            $body_editor.addClass('show-placeholder');
+                                            $body_editor.children('.fr-view').html('<p><br></p>');
+                                        }
                                         $ref.val(a.reference);
-                                        $ref_editor.children(0).html(a.reference)
+                                        if (a.reference) {
+                                            $ref.val(a.reference);
+                                            $ref_editor.children(0).html(a.reference);
+                                        } else {
+                                            $ref_editor.addClass('show-placeholder');
+                                            $ref_editor.children('.fr-view').html('<p><br></p>');
+                                        }
                                         $licenses.text(a.license);
                                         $addLicenses.val(a.addLicense);
                                         $addLicenses.focus();
@@ -1347,6 +1388,50 @@
                                     Yuko.event.triggerSnackbar(snackbar, error.statusText);
                                 }
                             });
+                        },
+                        // Delete articles
+                        articleDelete: function () {
+                            if (!id) {
+                                id = getAllChecked('cb-article');
+                                if (!id) {
+                                    Yuko.event.triggerSnackbar(snackbar, 'Nothing was selected')
+                                    return;
+                                }
+                                formData.set('id', id);
+                            }
+                            formData.set('action', 'update');
+
+                            Yuko.event.triggerDialog('.yuko-dialog.global-dialog', 'This operation <font color="#3f51b5">cannot</font> be reverse!<br>Take further consideration?');
+                            
+                            $('.yuko-dialog .yuko-button[data-method="confirm"]').on('click', function () {
+                                console.log(formData.getAll('id'));
+                                formData.set('cp', 1);
+                                $article_paging.attr('data-active', 1);
+
+                                $.ajax('/articles/delete', {
+                                    method: 'POST',
+                                    data: formData,
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    success: function (data) {
+                                        console.log(data);
+                                        var articles = data.return_data.articles,
+                                            total = data.return_data.total,
+                                            p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
+                                            vis_nums = p_nums < 5 ? p_nums : 5;
+                                        refreshArticles(articles);
+                                        console.log(Yuko.fields.pagination_visible_arr);
+                                        Yuko.init.initPagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                                        Yuko.event.triggerSnackbar(snackbar, 'Article deleted');
+                                    },
+                                    error: function (error) {
+                                        console.log(error);
+                                        Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                                    }
+                                });
+                            });
+
                         }
                     };
                     if (handler.hasOwnProperty(method)) {
@@ -1388,6 +1473,7 @@
         $('.edit-body textarea').froalaEditor();
         $('.edit-ref textarea').froalaEditor();
     </script>
+
     <script>
         var $cover = $('.edit-cover .img-box'),
             $cover_url = $('.edit-cover .yuko-textfield .yuko-textfield_input'),
@@ -1404,8 +1490,10 @@
             $ref = $('.edit-ref .yuko-textfield_input'),
             $ref_editor = $('.edit-ref .fr-wrapper'),
             $licenses = $('.edit-licenses .yuko-select_selected'),
-            $addLicenses = $('.edit-licenses .yuko-textfield_input');
+            $addLicenses = $('.edit-licenses .yuko-textfield_input'),
+            snackbar = '.yuko-snackbar[name="notice"]';
 
+        // Left list handler
         $('.main-middle_left .yuko-list_item').on('click', function (evt) {
             var $this = $(this),
                 data = $this.data(),
@@ -1423,14 +1511,30 @@
                                 var articles = data.return_data.articles,
                                     total = data.return_data.total,
                                     p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
-                                    vis_nums = p_nums < 5 ? p_nums : 5;;
+                                    vis_nums = p_nums < 5 ? p_nums : 5;
                                 refreshArticles(articles);
 
                                 if (!isPaginationInit) {
-                                    Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
                                     isPaginationInit = true;
+                                    Yuko.widget.pagination($article_paging[0], p_nums, vis_nums, true, true, true);
+                                } else {
+                                    Yuko.init.initPagination($article_paging[0], p_nums, vis_nums, true, true, true);
                                 }
-                                console.log(articles);
+                            },
+                            error: function (error) {
+                                Yuko.event.triggerSnackbar(snackbar, error.statusText);
+                            }
+                        });
+                    },
+                    "management-admin": function () {
+                        $.ajax({
+                            url: '/admins/get?Module=' + '@adminModuleCode',
+                            method: 'GET',
+                            success: function (data) {
+                                console.log(data);
+                                var admins = data.return_data.admins,
+                                    total = data.return_data.total;
+                                refreshAdmins(admins);
                             },
                             error: function (error) {
                                 Yuko.event.triggerSnackbar(snackbar, error.statusText);
@@ -1441,6 +1545,8 @@
 
             $('input').removeAttr('checked');
             $('.yuko-checkbox').removeClass('is-checked');
+            $('.yuko-pagination .yuko-pagination_item').removeClass('active');
+            $('.yuko-pagination .yuko-pagination_list').children('li:first-child').addClass('active');
             $modules.fadeOut(0);
             $module.fadeIn();
             if (ajaxRequest.hasOwnProperty(method)) {
@@ -1510,9 +1616,28 @@
             $articleList.html(newList);
         }
 
+        function refreshAdmins(admins) {
+            var $adminList = $('.yuko-list.admin-list'),
+                newList = '<li class="yuko-list_item"><span class="yuko-list_item-content"><span class="yuko-checkbox yuko-checkbox-all"><input type="checkbox" class="yuko-checkbox_input" name="cb-admin"><span class="yuko-checkbox_box-outline"><span class="yuko-checkbox_tick-outline"></span></span></span><span>Name</span><span>Last Login Time</span><span>Last Login IP</span><span>RoleID</span><span>Status</span></span></li>';
+            for (var a in admins) {
+                var admin = admins[a],
+                    id = admin.id,
+                    nickname = admin.nickname,
+                    lastLoginTime = admin.lastLoginTime,
+                    lastLoginIP = admin.lastLoginIP,
+                    roleID = admin.roleID,
+                    status = admin.status,
+                    newItem = '<li class="yuko-list_item"><span class="yuko-list_item-content"><span class="yuko-checkbox"><input type="checkbox" class="yuko-checkbox_input" name="cb-admin" value="' + id + '"><span class="yuko-checkbox_box-outline"><span class="yuko-checkbox_tick-outline"></span></span></span><span>' + nickname + '</span><span>' + lastLoginTime + '</span><span>' + lastLoginIP + '</span><span>' + roleID + '</span><span>' + status + '</span></span></li>';
+                newList += newItem;
+            }
+            $adminList.html(newList);
+        }
+
     </script>
 
     <script>
+        // Pagination handler
+        var snackbar = '.yuko-snackbar[name="notice"]';
         $article_paging.on('click', function (evt) {
             var _target = evt.target,
                 $this = $(this),
@@ -1523,7 +1648,7 @@
                 success: function (data) {
                     var articles = data.return_data.articles,
                         total = data.return_data.total,
-                        p_nums = Math.floor(total / NUM_PER_PAGE) + 1,
+                        p_nums = Math.floor(total / NUM_PER_PAGE) + (total % NUM_PER_PAGE == 0 ? 0 : 1),
                         vis_nums = p_nums < 5 ? p_nums : 5;;
                     refreshArticles(articles);
 
